@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class PetugasCuci extends Model
 {
     use HasFactory;
+    protected $table = "petugas_cuci";
+    protected $fillable = [
+        'kode_petugas',
+        'nama_petugas',
+        'no_hp',
+        'password'
+    ];
 }

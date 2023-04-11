@@ -13,8 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('petugas_packings', function (Blueprint $table) {
+        Schema::create('petugas_packing', function (Blueprint $table) {
             $table->id();
+            $table->integer('kode_petugas')->unique();
+            $table->string('nama_petugas', 50)->nullable();
+            $table->string('no_hp', 13)->nullable();
+            $table->string('password')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -26,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('petugas_packings');
+        Schema::dropIfExists('petugas_packing');
     }
 };
