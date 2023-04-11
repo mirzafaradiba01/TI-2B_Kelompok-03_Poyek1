@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class JenisLaundry extends Model
 {
     use HasFactory;
+    protected $table = "jenis_laundry";
+    protected $fillable =[
+        'kode_JL',
+        'nama_JL',
+        'biaya_JL', 
+    ];
 }

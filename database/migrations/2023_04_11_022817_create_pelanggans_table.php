@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('pelanggan', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('kode_pelanggan');
+            $table->string('nama_pelanggan',50)->nullable();
+            $table->string('no_hp',13)->nullable();
+            $table->string('password')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }
