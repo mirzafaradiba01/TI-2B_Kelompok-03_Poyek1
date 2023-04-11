@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Petugas_cuci;
+use App\Models\PetugasCuci;
 use Illuminate\Http\Request;
 
 class PetugasCuciController extends Controller
@@ -44,7 +45,7 @@ class PetugasCuciController extends Controller
      * @param  \App\Models\Petugas_cuci  $petugas_cuci
      * @return \Illuminate\Http\Response
      */
-    public function show(Petugas_cuci $petugas_cuci)
+    public function show(PetugasCuci $petugas_cuci)
     {
         //
     }
@@ -55,7 +56,7 @@ class PetugasCuciController extends Controller
      * @param  \App\Models\Petugas_cuci  $petugas_cuci
      * @return \Illuminate\Http\Response
      */
-    public function edit(Petugas_cuci $petugas_cuci)
+    public function edit(PetugasCuci $petugas_cuci)
     {
         //
     }
@@ -67,7 +68,7 @@ class PetugasCuciController extends Controller
      * @param  \App\Models\Petugas_cuci  $petugas_cuci
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Petugas_cuci $petugas_cuci)
+    public function update(Request $request, PetugasCuci $petugas_cuci)
     {
         //
     }
@@ -78,7 +79,7 @@ class PetugasCuciController extends Controller
      * @param  \App\Models\Petugas_cuci  $petugas_cuci
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Petugas_cuci $petugas_cuci)
+    public function destroy(PetugasCuci $petugas_cuci)
     {
         //
     }
