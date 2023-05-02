@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Admin extends Model
 {
     use HasFactory;
+    protected $table = 'admin';
+    protected $fillable =[
+        'kode_admin',
+        'no_hp',
+        'nama',
+        'password'
+    ];
 }

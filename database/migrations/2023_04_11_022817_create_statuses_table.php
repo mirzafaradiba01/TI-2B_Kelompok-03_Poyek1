@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('status', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_status');
+            $table->string('kode_status')->unique();
             $table->integer('kode_pelanggan')->unsigned();
             $table->integer('kode_order')->unsigned();
             $table->integer('kode_user')->unsigned();

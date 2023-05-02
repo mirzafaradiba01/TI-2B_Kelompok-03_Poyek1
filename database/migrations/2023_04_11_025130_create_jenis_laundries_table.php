@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('jenis_laundry', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('kode_JL');
+            $table->unsignedInteger('kode_JL')->unique();
             $table->string('nama_JL',50)->nullable();
             $table->bigInteger('biaya_JL')->nullable();
             $table->timestamps();

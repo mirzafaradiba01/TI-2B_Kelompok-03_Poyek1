@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('petugas_cuci', function (Blueprint $table) {
             $table->id();
-            $table->integer('kode_petugas')->unique();
+            $table->unsignedInteger('kode_petugas')->unique();
             $table->string('nama_petugas', 50)->nullable();
             $table->string('no_hp', 13)->nullable();
             $table->string('password')->nullable();

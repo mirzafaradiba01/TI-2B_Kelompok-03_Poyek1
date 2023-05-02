@@ -16,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('komplain', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('kode_komplain');
+            $table->unsignedInteger('kode_komplain')->unsigned();
             $table->unsignedInteger('kode_pelanggan')->unsigned();
             $table->unsignedInteger('kode_order')->unsigned();
             $table->string('pesan')->nullable();
