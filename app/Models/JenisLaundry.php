@@ -12,6 +12,6 @@ class JenisLaundry extends Model
     protected $fillable =[
         'kode_JL',
         'nama_JL',
-        'biaya_JL', 
+        // 'biaya_JL', 
     ];
 }
