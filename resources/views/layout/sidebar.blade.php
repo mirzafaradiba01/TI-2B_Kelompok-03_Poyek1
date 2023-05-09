@@ -5,7 +5,7 @@
         <img src="https://www.eatlogos.com/food_and_drinks/png/vector_ice_cream_food_logo.png" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">MIRZA-SHOFIA</a>
+        <a href="#" class="d-block">AYA LAUNDRY</a>
       </div>
     </div>
   
@@ -33,17 +33,48 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href={{ url('/ice_cream') }} class="nav-link">
+          <a href={{ url('/admin') }} class="nav-link">
             <i class="nav-icon fas fa-book"></i>
-            <p>Data Ice Cream</p>
+            <p>Data Admin</p>
           </a>
         </li>
         <li class="nav-item">
-            <a href={{ url('/pegawai') }} class="nav-link">
+            <a href={{ url('/pelanggan') }} class="nav-link">
               <i class="nav-icon fas fa-book"></i>
-              <p>Data Pegawai</p>
+              <p>Data Pelanggan</p>
             </a>
           </li>
+        <li class="nav-item">
+            <a href={{ url('/petugas') }} class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>Data Petugas</p>
+            </a>
+          </li>
+        <li class="nav-item">
+            <a href={{ url('/status') }} class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>Status Laundry</p>
+            </a>
+        </li>
+        <li class="nav-item">
+          <a href={{ url('/transaksi') }} class="nav-link">
+            <i class="nav-icon fas fa-book"></i>
+            <p>Transaksi</p>
+          </a>
+      </li>
+      <li class="nav-item">
+        <a href={{ url('/komplain') }} class="nav-link">
+          <i class="nav-icon fas fa-book"></i>
+          <p>Komplain</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href={{ url('/cetak_laporan') }} class="nav-link">
+          <i class="nav-icon fas fa-book"></i>
+          <p>Cetak Laporan</p>
+        </a>
+    </li>
+
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

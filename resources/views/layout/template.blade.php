@@ -25,7 +25,7 @@
     <!-- Brand Logo -->
     <a href="{{asset('assets/index3.html" class="brand-link')}}">
       <img src="https://www.eatlogos.com/food_and_drinks/png/vector_ice_cream_food_logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8" width="50" height="50">
-      <span class="brand-text font-weight-light">Ice Cream</span>
+      <span class="brand-text font-weight-light">AYA LAUNDRY</span>
     </a>
 
     <!-- Sidebar -->
@@ -41,7 +41,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>ICE CREAM</h1>
+            <h1>AYA LAUNDRY</h1>
           </div>
           {{-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
