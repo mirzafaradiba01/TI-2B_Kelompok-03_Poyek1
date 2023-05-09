@@ -12,9 +12,19 @@ class PelangganController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // return view('pelanggan');
+        if($request->get('query') !== null){
+            $query = $request->get('query');
+            $pelanggan = Pelanggan::where('kode_pelanggan', 'LIKE', '%'.$query.'%')
+                ->orWhere('nama_pelanggan', 'LIKE', '%'.$query.'%')
+                ->orWhere('no_hp', 'LIKE', '%'.$query.'%')
+                ->paginate(5);
+        } else {
+            $pelanggan = Pelanggan::paginate(5);
+        }
+        return view('pelanggan.pelanggan', ['pelanggan' => $pelanggan]);
     }
 
     /**
