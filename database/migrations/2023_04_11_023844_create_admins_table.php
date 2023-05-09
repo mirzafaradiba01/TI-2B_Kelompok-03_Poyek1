@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('admin', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('kode_admin')->unique();
-            $table->string('no_hp', 13)->nullable();
             $table->string('nama')->nullable();
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('no_hp', 13)->nullable();
             $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
