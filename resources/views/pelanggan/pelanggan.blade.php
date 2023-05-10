@@ -40,10 +40,13 @@
                                 <td>{{++$pe}}</td>
                                 <td>{{$p->kode_pelanggan}}</td>
                                 <td>{{$p->nama_pelanggan}}</td>
-                                <td>{{$p->hp}}</td> 
+                                <td>{{$p->no_hp}}</td> 
                                 
                                 <td>
                                     {{-- Bikin simbol edit dan delete --}}
+                                    <a href="{{url('/pelanggan/'.$p->id)}}" 
+                                        class="btn btn-sm btn-primary">show</a>
+
                                     <a href="{{url('/pelanggan/'.$p->id.'/edit')}}" 
                                         class="btn btn-sm btn-warning">edit</a>
                                     

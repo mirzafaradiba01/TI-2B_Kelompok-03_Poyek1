@@ -34,7 +34,8 @@ class PelangganController extends Controller
      */
     public function create()
     {
-        //
+        return  view('pelanggan.create_pelanggan')
+        ->with('url_form',url('/pelanggan'));
     }
 
     /**
@@ -45,7 +46,17 @@ class PelangganController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kode_pelanggan' => 'required|string|max:10|unique:pelanggan,kode_pelanggan',
+            'nama_pelanggan' => 'required|string|max:50',
+            'no_hp' => 'required|digits_between:6,15',
+        ]);
+
+        $data = Pelanggan::create($request->except(['_token']));
+
+        //jika berhasil
+        return redirect('pelanggan')
+                ->with('success', 'Pelanggan Berhasil Ditambahkan');
     }
 
     /**
@@ -54,9 +65,14 @@ class PelangganController extends Controller
      * @param  \App\Models\Pelanggan  $pelanggan
      * @return \Illuminate\Http\Response
      */
-    public function show(Pelanggan $pelanggan)
+    public function show($id)
     {
-        //
+        //menampilkan detail data berd nim
+        //code sebelum dibuat relasi : 
+      
+        $pelanggan = Pelanggan::where('id',$id)->get();
+        return view('pelanggan.detail_pelanggan', ['pelanggan' => $pelanggan[0]]);
+        
     }
 
     /**
@@ -65,9 +81,12 @@ class PelangganController extends Controller
      * @param  \App\Models\Pelanggan  $pelanggan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pelanggan $pelanggan)
+    public function edit($id)
     {
-        //
+        $pelanggan = Pelanggan::find($id);
+        return view('pelanggan.create_pelanggan')
+                    ->with('pelanggan',$pelanggan)
+                    ->with('url_form',url('/pelanggan/'.$id));
     }
 
     /**
@@ -77,9 +96,18 @@ class PelangganController extends Controller
      * @param  \App\Models\Pelanggan  $pelanggan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pelanggan $pelanggan)
+    public function update(Request $request, $id)
     {
-        //
+        $request ->validate([
+                'kode_pelanggan' => 'required|string|max:10|unique:pelanggan,kode_pelanggan,'.$id,
+                'nama_pelanggan' => 'required|string|max:50',
+                'no_hp' => 'required|digits_between:6,15',
+
+        ]);
+
+        $data = Pelanggan::where('id', '=', $id)->update($request->except(['_token','_method']));
+        return redirect('pelanggan')
+            ->with('success','Pelanggan Berhasil Ditambahkan');
     }
 
     /**
@@ -88,8 +116,31 @@ class PelangganController extends Controller
      * @param  \App\Models\Pelanggan  $pelanggan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pelanggan $pelanggan)
+    public function destroy($id)
     {
-        //
+        Pelanggan::where('id', '=', $id)->delete();
+        return redirect('pelanggan')
+        ->with ('success', 'Pelanggan Berhasil Dihapus');
+    }
+
+    public function search(Request $request)
+    {
+        $pelanggan = Pelanggan::count();
+
+        $keyword = $request->input('keyword');
+        $column = $request->input('column');
+
+        $query = Pelanggan::query();
+
+        if ($column == 'Kode') {
+            $query->where('kode_pelanggan', 'LIKE', "%$keyword%");
+        } elseif ($column == 'Nama') {
+            $query->where('nama_pelanggan', 'LIKE', "%$keyword%");
+
+        $results = $query->get();
+
+        return view('pelanggan.search_pelanggan', ['results' => $results])
+            ->with('pelanggan', $pelanggan);
+        }
     }
 }
