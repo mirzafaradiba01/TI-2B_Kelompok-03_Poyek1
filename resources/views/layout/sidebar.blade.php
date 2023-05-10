@@ -32,12 +32,7 @@
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href={{ url('/admin') }} class="nav-link">
-                    <i class="nav-icon fas fa-book"></i>
-                    <p>Data Admin</p>
-                </a>
-            </li>
+           
             <li class="nav-item">
                 <a href={{ url('/pelanggan') }} class="nav-link">
                     <i class="nav-icon fas fa-book"></i>

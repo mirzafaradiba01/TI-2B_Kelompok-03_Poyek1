@@ -26,15 +26,14 @@
     <div class="col-lg-6 col-4">
       <!-- small box -->
       <div class="small-box bg-success">
-        <div class="inner">
-          <h3>Data Admin</h3>
-        </div>
-        <div class="icon">
-          <i class="fas fas"></i>
-        </div>
-        <a href="{{ url('/admin') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      
+       
+        {{-- <a href="{{ url('/admin') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
       </div>
     </div>
+  </div>
+  
+  
     <!-- ./col -->
     <div class="col-lg-6 col-4">
       <!-- small box -->
