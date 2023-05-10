@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('petugas_cuci', function (Blueprint $table) {
+        Schema::create('petugas', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('kode_petugas')->unique();
             $table->string('nama_petugas', 50)->nullable();
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('petugas_cuci');
+        Schema::dropIfExists('petugas');
     }
 };
