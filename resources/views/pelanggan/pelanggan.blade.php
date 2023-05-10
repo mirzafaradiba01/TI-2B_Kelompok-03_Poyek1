@@ -1,4 +1,4 @@
-@extends('layout.template')
+@extends('layouts.template')
 
 @section('content')
 <section class="content">
@@ -7,15 +7,6 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">DATA PELANGGAN</h3>
-
-            {{-- <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widge="collapse" title="Collapse">
-                    <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widge="remove" title="Remove">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div> --}}
         </div>
         <div class="card-body">
            <a href="{{ url ('pelanggan/create')}}"class="btn btn-sm btn-info my-2">Tambah Data</a>
@@ -40,26 +31,26 @@
                                 <td>{{++$pe}}</td>
                                 <td>{{$p->kode_pelanggan}}</td>
                                 <td>{{$p->nama_pelanggan}}</td>
-                                <td>{{$p->no_hp}}</td> 
-                                
+                                <td>{{$p->no_hp}}</td>
+
                                 <td>
                                     {{-- Bikin simbol edit dan delete --}}
-                                    <a href="{{url('/pelanggan/'.$p->id)}}" 
+                                    <a href="{{url('/pelanggan/'.$p->id)}}"
                                         class="btn btn-sm btn-primary">show</a>
 
-                                    <a href="{{url('/pelanggan/'.$p->id.'/edit')}}" 
+                                    <a href="{{url('/pelanggan/'.$p->id.'/edit')}}"
                                         class="btn btn-sm btn-warning">edit</a>
-                                    
+
                                     <form method="POST" action="{{url('/pelanggan/'.$p->id)}}" onsubmit="return confirm('Apakah yakin ingin menghapus data?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger">hapus</button>
-                                        
+
                                     </form>
                                 </td>
                             </tr>
                             @endforeach
-                            
+
                         @else
                             <tr><td colspan="7" class="text-center">Data Tidak Ada</td></tr>
                         @endif
