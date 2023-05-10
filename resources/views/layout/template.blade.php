@@ -17,7 +17,7 @@
 <div class="wrapper">
   <!-- Navbar -->
   @include('layout.navbar')
-  
+
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
@@ -30,7 +30,7 @@
 
     <!-- Sidebar -->
     @include('layout.sidebar')
-    
+
     <!-- /.sidebar -->
   </aside>
 
@@ -87,7 +87,7 @@
   </div>
   <!-- /.content-wrapper -->
   @include('layout.footer')
-  
+
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -103,8 +103,6 @@
 <script src="{{asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('assets/dist/js/adminlte.min.js')}}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{asset('assets/dist/js/demo.js')}}"></script>
 @stack('js')
 </body>
 </html>
