@@ -1,5 +1,5 @@
 @extends('layouts.template')
-
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +9,9 @@
     <title>Document</title>
 </head>
 <body>
-    @section('content')
-        <h1>Ini halaman admin</h1>
-    @endsection
+
+    <h1>Ini halaman admin</h1>
+
 </body>
 </html>
+@endsection

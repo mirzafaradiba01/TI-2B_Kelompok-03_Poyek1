@@ -48,7 +48,7 @@
                     <div class="icon">
                         <i class="fas fa-child"></i>
                     </div>
-                    <a href="{{ url('/pelanggan') }}" class="small-box-footer">More info <i
+                    <a href="{{ url('/petugas') }}" class="small-box-footer">More info <i
                             class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
@@ -61,8 +61,7 @@
                     <div class="icon">
                         <i class="fas fa-child"></i>
                     </div>
-                    <a href="{{ url('/pelanggan') }}" class="small-box-footer">More info <i
-                            class="fas fa-arrow-circle-right"></i></a>
+                    <a href="{{ url('/status') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-6 col-4">
@@ -74,7 +73,7 @@
                     <div class="icon">
                         <i class="fas fa-child"></i>
                     </div>
-                    <a href="{{ url('/pelanggan') }}" class="small-box-footer">More info <i
+                    <a href="{{ url('/komplain') }}" class="small-box-footer">More info <i
                             class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>

@@ -48,30 +48,36 @@
                     <p>Status Laundry</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href={{ url('/transaksi') }} class="nav-link">
-                    <i class="nav-icon fas fa-money-bill-transfer" style="color: #fff;"></i>
-                    <p>Transaksi</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href={{ url('/komplain') }} class="nav-link">
-                    <i class="nav-icon fas fa-comment-dots" style="color: #ffffff;"></i>
-                    <p>Komplain</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href={{ url('/cetak_laporan') }} class="nav-link">
-                    <i class="nav-icon fas fa-file-pen" style="color: #ffffff;"></i>
-                    <p>Cetak Laporan</p>
-                </a>
-            </li>
+
+            {{-- jika yang login admin, maka menu di bawah akan muncul, kalau petugas tidak akan muncul --}}
+            @if ( auth()->user()->role == 'admin' )
+                <li class="nav-item">
+                    <a href={{ url('/transaksi') }} class="nav-link">
+                        <i class="nav-icon fas fa-money-bill-transfer" style="color: #fff;"></i>
+                        <p>Transaksi</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href={{ url('/komplain') }} class="nav-link">
+                        <i class="nav-icon fas fa-comment-dots" style="color: #ffffff;"></i>
+                        <p>Komplain</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href={{ url('/cetak_laporan') }} class="nav-link">
+                        <i class="nav-icon fas fa-file-pen" style="color: #ffffff;"></i>
+                        <p>Cetak Laporan</p>
+                    </a>
+                </li>
+            @endif
+
             <li class="nav-item">
                 <a href={{ url('/logout') }} class="nav-link">
                     <i class="nav-icon fas fa-arrow-right"></i>
                     <p>Logout</p>
                 </a>
             </li>
+
         </ul>
     </nav>
 </div>
