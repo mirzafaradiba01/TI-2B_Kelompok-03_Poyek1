@@ -35,8 +35,8 @@ Route::middleware(['auth','checkrole:admin,petugas'])->group( function() {
 
     // controller pelanggan sam petugas belum di setting
     // sama viewnya
-    Route::get('/pelanggan', [PelangganController::class, 'index'])->name('pelanggan');
-    Route::get('/petugas', [PetugasController::class, 'index'])->name('petugas');
+    Route::resource('/pelanggan', PelangganController::class)->parameter('pelanggan', 'id');
+    Route::resource('/petugas', PetugasController::class)->parameter('petugas', 'id');
 });
 
 Route::middleware(['auth','checkrole:pelanggan'])->group( function() {

@@ -39,11 +39,11 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
+                {{-- <div class="container-fluid"> --}}
+                    {{-- <div class="row mb-2"> --}}
+                        <div class="mb-3 d-flex justify-content-center align-items-center">
                             <h1>AYA LAUNDRY</h1>
-                        </div>
+                          </div>                          
 
                         <!-- main content -->
                         @yield('content')
@@ -53,7 +53,7 @@
                         <!-- footer -->
                         @include('layouts.footer')
                         <!-- /.footer -->
-                    </div>
+                    {{-- </div> --}}
                 </div>
             </section>
         </div>
