@@ -21,10 +21,6 @@ return new class extends Migration
             $table->integer('kode_user')->unsigned();
             $table->string('status')->nullable();
             $table->timestamps();
-
-            // $table->foreign('kode_pelanggan')->references('kode_pelanggan')->on('pelanggan');
-            // $table->foreign('kode_order')->references('kode_order')->on('order');
-            // $table->foreign('kode_user')->references('id')->on('users');
         });
     }
 
