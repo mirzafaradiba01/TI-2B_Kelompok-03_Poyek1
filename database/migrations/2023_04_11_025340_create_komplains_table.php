@@ -12,20 +12,16 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
+
+        // tabel ini akan berelasi dengan tabel pelanggan dan order
         Schema::create('komplain', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('kode_komplain')->unsigned();
-            $table->unsignedInteger('kode_pelanggan')->unsigned();
-            $table->unsignedInteger('kode_order')->unsigned();
+            $table->unsignedBigInteger('kode_komplain')->unsigned();
             $table->string('pesan')->nullable();
             $table->string('gambar')->nullable();
             $table->string('balasan')->nullable();
             $table->timestamps();
-
-            // $table->foreign('kode_pelanggan')->references('kode_pelanggan')->on('pelanggan');
-            // $table->foreign('kode_order')->references('kode_order')->on('order');
         });
     }
 

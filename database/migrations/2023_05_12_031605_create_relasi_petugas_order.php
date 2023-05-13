@@ -11,8 +11,8 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
+        
         Schema::table('petugas', function (Blueprint $table) {
             $table->unsignedBigInteger('id_order')->after('id');
             $table->foreign('id_order')->references('id')->on('order')->onDelete('cascade')->onUpdate('cascade');

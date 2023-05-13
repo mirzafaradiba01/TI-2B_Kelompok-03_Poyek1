@@ -3,18 +3,8 @@
 @section('content')
 <section class="content">
 
-    <!--Default box-->
     <div class="card">
         <div class="card-header">
-
-            {{-- <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widge="collapse" title="Collapse">
-                    <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widge="remove" title="Remove">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div> --}}
         </div>
         <div class="card-body">
             <table class="table table-bordered table-striped">
@@ -29,26 +19,25 @@
                     <th>Status</th>
                 </thead>
                 <body>
-                    @foreach($status as $st => $s)
-                    <tr>
-                        <td>{{$s->kode_status}}</td>
-                        <td>{{$s->tanggal_laundry}}</td>
-                        <td>{{$s->jenis_laundry}}</td>
-                        <td>{{$s->biaya_JL}}</td>
-                        <td>{{$s->total_laundry}}</td>
-                        <td>{{$s->no_hp}}</td>
-
+                    @if ($status->count() > 0)
+                        @foreach($status as $st => $s)
+                            <tr>
+                                <td>{{$s->kode_status}}</td>
+                                <td>{{$s->order->tanggal_laundry}}</td>
+                                <td>{{$s->jenis_laundry->nama_JL}}</td>
+                                <td>{{$s->jenis_laundry->biaya_JL}}</td>
+                                <td>{{$s->order->total_laundry}}</td>
+                                <td>{{$s->pelanggan->no_hp}}</td>
+                                </tr>
+                            </td>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="6" class="text-center">Data tidak ada</td>
                         </tr>
-                    </td>
-                    </body>
-                    @endforeach
-                {{-- @else --}}
-                <tr><td colspan="9" class="text-center">Data Tidak Ada</td></tr>
-                {{-- @endif --}}
-            </tbody>
-              </table>
-    </div>
-    <!-- /.card -->
-
+                    @endif
+                </body>
+            </table>
+        </div>
     </section>
 @endsection

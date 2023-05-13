@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisLaundry;
+use App\Models\Order;
+use App\Models\Pelanggan;
 use App\Models\Status;
 use Illuminate\Http\Request;
 
@@ -53,12 +56,18 @@ class StatusController extends Controller
      * @param  \App\Models\Status  $status
      * @return \Illuminate\Http\Response
      */
-    // public function show(Status  $id)
-    // {
-    //     $status =StatusController::find($id);
-    //     // $mahasiswa = Mahasiswa::with('kelas')->where('nim',$Nim)->first();
-    //     return view('status.status', ['status' => $data]);
-    // }
+    public function show($id) {
+        $status = Status::find($id);
+        $order = Order::finc($id);
+        $pelanggan = Pelanggan::find($id);
+        $jenis_laundry = JenisLaundry::find($id);
+        return view('status.status', [
+            'order' => $order,
+            'status' => $status,
+            'pelanggan' => $pelanggan,
+            'jenis_laundry' => $jenis_laundry
+        ]);
+    }
 
 
     /**

@@ -18,4 +18,8 @@ class Order extends Model
         'status_laundry',
         'status_bayar'
     ];
+
+    public function status() {
+        $this->hasMany(Status::class);
+    }
 }

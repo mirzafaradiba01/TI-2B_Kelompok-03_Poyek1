@@ -6,8 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class PelangganSeeder extends Seeder
-{
+class PelangganSeeder extends Seeder {
     /**
      * Run the database seeds.
      *

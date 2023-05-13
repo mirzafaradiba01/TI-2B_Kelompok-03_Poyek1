@@ -39,7 +39,6 @@ Route::middleware(['auth','checkrole:admin,petugas'])->group( function() {
     Route::resource('/pelanggan', PelangganController::class)->parameter('pelanggan', 'id');
     Route::resource('/petugas', PetugasController::class)->parameter('petugas', 'id');
     Route::resource('/status', StatusController::class)->parameter('status', 'id');
-    // Route::get('/status/{id}/khs',[MahasiswaController::class,'khs']);
 
 });
 

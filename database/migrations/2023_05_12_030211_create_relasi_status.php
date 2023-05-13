@@ -11,8 +11,8 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
+        
         Schema::table('status', function (Blueprint $table) {
             $table->unsignedBigInteger('id_pelanggan')->after('id');
             $table->unsignedBigInteger('id_jenis_laundry')->after('id_pelanggan');

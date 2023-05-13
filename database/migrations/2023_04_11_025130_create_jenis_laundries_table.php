@@ -11,13 +11,14 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
+
+        // tabel ini berelasi dengan tabel status
         Schema::create('jenis_laundry', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('kode_JL')->unique();
-            $table->string('nama_JL',50)->nullable();
-            $table->bigInteger('biaya_JL')->nullable();
+            $table->unsignedBigInteger('kode_jenis_laundry')->unique();
+            $table->string('nama')->nullable();
+            $table->unsignedBigInteger('biaya')->nullable();
             $table->timestamps();
         });
     }

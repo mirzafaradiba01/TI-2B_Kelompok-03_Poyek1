@@ -11,14 +11,14 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
+
+        // tabel ini akan berelasi dengan tabel order
         Schema::create('petugas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('kode_petugas')->unique();
-            $table->string('nama_petugas', 50)->nullable();
+            $table->unsignedBigInteger('kode_petugas')->unique();
+            $table->string('nama_petugas')->nullable();
             $table->string('no_hp', 13)->nullable();
-            $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

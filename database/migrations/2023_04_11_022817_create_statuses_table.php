@@ -11,14 +11,12 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
+
+        // tabel ini akan berelasi dengan tabel pelanggan, jenis_laundry, dan order
         Schema::create('status', function (Blueprint $table) {
             $table->id();
             $table->string('kode_status')->unique();
-            $table->integer('kode_pelanggan')->unsigned();
-            $table->integer('kode_order')->unsigned();
-            $table->integer('kode_user')->unsigned();
             $table->string('status')->nullable();
             $table->timestamps();
         });
