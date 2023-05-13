@@ -18,9 +18,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('kode_order')->unsigned()->unique();
             $table->date('tanggal_laundry')->nullable();
-            $table->integer('berat_laundry' )->nullable();
-            $table->integer('total_laundry')->nullable();
-            $table->string('catatan_laundry')->nullable();
+            $table->unsignedBigInteger('berat' )->nullable();
+            $table->unsignedBigInteger('total')->nullable();
+            $table->string('catatan')->nullable();
             $table->string('status_bayar')->nullable();
             $table->timestamps();
         });

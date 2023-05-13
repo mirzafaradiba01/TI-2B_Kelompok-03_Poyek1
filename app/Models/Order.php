@@ -13,9 +13,9 @@ class Order extends Model
         'kode_order',
         'id_pelanggan',
         'id_jenis_laundry',
-        'berat_laundry',
-        'total_laundry',
-        'catatan_laundry',
+        'berat',
+        'total',
+        'catatan',
         'status_bayar'
     ];
 
