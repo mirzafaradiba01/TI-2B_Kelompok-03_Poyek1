@@ -1,4 +1,4 @@
-@extends('layout.template')
+@extends('layouts.template')
 
 @section('content')
 <section class="content">
@@ -6,19 +6,10 @@
     <!--Default box-->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">DATA MAHASISWA</h3>
+            <h3 class="card-title">CEK STATUS LAUNDRY</h3>
 
-            {{-- <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widge="collapse" title="Collapse">
-                    <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widge="remove" title="Remove">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div> --}}
         </div>
         <div class="card-body">
-            <a href="{{url('mahasiswa/create')}}" class="btn btn-sm btn-success my-2">Tambah Data</a>
             <table class="table table-bordered table-striped">
                 <thead>
                     <th>No</th>
@@ -26,20 +17,18 @@
                     <th>Kode Status</th>
                     <th>Tanggal Laundry</th>
                     <th>Jenis Laundry</th>
-                    <th>Biaya Laudry</th>
                     <th>Total Biaya Laundry</th>
                     <th>No Hp</th>
                 </thead>
                 <body>
-                    @if($status->count() > 0)
+                    @if($status -> count() > 0)
                     @foreach($status as $st => $s)
                     <tr>
-                        <td>{{++$se}}</td>
+                        <td>{{++$st}}</td>
                         <td>{{$s->nama_pelanggan}}</td>
                         <td>{{$s->kode_status}}</td>
                         <td>{{$s->tanggal_laundry}}</td>
                         <td>{{$s->jenis_laundry}}</td>
-                        <td>{{$s->biaya_JL}}</td>
                         <td>{{$s->total_laundry}}</td>
                         <td>{{$s->no_hp}}</td>
 
@@ -56,10 +45,6 @@
               </table>   
     </div>
     <!-- /.card -->
-
-    <div class="card-footer">
-        Footer
-    </div>
 
     </section>
 @endsection

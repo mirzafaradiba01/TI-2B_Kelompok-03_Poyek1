@@ -12,8 +12,17 @@ class StatusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        return view('status.status');
+    public function index(Request $request) {
+        if($request->get('query') !== null){
+            $query = $request->get('query');
+            $status = Status::where('kode_status', 'LIKE', '%'.$query.'%')
+                ->orWhere('nama_pelanggan', 'LIKE', '%'.$query.'%')
+                ->orWhere('no_hp', 'LIKE', '%'.$query.'%')
+                ->paginate(5);
+        } else {
+            $status = Status::paginate(5);
+        }
+        return view('status.status', ['status' => $status]);
     }
 
 
