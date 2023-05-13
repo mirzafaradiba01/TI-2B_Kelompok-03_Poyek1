@@ -47,6 +47,7 @@ class PetugasController extends Controller
     {
         $request->validate([
             'kode_petugas' => 'required|string|max:10|unique:petugas,kode_petugas',
+            'id_order' => 'required',
             'nama_petugas' => 'required|string|max:50',
             'no_hp' => 'required|digits_between:6,15',
         ]);
@@ -54,8 +55,7 @@ class PetugasController extends Controller
         $data = Petugas::create($request->except(['_token']));
 
         //jika berhasil
-        return redirect('petugas')
-                ->with('success', 'petugas Berhasil Ditambahkan');
+        return redirect('petugas')->with('success', 'petugas Berhasil Ditambahkan');
     }
 
     /**
@@ -95,6 +95,7 @@ class PetugasController extends Controller
     {
         $request ->validate([
                 'kode_petugas' => 'required|string|max:10|unique:petugas,kode_petugas,'.$id,
+                'id_order' => 'required',
                 'nama_petugas' => 'required|string|max:50',
                 'no_hp' => 'required|digits_between:6,15',
 

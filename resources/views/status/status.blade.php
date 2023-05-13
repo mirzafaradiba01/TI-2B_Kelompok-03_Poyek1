@@ -28,6 +28,7 @@
                                 <td>{{$s->jenis_laundry->biaya}}</td>
                                 <td>{{$s->order->total_laundry}}</td>
                                 <td>{{$s->pelanggan->no_hp}}</td>
+                                <td>{{$s->status}}</td>
                                 </tr>
                             </td>
                         @endforeach

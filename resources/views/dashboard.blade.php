@@ -1,13 +1,14 @@
 @extends('layouts.template')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Dashboard</h1>
+    <section>
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Dashboard</h1>
+                </div>
             </div>
         </div>
-    </div>
     </section>
 
     <!-- Main content -->
@@ -36,7 +37,7 @@
                         <i class="fas fa-child"></i>
                     </div>
                     <a href="{{ url('/pelanggan') }}" class="small-box-footer">More info <i
-                            class="fas fa-arrow-circle-right"></i></a>
+                    class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-6 col-4">
@@ -49,7 +50,7 @@
                         <i class="fas fa-child"></i>
                     </div>
                     <a href="{{ url('/petugas') }}" class="small-box-footer">More info <i
-                            class="fas fa-arrow-circle-right"></i></a>
+                    class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-6 col-4">
@@ -73,11 +74,9 @@
                     <div class="icon">
                         <i class="fas fa-child"></i>
                     </div>
-                    <a href="{{ url('/komplain') }}" class="small-box-footer">More info <i
-                            class="fas fa-arrow-circle-right"></i></a>
+                    <a href="{{ url('/komplain') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
-            <!-- ./col -->
         </div>
     </section>
 @endsection

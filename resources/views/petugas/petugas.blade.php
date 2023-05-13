@@ -30,7 +30,7 @@
                             <tr>
                                 <td>{{++$pt}}</td>
                                 <td>{{$pe->kode_petugas}}</td>
-                                <td>{{$pe->nama_petugas}}</td>
+                                <td>{{$pe->nama}}</td>
                                 <td>{{$pe->no_hp}}</td>
 
                                 <td>

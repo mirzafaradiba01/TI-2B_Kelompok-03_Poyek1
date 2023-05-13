@@ -18,7 +18,7 @@
         <div class="card-body">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><b>Kode Pelanggan : </b>{{$pelanggan->kode_pelanggan}}</li>
-                <li class="list-group-item"><b>Nama Pelanggan : </b>{{$pelanggan->nama_pelanggan}}</li>
+                <li class="list-group-item"><b>Nama Pelanggan : </b>{{$pelanggan->nama}}</li>
                 <li class="list-group-item"><b>No Telepon : </b>{{$pelanggan->no_hp}}</li>
             </ul>
         </div>

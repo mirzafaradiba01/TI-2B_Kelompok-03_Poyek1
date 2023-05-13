@@ -30,8 +30,8 @@
                   </div>
                   <div class="form-group">
                     <label>Nama Pelanggan</label>
-                    <input class="form-control @error('nama_pelanggan') is-invalid @enderror" value="{{isset($pelanggan)? $pelanggan->nama_pelanggan:old('nama_pelanggan') }}" name="nama_pelanggan" type="text"/>
-                    @error('nama_pelanggan')
+                    <input class="form-control @error('nama') is-invalid @enderror" value="{{isset($pelanggan)? $pelanggan->nama:old('nama') }}" name="nama" type="text"/>
+                    @error('nama')
                       <span class="error invalid-feedback">{{ $message }} </span>
                     @enderror
                   </div>
