@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisLaundry;
 use App\Models\Order;
+use App\Models\Pelanggan;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -12,9 +14,17 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Request $request) {
+        if($request->get('query') !== null){
+            $query = $request->get('query');
+            $order = Order::where('kode_order', 'LIKE', '%'.$query.'%')
+                ->orWhere('nama_pelanggan', 'LIKE', '%'.$query.'%')
+                ->orWhere('kode_pelanggan', 'LIKE', '%'.$query.'%')
+                ->paginate(5);
+        } else {
+            $order = Order::paginate(5);
+        }
+        return view('order.transaksi', ['order' => $order]);
     }
 
     /**
@@ -44,10 +54,17 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
-    {
-        //
+    public function show($id) {
+        $order = Order::find($id);
+        $pelanggan = Pelanggan::find($id);
+        $jenis_laundry = JenisLaundry::find($id);
+        return view('order.transaksi', [
+            'order' => $order,
+            'pelanggan' => $pelanggan,
+            'jenis_laundry' => $jenis_laundry
+        ]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
