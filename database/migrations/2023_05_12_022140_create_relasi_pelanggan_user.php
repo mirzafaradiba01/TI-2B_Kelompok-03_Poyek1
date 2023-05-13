@@ -12,10 +12,10 @@ return new class extends Migration
      * @return void
      */
     public function up() {
-        
+
         Schema::table('pelanggan', function (Blueprint $table) {
-            $table->unsignedBigInteger('users_id')->after('id');
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('id_user')->after('id');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
 
         });
     }
@@ -25,8 +25,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('relasi_pelanggan_user');
     }
 };

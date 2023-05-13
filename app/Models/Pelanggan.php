@@ -11,11 +11,16 @@ class Pelanggan extends Model {
     protected $table = "pelanggan";
     protected $fillable =[
         'kode_pelanggan',
+        'id_user',
         'nama',
         'no_hp',
     ];
 
     public function status() {
         $this->hasMany(Status::class);
+    }
+
+    public function users() {
+        $this->belongsTo(User::class);
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Status extends Model {
+    
     use HasFactory;
     protected $table = 'status';
     protected $fillable = [
@@ -22,7 +23,6 @@ class Status extends Model {
        'no_hp'
     ];
 
-    // membuat relasi tabel order dengan tabel pelanggan dan jenis_laundry
     public function pelanggan() {
         return $this->belongsTo(Pelanggan::class);
     }

@@ -15,13 +15,5 @@ class StatusSeeder extends Seeder
      */
     public function run() {
 
-        $status = [
-            [
-                'kode_status' => 'ST1001'
-            ]
-        ];
-
-        DB::table('status')->insert( $status );
-
     }
 }

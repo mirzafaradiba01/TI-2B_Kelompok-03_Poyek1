@@ -11,15 +11,27 @@ class Order extends Model
     protected $table = 'order';
     protected $fillable = [
         'kode_order',
-        'nota_order',
+        'id_pelanggan',
+        'id_jenis_laundry',
         'berat_laundry',
         'total_laundry',
         'catatan_laundry',
-        'status_laundry',
         'status_bayar'
     ];
 
+    public function pelanggan() {
+        $this->belongsTo(Pelanggan::class);
+    }
+
+    public function jenis_laundry() {
+        $this->belongsTo(JenisLaundry::class);
+    }
+
     public function status() {
         $this->hasMany(Status::class);
+    }
+
+    public function petugas() {
+        $this->hasMany(Petugas::class);
     }
 }
