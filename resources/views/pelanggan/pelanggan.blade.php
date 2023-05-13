@@ -20,7 +20,7 @@
                             <th>No</th>
                             <th>Kode</th>
                             <th>Nama Pelanggan</th>
-                            <th>No Telepon</th>
+                            <th>No Hp</th>
                             <th>Action</th>
                         </tr>
                     </thead>

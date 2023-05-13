@@ -12,10 +12,10 @@ class StatusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index() {
+        return view('status.status');
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -44,10 +44,13 @@ class StatusController extends Controller
      * @param  \App\Models\Status  $status
      * @return \Illuminate\Http\Response
      */
-    public function show(Status $status)
-    {
-        //
-    }
+    // public function show(Status  $id)
+    // {
+    //     $status =StatusController::find($id);
+    //     // $mahasiswa = Mahasiswa::with('kelas')->where('nim',$Nim)->first();
+    //     return view('status.status', ['status' => $data]);
+    // }
+
 
     /**
      * Show the form for editing the specified resource.

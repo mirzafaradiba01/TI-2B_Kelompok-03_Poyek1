@@ -10,11 +10,14 @@ class Status extends Model
     use HasFactory;
     protected $table = 'status';
     protected $fillable = [
-        'kode_status',
-        'kode_pelanggan',
-        'kode_order',
-        'kode_user',
-        'status',
+       'nama_pelanggan',
+       'kode_status',
+       'tanggal_laundry',
+       'jenis_laundry',
+       'jenis_laundry',
+       'biaya_JL',
+       'total_laundry',
+       'no_hp'
 
     ];
 }

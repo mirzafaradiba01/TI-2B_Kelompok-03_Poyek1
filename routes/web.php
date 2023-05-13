@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PetugasController;
+use App\Http\Controllers\StatusController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -37,9 +38,13 @@ Route::middleware(['auth','checkrole:admin,petugas'])->group( function() {
     // sama viewnya
     Route::resource('/pelanggan', PelangganController::class)->parameter('pelanggan', 'id');
     Route::resource('/petugas', PetugasController::class)->parameter('petugas', 'id');
+    Route::resource('/status', StatusController::class)->parameter('status','id');
+    // Route::get('/status/{id}/khs',[MahasiswaController::class,'khs']);
+
 });
 
 Route::middleware(['auth','checkrole:pelanggan'])->group( function() {
     // di sini buat akses halaman khusus pelanggan (kayak homepage, etc)
     // belum tak setting
 });
+
