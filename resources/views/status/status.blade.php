@@ -13,24 +13,27 @@
             <table class="table table-bordered table-striped">
                 <thead>
                     <th>No</th>
-                    <th>Nama</th>
-                    <th>Kode Status</th>
+                    <th>Kode Order</th>
+                    <th>Nama Pelanggan</th>
                     <th>Tanggal Laundry</th>
                     <th>Jenis Laundry</th>
                     <th>Total Biaya Laundry</th>
                     <th>No Hp</th>
+                    <th>Status</th>
                 </thead>
                 <body>
                     @if($status -> count() > 0)
                     @foreach($status as $st => $s)
                     <tr>
                         <td>{{++$st}}</td>
+                        <td>{{$s->kode_order}}</td>
                         <td>{{$s->nama_pelanggan}}</td>
-                        <td>{{$s->kode_status}}</td>
                         <td>{{$s->tanggal_laundry}}</td>
-                        <td>{{$s->jenis_laundry}}</td>
+                        <td>{{$s->nama_JL}}</td>
                         <td>{{$s->total_laundry}}</td>
                         <td>{{$s->no_hp}}</td>
+                        <td>{{$s->status}}</td>
+
 
                     </tr>
                   </td>
