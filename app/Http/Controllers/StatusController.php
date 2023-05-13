@@ -44,11 +44,12 @@ class StatusController extends Controller
      * @param  \App\Models\Status  $status
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        $status = Status::where('id', $id)->get();
-        return view('status.status', ['status' => $status]);
-    }
+    // public function show(Status  $id)
+    // {
+    //     $status =StatusController::find($id);
+    //     // $mahasiswa = Mahasiswa::with('kelas')->where('nim',$Nim)->first();
+    //     return view('status.status', ['status' => $data]);
+    // }
 
 
     /**

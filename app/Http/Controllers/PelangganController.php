@@ -12,8 +12,7 @@ class PelangganController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
+    public function index(Request $request) {
         // return view('pelanggan');
         if($request->get('query') !== null){
             $query = $request->get('query');
@@ -68,11 +67,11 @@ class PelangganController extends Controller
     public function show($id)
     {
         //menampilkan detail data berd nim
-        //code sebelum dibuat relasi : 
-      
+        //code sebelum dibuat relasi :
+
         $pelanggan = Pelanggan::where('id',$id)->get();
         return view('pelanggan.detail_pelanggan', ['pelanggan' => $pelanggan[0]]);
-        
+
     }
 
     /**
@@ -81,8 +80,7 @@ class PelangganController extends Controller
      * @param  \App\Models\Pelanggan  $pelanggan
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         $pelanggan = Pelanggan::find($id);
         return view('pelanggan.create_pelanggan')
                     ->with('pelanggan',$pelanggan)

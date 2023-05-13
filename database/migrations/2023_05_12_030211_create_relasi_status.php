@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreign('id_pelanggan')->references('id')->on('pelanggan')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('id_jenis_laundry')->references('id')->on('jenis_laundry')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('id_order')->references('id')->on('order')->onDelete('cascade')->onUpdate('cascade');
-            
+
         });
     }
 
@@ -30,8 +30,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('relasi_status');
     }
 };
