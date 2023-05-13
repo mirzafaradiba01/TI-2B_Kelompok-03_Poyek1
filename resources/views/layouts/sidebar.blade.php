@@ -44,7 +44,7 @@
             </li>
             <li class="nav-item">
                 <a href={{ url('/status') }} class="nav-link">
-                    <i class="nav-icon fas fa-rotate" style="color: #fafafa;"></i>
+                    <i class="nav-icon fas fa-check" style="color: #fafafa;"></i>
                     <p>Status Laundry</p>
                 </a>
             </li>
@@ -53,7 +53,7 @@
             @if ( auth()->user()->role == 'admin' )
                 <li class="nav-item">
                     <a href={{ url('/transaksi') }} class="nav-link">
-                        <i class="nav-icon fas fa-money-bill-transfer" style="color: #fff;"></i>
+                        <i class="nav-icon fas fa-wallet" style="color: #fff;"></i>
                         <p>Transaksi</p>
                     </a>
                 </li>
@@ -65,7 +65,7 @@
                 </li>
                 <li class="nav-item">
                     <a href={{ url('/cetak_laporan') }} class="nav-link">
-                        <i class="nav-icon fas fa-file-pen" style="color: #ffffff;"></i>
+                        <i class="nav-icon fas fa-print" style="color: #ffffff;"></i>
                         <p>Cetak Laporan</p>
                     </a>
                 </li>
@@ -73,7 +73,7 @@
 
             <li class="nav-item">
                 <a href={{ url('/logout') }} class="nav-link">
-                    <i class="nav-icon fas fa-arrow-right"></i>
+                    <i class="nav-icon fas fa-arrow-right" style="color: #ffffff"></i>
                     <p>Logout</p>
                 </a>
             </li>

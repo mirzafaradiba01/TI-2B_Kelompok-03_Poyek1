@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -43,7 +44,7 @@
                     {{-- <div class="row mb-2"> --}}
                         <div class="mb-3 d-flex justify-content-center align-items-center">
                             <h1>AYA LAUNDRY</h1>
-                          </div>                          
+                          </div>
 
                         <!-- main content -->
                         @yield('content')
