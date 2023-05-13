@@ -24,8 +24,8 @@
                             <tr>
                                 <td>{{$s->kode_status}}</td>
                                 <td>{{$s->order->tanggal_laundry}}</td>
-                                <td>{{$s->jenis_laundry->nama_JL}}</td>
-                                <td>{{$s->jenis_laundry->biaya_JL}}</td>
+                                <td>{{$s->jenis_laundry->nama}}</td>
+                                <td>{{$s->jenis_laundry->biaya}}</td>
                                 <td>{{$s->order->total_laundry}}</td>
                                 <td>{{$s->pelanggan->no_hp}}</td>
                                 </tr>

@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('pelanggan', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('kode_pelanggan')->unique();
-            $table->string('nama_pelanggan',50)->nullable();
+            $table->string('nama')->nullable();
             $table->string('no_hp',13)->nullable();
             $table->rememberToken();
             $table->timestamps();

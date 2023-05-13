@@ -17,7 +17,6 @@ return new class extends Migration
         Schema::create('order', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('kode_order')->unsigned()->unique();
-            $table->string('nota_order')->nullable();
             $table->date('tanggal_laundry')->nullable();
             $table->integer('berat_laundry' )->nullable();
             $table->integer('total_laundry')->nullable();

@@ -20,7 +20,6 @@ class Status extends Model {
        'biaya_JL',
        'total_laundry',
        'no_hp'
-
     ];
 
     // membuat relasi tabel order dengan tabel pelanggan dan jenis_laundry

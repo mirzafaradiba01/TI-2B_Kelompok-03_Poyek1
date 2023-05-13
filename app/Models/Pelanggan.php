@@ -11,9 +11,8 @@ class Pelanggan extends Model {
     protected $table = "pelanggan";
     protected $fillable =[
         'kode_pelanggan',
-        'nama_pelanggan',
+        'nama',
         'no_hp',
-        'password',
     ];
 
     public function status() {

@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('petugas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('kode_petugas')->unique();
-            $table->string('nama_petugas')->nullable();
+            $table->string('nama')->nullable();
             $table->string('no_hp', 13)->nullable();
             $table->rememberToken();
             $table->timestamps();

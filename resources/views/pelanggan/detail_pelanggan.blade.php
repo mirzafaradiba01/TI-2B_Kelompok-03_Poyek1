@@ -2,8 +2,6 @@
 
 @section('content')
 <section class="content">
-
-    <!--Default box-->
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">DETAIL DATA PELANGGAN</h3>
@@ -25,7 +23,5 @@
             </ul>
         </div>
     </div>
-    <!-- /.card -->
-
-    </section>
+</section>
 @endsection
