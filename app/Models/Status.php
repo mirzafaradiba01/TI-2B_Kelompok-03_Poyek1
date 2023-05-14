@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Status extends Model {
-    
+
     use HasFactory;
     protected $table = 'status';
     protected $fillable = [
@@ -15,12 +15,7 @@ class Status extends Model {
        'id_jenis_laundry',
        'id_order',
        'kode_status',
-       'tanggal_laundry',
-       'jenis_laundry',
-       'jenis_laundry',
-       'biaya_JL',
-       'total_laundry',
-       'no_hp'
+       'status'
     ];
 
     public function pelanggan() {

@@ -3,25 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pelanggan;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class PelangganController extends Controller
-{
+class PelangganController extends Controller {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
-        // return view('pelanggan');
         if($request->get('query') !== null){
             $query = $request->get('query');
             $pelanggan = Pelanggan::where('kode_pelanggan', 'LIKE', '%'.$query.'%')
-                ->orWhere('nama_pelanggan', 'LIKE', '%'.$query.'%')
+                ->orWhere('nama', 'LIKE', '%'.$query.'%')
                 ->orWhere('no_hp', 'LIKE', '%'.$query.'%')
+                ->with('users')
                 ->paginate(5);
         } else {
-            $pelanggan = Pelanggan::paginate(5);
+            $pelanggan = Pelanggan::with('users')->paginate(5);
         }
         return view('pelanggan.pelanggan', ['pelanggan' => $pelanggan]);
     }
@@ -31,10 +31,9 @@ class PelangganController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return  view('pelanggan.create_pelanggan')
-        ->with('url_form',url('/pelanggan'));
+    public function create() {
+        $users = User::all();
+        return view('pelanggan.create_pelanggan', ['url_form' => url('/pelanggan'), 'users' => $users]);
     }
 
     /**
@@ -43,19 +42,16 @@ class PelangganController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $request->validate([
+            'id_user' => 'required',
             'kode_pelanggan' => 'required|string|max:10|unique:pelanggan,kode_pelanggan',
-            'nama_pelanggan' => 'required|string|max:50',
+            'nama' => 'required|string|max:50',
             'no_hp' => 'required|digits_between:6,15',
         ]);
 
         $data = Pelanggan::create($request->except(['_token']));
-
-        //jika berhasil
-        return redirect('pelanggan')
-                ->with('success', 'Pelanggan Berhasil Ditambahkan');
+        return redirect('pelanggan')->with('success', 'Pelanggan Berhasil Ditambahkan');
     }
 
     /**
@@ -64,10 +60,7 @@ class PelangganController extends Controller
      * @param  \App\Models\Pelanggan  $pelanggan
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //menampilkan detail data berd nim
-        //code sebelum dibuat relasi :
+    public function show($id) {
 
         $pelanggan = Pelanggan::where('id',$id)->get();
         return view('pelanggan.detail_pelanggan', ['pelanggan' => $pelanggan[0]]);
@@ -97,10 +90,9 @@ class PelangganController extends Controller
     public function update(Request $request, $id)
     {
         $request ->validate([
-                'kode_pelanggan' => 'required|string|max:10|unique:pelanggan,kode_pelanggan,'.$id,
-                'nama_pelanggan' => 'required|string|max:50',
-                'no_hp' => 'required|digits_between:6,15',
-
+            'kode_pelanggan' => 'required|string|max:10|unique:pelanggan,kode_pelanggan,'.$id,
+            'nama_pelanggan' => 'required|string|max:50',
+            'no_hp' => 'required|digits_between:6,15',
         ]);
 
         $data = Pelanggan::where('id', '=', $id)->update($request->except(['_token','_method']));
@@ -114,31 +106,9 @@ class PelangganController extends Controller
      * @param  \App\Models\Pelanggan  $pelanggan
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
+
         Pelanggan::where('id', '=', $id)->delete();
-        return redirect('pelanggan')
-        ->with ('success', 'Pelanggan Berhasil Dihapus');
-    }
-
-    public function search(Request $request)
-    {
-        $pelanggan = Pelanggan::count();
-
-        $keyword = $request->input('keyword');
-        $column = $request->input('column');
-
-        $query = Pelanggan::query();
-
-        if ($column == 'Kode') {
-            $query->where('kode_pelanggan', 'LIKE', "%$keyword%");
-        } elseif ($column == 'Nama') {
-            $query->where('nama_pelanggan', 'LIKE', "%$keyword%");
-
-        $results = $query->get();
-
-        return view('pelanggan.search_pelanggan', ['results' => $results])
-            ->with('pelanggan', $pelanggan);
-        }
+        return redirect('pelanggan')->with ('success', 'Pelanggan Berhasil Dihapus');
     }
 }

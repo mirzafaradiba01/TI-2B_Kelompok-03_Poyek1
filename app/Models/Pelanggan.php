@@ -10,17 +10,17 @@ class Pelanggan extends Model {
     use HasFactory;
     protected $table = "pelanggan";
     protected $fillable =[
-        'kode_pelanggan',
         'id_user',
+        'kode_pelanggan',
         'nama',
         'no_hp',
     ];
 
     public function status() {
-        $this->hasMany(Status::class);
+        return $this->hasMany(Status::class);
     }
 
     public function users() {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_user');
     }
 }
