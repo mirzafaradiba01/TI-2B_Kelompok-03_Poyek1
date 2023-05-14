@@ -19,7 +19,9 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><b>Kode Pelanggan : </b>{{$pelanggan->kode_pelanggan}}</li>
                 <li class="list-group-item"><b>Nama Pelanggan : </b>{{$pelanggan->nama}}</li>
-                <li class="list-group-item"><b>No Telepon : </b>{{$pelanggan->no_hp}}</li>
+                <li class="list-group-item"><b>No Telepon     : </b>{{$pelanggan->no_hp}}</li>
+                <li class="list-group-item"><b>Email          : </b>{{$pelanggan->users->email}}</li>
+                <li class="list-group-item"><b>Username       : </b>{{$pelanggan->users->username}}</li>
             </ul>
         </div>
     </div>
