@@ -41,7 +41,7 @@ Route::middleware(['auth','checkrole:admin,petugas'])->group( function() {
     Route::resource('/petugas', PetugasController::class)->parameter('petugas', 'id');
     Route::resource('/status', StatusController::class)->parameter('status', 'id');
     Route::resource('/transaksi', OrderController::class)->parameter('order', 'id');
-
+    
 });
 
 Route::middleware(['auth','checkrole:pelanggan'])->group( function() {
