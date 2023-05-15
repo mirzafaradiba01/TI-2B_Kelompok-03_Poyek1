@@ -4,10 +4,12 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\StatusController;
+use App\Models\HomePage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -41,11 +43,10 @@ Route::middleware(['auth','checkrole:admin,petugas'])->group( function() {
     Route::resource('/petugas', PetugasController::class)->parameter('petugas', 'id');
     Route::resource('/status', StatusController::class)->parameter('status', 'id');
     Route::resource('/transaksi', OrderController::class)->parameter('order', 'id');
-    
+
 });
 
 Route::middleware(['auth','checkrole:pelanggan'])->group( function() {
-    // di sini buat akses halaman khusus pelanggan (kayak homepage, etc)
-    // belum tak setting
+    Route::resource('/homepage', HomePageController::class)->parameter('homepage', 'id');
 });
 
