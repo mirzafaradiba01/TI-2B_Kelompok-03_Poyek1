@@ -25,6 +25,6 @@ class CheckRole
             }
         }
 
-        return redirect('/logout');
+        return redirect('/homepage');
     }
 }

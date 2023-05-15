@@ -1,0 +1,8 @@
+@use 'modules/fonts' as font;
+
+@include font.myfont("poppins", "poppins-regular-webfont");
+
+// testing
+h1 {
+    font-family: 'poppins';
+}
