@@ -13,14 +13,9 @@
 </head>
 
 <body class="hold-transition sidebar-mini">
-    <!-- Site wrapper -->
     <div class="wrapper">
-        <!-- Navbar -->
         @include('layouts.navbar')
 
-        <!-- /.navbar -->
-
-        <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="{{ asset('assets/index3.html" class="brand-link') }}">
@@ -30,43 +25,24 @@
                 <span class="brand-text font-weight-light">AYA LAUNDRY</span>
             </a>
 
-            <!-- Sidebar -->
             @include('layouts.sidebar')
 
-            <!-- /.sidebar -->
         </aside>
 
-        <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
             <section class="content-header">
-                {{-- <div class="container-fluid"> --}}
-                    {{-- <div class="row mb-2"> --}}
-                        <div class="mb-3 d-flex justify-content-center align-items-center">
-                            <h1>AYA LAUNDRY</h1>
-                          </div>
-
-                        <!-- main content -->
-                        @yield('content')
-                        <section class="content"></section>
-                        <!-- /.content -->
-
-                        <!-- footer -->
-                        @include('layouts.footer')
-                        <!-- /.footer -->
-                    {{-- </div> --}}
+                <div class="mb-3 d-flex justify-content-center align-items-center">
+                    <h1>AYA LAUNDRY</h1>
                 </div>
+
+                    @yield('content')
+                    <section class="content"></section>
+
+                    @include('layouts.footer')
             </section>
         </div>
-        <!-- /.content-wrapper -->
-
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
+        <aside class="control-sidebar control-sidebar-dark"></aside>
     </div>
-    <!-- ./wrapper -->
 
     <!-- jQuery -->
     <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>

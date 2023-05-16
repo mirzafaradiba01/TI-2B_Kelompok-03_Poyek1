@@ -1,57 +1,15 @@
-@extends('layouts.frontend')
-@section('title','Selamat Datang')
-@section('header')
-  @include('frontend.header')
-@endsection
-@section('banner')
-{{-- banner --}}
-    @include('frontend.banner')
-{{-- End banner --}}
-@endsection
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aya Laundry</title>
+    <link rel="stylesheet" href="{{ mix('css/homepage/homepage.css') }}">
+</head>
+<body>
 
-@section('content')
-    @include('frontend.content')
-@endsection
+    <h1>Hello World</h1>
 
-<<<<<<< HEAD
-@section('footer')
-  @include('frontend.footer')
-=======
-        <h1>Ini Dashboard</h1>
-        <img src="" alt="">
-        
->>>>>>> ff74a1952ef9248d6e306ba2bf0ac6c94c458234
-
-{{-- Whatsapp Button Start--}}
-  <a href="https://wa.me/{{$setpage->whatsapp}}" target="blank_">
-    <img src="{{asset('frontend/img/wa.png')}}" class="wabutton" alt="WhatsApp-Button">
-  </a>
-{{-- End: Whatsapp Button --}}
-@endsection
-
-@section('scripts')
-<script type="text/javascript">
-  $(document).on('click', '.search-btn', function(e){
-      _curr_val = $('#search_status').val();
-      $('#search_status').val(_curr_val + $(this).html());
-  });
-
-  $(document).on('click', '#search-btn', function (e) {
-      var search_status = $("#search_status").val();
-      $.get('pencarian-laundry',{'_token': $('meta[name=csrf-token]').attr('content'),search_status:search_status}, function(resp){
-            if (resp != 0) {
-                  $(".modal_status").show();
-                  $("#customer").html(resp.customer);
-                  $("#tgl_transaksi").html(resp.tgl_transaksi);
-                  $("#status_order").html(resp.status_order);
-            }else{
-                swal({html: "No Invoice Tidak Terdaftar!"})
-            }
-      });
-  });
-  function close_dlgs(){
-        $(".modal_status").hide();
-        $("#search_status").val("");
-  }
-</script>
-@endsection
+</body>
+</html>

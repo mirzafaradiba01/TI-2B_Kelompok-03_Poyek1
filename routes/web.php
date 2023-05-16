@@ -38,9 +38,6 @@ Route::get('/logout', [LoginController::class, 'logout']);
 Route::middleware(['auth','checkrole:admin,petugas'])->group( function() {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-    // controller pelanggan sam petugas belum di setting
-    // sama viewnya
     Route::resource('/pelanggan', PelangganController::class)->parameter('pelanggan', 'id');
     Route::resource('/petugas', PetugasController::class)->parameter('petugas', 'id');
     Route::resource('/status', StatusController::class)->parameter('status', 'id');
@@ -50,8 +47,7 @@ Route::middleware(['auth','checkrole:admin,petugas'])->group( function() {
 
 });
 
-Route::middleware(['auth','checkrole:pelanggan'])->group( function() {
+Route::middleware(['auth','checkrole:admin,petugas,pelanggan'])->group( function() {
     Route::resource('/homepage', HomePageController::class)->parameter('homepage', 'id');
-
 });
 

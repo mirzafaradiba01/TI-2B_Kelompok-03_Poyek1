@@ -74,10 +74,13 @@ class PelangganController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
+
         $pelanggan = Pelanggan::find($id);
-        return view('pelanggan.create_pelanggan')
-                    ->with('pelanggan',$pelanggan)
-                    ->with('url_form',url('/pelanggan/'.$id));
+        $users = User::all();
+        return view('pelanggan.update_pelanggan')
+                    ->with('pelanggan', $pelanggan)
+                    ->with('users', $users)
+                    ->with('url_form', url('/pelanggan/'. $id));
     }
 
     /**
@@ -87,17 +90,17 @@ class PelangganController extends Controller {
      * @param  \App\Models\Pelanggan  $pelanggan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
+
         $request ->validate([
+            'id_user' => '',
             'kode_pelanggan' => 'required|string|max:10|unique:pelanggan,kode_pelanggan,'.$id,
-            'nama_pelanggan' => 'required|string|max:50',
+            'nama' => 'required|string|max:50',
             'no_hp' => 'required|digits_between:6,15',
         ]);
 
-        $data = Pelanggan::where('id', '=', $id)->update($request->except(['_token','_method']));
-        return redirect('pelanggan')
-            ->with('success','Pelanggan Berhasil Ditambahkan');
+        $data = Pelanggan::where('id',$id)->update($request->except(['_token','_method']));
+        return redirect('pelanggan')->with('success','Data Pelanggan Berhasil Dirubah!');
     }
 
     /**

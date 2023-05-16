@@ -62,7 +62,5 @@
             <div class="card-footer"></div>
         </div>
     </div>
-    <!-- /.card -->
-
     </section>
 @endsection
