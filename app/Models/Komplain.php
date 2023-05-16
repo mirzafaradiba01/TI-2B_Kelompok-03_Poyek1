@@ -18,4 +18,8 @@ class Komplain extends Model
        'balasan',
 
     ];
+
+    public function pelanggan(){
+        $this->belongsTo((Pelanggan::class));
+    }
 }

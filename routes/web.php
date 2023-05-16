@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\KomplainController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PetugasController;
@@ -45,6 +46,7 @@ Route::middleware(['auth','checkrole:admin,petugas'])->group( function() {
     Route::resource('/status', StatusController::class)->parameter('status', 'id');
     Route::resource('/transaksi', TransaksiController::class)->parameter('transaksi', 'id');
     Route::resource('/order', OrderController::class)->parameter('order', 'id');
+    Route::resource('/komplain', KomplainController::class)->parameter('komplain', 'id');
 
 });
 

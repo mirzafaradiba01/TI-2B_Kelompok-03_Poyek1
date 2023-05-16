@@ -13,8 +13,13 @@
     @include('frontend.content')
 @endsection
 
+<<<<<<< HEAD
 @section('footer')
   @include('frontend.footer')
+=======
+        <h1>Ini Dashboard</h1>
+        
+>>>>>>> ff74a1952ef9248d6e306ba2bf0ac6c94c458234
 
 {{-- Whatsapp Button Start--}}
   <a href="https://wa.me/{{$setpage->whatsapp}}" target="blank_">

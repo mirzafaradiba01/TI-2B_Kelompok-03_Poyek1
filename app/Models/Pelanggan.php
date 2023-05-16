@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\KomplainController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,5 +23,9 @@ class Pelanggan extends Model {
 
     public function users() {
         return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function komplain(){
+        return $this->belongsTo(KomplainController::class, 'id_komplain');
     }
 }

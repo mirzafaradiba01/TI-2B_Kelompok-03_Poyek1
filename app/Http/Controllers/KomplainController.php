@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Komplain;
+use App\Models\Pelanggan;
 use Illuminate\Http\Request;
 
 class KomplainController extends Controller
@@ -12,9 +13,17 @@ class KomplainController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Request $request) {
+        if($request->get('query') !== null){
+            $query = $request->get('query');
+            $komplain = Komplain::where('id', 'LIKE', '%'.$query.'%')
+                ->orWhere('nama', 'LIKE', '%'.$query.'%')
+                ->orWhere('no_hp', 'LIKE', '%'.$query.'%')
+                ->paginate(5);
+        } else {
+            $komplain = Komplain::paginate(5);
+        }
+        return view('komplain.komplain', ['komplain' => $komplain]);
     }
 
     /**
@@ -44,9 +53,13 @@ class KomplainController extends Controller
      * @param  \App\Models\Komplain  $komplain
      * @return \Illuminate\Http\Response
      */
-    public function show(Komplain $komplain)
-    {
-        //
+    public function show($id) {
+        $komplain = Komplain::find($id);
+        $pelanggan = Pelanggan::find($id);
+        return view('komplain.komplain', [
+            'komplian' => $komplain,
+            'pelanggan' => $pelanggan,
+        ]);
     }
 
     /**
