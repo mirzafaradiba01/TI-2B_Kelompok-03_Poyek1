@@ -18,6 +18,7 @@
   @include('frontend.footer')
 =======
         <h1>Ini Dashboard</h1>
+        <img src="" alt="">
         
 >>>>>>> ff74a1952ef9248d6e306ba2bf0ac6c94c458234
 
