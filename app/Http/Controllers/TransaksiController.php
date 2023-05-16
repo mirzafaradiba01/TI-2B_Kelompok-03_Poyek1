@@ -7,9 +7,7 @@ use App\Models\Order;
 use App\Models\Pelanggan;
 use Illuminate\Http\Request;
 
-use function Ramsey\Uuid\v1;
-
-class OrderController extends Controller
+class TransaksiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +15,16 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
-        $order = Order::with('jenis_laundry')->get();
-        return view('order.create_order')
-            ->with('order', $order);
+        if($request->get('query') !== null){
+            $query = $request->get('query');
+            $order = Order::where('kode_order', 'LIKE', '%'.$query.'%')
+                ->orWhere('nama_pelanggan', 'LIKE', '%'.$query.'%')
+                ->orWhere('kode_pelanggan', 'LIKE', '%'.$query.'%')
+                ->paginate(5);
+        } else {
+            $order = Order::paginate(5);
+        }
+        return view('order.transaksi', ['order' => $order]);
     }
 
     /**
@@ -29,7 +34,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('order.create_order');
+        //
     }
 
     /**
@@ -40,33 +45,33 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        Order::create([
-            'tanggal_laundry' => $request-> tanggal_laundry,
-            'berat'=> $request-> berat,
-            'total'=> $request-> total,
-            'catatan'=> $request-> catatan,
-            'status_bayar '=> $request-> status_bayar,
-        ]);
-        return 'Order berhasil ditambahkan';
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Order  $order
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-
+        $order = Order::find($id);
+        $pelanggan = Pelanggan::find($id);
+        $jenis_laundry =JenisLaundry ::find($id);
+        return view('order.transaksi', [
+            'order' => $order,
+            'pelanggan' => $pelanggan,
+            'jenis_laundry' => $jenis_laundry
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Order  $order
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit($id)
     {
         //
     }
@@ -75,10 +80,10 @@ class OrderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -86,13 +91,11 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Order  $order
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy($id)
     {
         //
     }
-
-
 }

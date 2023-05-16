@@ -9,6 +9,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\TransaksiController;
 use App\Models\HomePage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -42,11 +43,13 @@ Route::middleware(['auth','checkrole:admin,petugas'])->group( function() {
     Route::resource('/pelanggan', PelangganController::class)->parameter('pelanggan', 'id');
     Route::resource('/petugas', PetugasController::class)->parameter('petugas', 'id');
     Route::resource('/status', StatusController::class)->parameter('status', 'id');
-    Route::resource('/transaksi', OrderController::class)->parameter('order', 'id');
+    Route::resource('/transaksi', TransaksiController::class)->parameter('transaksi', 'id');
+    Route::resource('/order', OrderController::class)->parameter('order', 'id');
 
 });
 
 Route::middleware(['auth','checkrole:pelanggan'])->group( function() {
     Route::resource('/homepage', HomePageController::class)->parameter('homepage', 'id');
+
 });
 

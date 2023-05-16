@@ -14,5 +14,21 @@ class JenisLaundrySeeder extends Seeder {
      */
     public function run() {
 
+        $jenis = [
+            ['kode_jenis_laundry' => '01',
+              'nama' => 'Reguler',
+              'biaya' => '5000'],
+
+            ['kode_jenis_laundry' => '02',
+              'nama' => 'Express',
+              'biaya' => '8000'],
+            
+            ['kode_jenis_laundry' => '03',
+              'nama' => 'Kilat',
+              'biaya' => '12000'],
+
+        ];
+
+        DB::table('jenis_laundry')->insert($jenis);
     }
 }

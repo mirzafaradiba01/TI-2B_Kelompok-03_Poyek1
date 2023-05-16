@@ -18,4 +18,9 @@ class JenisLaundry extends Model {
     public function status() {
         $this->hasMany(Status::class);
     }
+
+    public function order()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
