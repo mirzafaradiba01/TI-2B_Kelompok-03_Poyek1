@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ $url_form }}">
+            <form method="POST" action="{{ url('/petugas') }}">
                 @csrf
                 {!! (isset($petugas))? method_field('PUT') : '' !!}
                 <div class="form-group">
