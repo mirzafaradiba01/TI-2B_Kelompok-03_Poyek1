@@ -29,7 +29,9 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('order.create_order');
+        $jenis = JenisLaundry::all(); //mendapatkan data dari tabel jenis laundry
+        return view('order.create_order',['jenis_laundry' => $jenis])
+           ->with('url_form',url('/order'));
     }
 
     /**
