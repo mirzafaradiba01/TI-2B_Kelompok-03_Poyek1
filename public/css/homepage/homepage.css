@@ -1,11 +1,186 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+v2.0 | 20110126
+License: none (public domain)
+ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
 @font-face {
   font-family: "poppins";
   src: url("/fonts/poppins-regular-webfont.woff") format("woff"), url("/fonts/poppins-regular-webfont.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
-h1 {
+.wrapper {
+  width: 100%;
+  height: 55vh;
+  background-image: url(/images/bg.png?70a9261712825309156307e33ae4bce2);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+header {
+  border: 2px solid red;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #fff;
+}
+
+nav {
+  padding: 10px;
+  box-sizing: border-box;
+  left: 0px;
+  right: 0px;
+  position: fixed;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+nav section.sec-one {
+  padding: 20px;
+  box-sizing: border-box;
+  width: 70%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid red;
+}
+nav section.sec-one ul {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  list-style: none;
+  list-style-type: none;
+}
+nav section.sec-one ul li a {
+  padding: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: capitalize;
   font-family: "poppins";
-  text-align: center;
-  text-transform: uppercase;
+  font-size: 15px;
+  color: #000;
+}
+nav section.sec-one ul li a:hover {
+  color: #fff;
+  background-color: #2A7FCE;
+}
+nav section.sec-two {
+  width: 350px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border: 2px solid red;
+}
+
+main {
+  border: 2px solid red;
+  text-transform: capitalize;
+}
+main .main-wrapper {
+  margin-top: 20px;
+  padding-left: 20px;
+}
+main .main-wrapper p.subtext-one {
+  font-family: "poppins";
+  font-size: 15px;
+  color: #fff;
+}
+main .main-wrapper section.text-header {
+  width: 50%;
+  height: 50%;
+  font-family: "poppins";
+  font-size: 2rem;
+  color: #fff;
+  line-height: 3rem;
+}
+main .main-wrapper section.subtext-two {
+  width: 50%;
+  height: 50%;
+  font-family: "poppins";
+  font-size: 12px;
+  color: #fff;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  line-height: 15px;
+}
+main .main-wrapper section.btn-wrap > div {
+  font-family: "poppins";
+  font-size: 15px;
+  color: #fff;
+}
+main .main-wrapper section.btn-wrap > div a {
+  padding: 15px;
+  margin-right: 10px;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid white;
+}
+main .main-wrapper section.btn-wrap > div a.to-login {
+  background-color: #2A7FCE;
+}
+main .main-wrapper section.btn-wrap > div a.to-login:hover {
+  color: #fff;
+  background-color: #000;
+}
+main .main-wrapper section.btn-wrap > div a.to-more:hover {
+  color: #000;
+  background-color: #fff;
 }

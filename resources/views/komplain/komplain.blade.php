@@ -11,9 +11,9 @@
         <div class="card-body">
            <form action="" method="GET" class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" name="query" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search Komplain</button>
+            <button class="btn btn-outline-info my-2 my-sm-0 mb-3" type="submit">Search Komplain</button>
         </form>
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered table-striped mt-3">
                 <thead>
                         <tr>
                             <th>No</th>
@@ -53,10 +53,5 @@
             <div class="pagination justify-content-end mt-2">  {{ $komplain->withQueryString()->links() }}</div>
         </div>
     </div>
-    <!-- /.card -->
-    <div class="card-footer">
-        Footer
-    </div>
-
     </section>
 @endsection

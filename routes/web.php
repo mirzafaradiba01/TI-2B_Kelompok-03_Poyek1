@@ -47,7 +47,7 @@ Route::middleware(['auth','checkrole:admin,petugas'])->group( function() {
 
 });
 
-Route::middleware(['auth','checkrole:admin,petugas,pelanggan'])->group( function() {
+Route::middleware(['auth','checkrole:pelanggan'])->group( function() {
     Route::resource('/homepage', HomePageController::class)->parameter('homepage', 'id');
 });
 
