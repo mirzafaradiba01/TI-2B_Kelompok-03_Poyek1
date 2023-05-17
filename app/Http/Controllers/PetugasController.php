@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Petugas;
 use Illuminate\Http\Request;
 
@@ -32,9 +33,12 @@ class PetugasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
+        // $users = User::all();
+        // return view('pelanggan.create_pelanggan', ['url_form' => url('/pelanggan'), 'users' => $users]);
+        $orders = Order::all();
         return  view('petugas.create_petugas')
-        ->with('url_form',url('/petugas'));
+     ->with (['url_form' => url('/petugas'),'orders' => $orders]);
     }
 
     /**
@@ -94,16 +98,17 @@ class PetugasController extends Controller
     public function update(Request $request, $id)
     {
         $request ->validate([
+                'id_order' => '',
                 'kode_petugas' => 'required|string|max:10|unique:petugas,kode_petugas,'.$id,
-                'id_order' => 'required',
-                'nama_petugas' => 'required|string|max:50',
+                'nama' => 'required|string|max:50',
                 'no_hp' => 'required|digits_between:6,15',
 
         ]);
 
-        $data = petugas::where('id', '=', $id)->update($request->except(['_token','_method']));
+        $data = petugas::where('id', $id)->update($request->except(['_token','_method']));
         return redirect('petugas')
             ->with('success','petugas Berhasil Ditambahkan');
+
     }
 
     /**

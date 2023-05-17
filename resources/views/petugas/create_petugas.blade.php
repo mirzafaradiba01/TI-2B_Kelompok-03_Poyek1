@@ -43,6 +43,19 @@
                         @enderror
                       </div>
                   </div>
+                  <div>
+                    <label for="id_order">id_order</label>
+                    <select id="id_order" name="id_order" class="form-control @error('id_order') is-invalid @enderror">
+                        @foreach($orders as $orderr)
+                            <option value="{{ $orderr->id }}">
+                                {{ $orderr->id_order }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('id_user')
+                        <span class="error invalid-feedback">{{ $message }} </span>
+                    @enderror
+                </div>
 
 
                 <div class="form-group">

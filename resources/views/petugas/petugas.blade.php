@@ -21,6 +21,7 @@
                             <th>Kode</th>
                             <th>Nama Petugas</th>
                             <th>No Telepon</th>
+                            <th>Id Order</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -32,6 +33,7 @@
                                 <td>{{$pe->kode_petugas}}</td>
                                 <td>{{$pe->nama}}</td>
                                 <td>{{$pe->no_hp}}</td>
+                                <td>{{$pe->id_order}}</td>
 
                                 <td>
                                     {{-- Bikin simbol edit dan delete --}}

@@ -22,6 +22,8 @@
                 <li class="list-group-item"><b>Kode petugas : </b>{{$petugas->kode_petugas}}</li>
                 <li class="list-group-item"><b>Nama petugas : </b>{{$petugas->nama}}</li>
                 <li class="list-group-item"><b>No Telepon : </b>{{$petugas->no_hp}}</li>
+                <li class="list-group-item"><b>id_order : </b>{{$petugas->id_order}}</li>
+                
             </ul>
         </div>
     </div>
