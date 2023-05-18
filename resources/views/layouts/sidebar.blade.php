@@ -84,7 +84,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
-                        <a href="{{ url('/create_order/') }}" class="nav-link">
+                        <a href="{{ url('/order/') }}" class="nav-link">
                           <i class="fas fa-book pr-2"></i>
                           <p> Add Order</p>
                         </a>

@@ -44,7 +44,7 @@ Route::middleware(['auth','checkrole:admin,petugas'])->group( function() {
     Route::resource('/petugas', PetugasController::class)->parameter('petugas', 'id');
     Route::resource('/status', StatusController::class)->parameter('status', 'id');
     Route::resource('/transaksi', TransaksiController::class)->parameter('transaksi', 'id');
-    Route::resource('/order', OrderController::class)->parameter('jenis_laundry', 'id');
+    Route::resource('/order/create_order', OrderController::class)->parameter('jenis_laundry', 'id');
     Route::resource('/komplain', KomplainController::class)->parameter('komplain', 'id');
     Route::resource('/jenis_laundry', JenisLaundryController::class)->parameter('jenis_laundry', 'id');
 
