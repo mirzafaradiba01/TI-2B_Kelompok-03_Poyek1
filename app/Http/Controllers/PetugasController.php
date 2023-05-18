@@ -18,8 +18,7 @@ class PetugasController extends Controller
         if($request->get('query') !== null){
             $query = $request->get('query');
             $petugas = Petugas::where('kode_petugas', 'LIKE', '%'.$query.'%')
-                ->orWhere('nama_petugas', 'LIKE', '%'.$query.'%')
-                ->orWhere('no_hp', 'LIKE', '%'.$query.'%')
+                ->orWhere('nama', 'LIKE', '%'.$query.'%')
                 ->paginate(5);
         } else {
             $petugas = Petugas::paginate(5);
@@ -34,11 +33,8 @@ class PetugasController extends Controller
      */
     public function create()
     {   
-        // $users = User::all();
-        // return view('pelanggan.create_pelanggan', ['url_form' => url('/pelanggan'), 'users' => $users]);
-        $orders = Order::all();
         return  view('petugas.create_petugas')
-     ->with (['url_form' => url('/petugas'),'orders' => $orders]);
+        ->with('url_form',url('/petugas'));
     }
 
     /**
@@ -51,15 +47,15 @@ class PetugasController extends Controller
     {
         $request->validate([
             'kode_petugas' => 'required|string|max:10|unique:petugas,kode_petugas',
-            'id_order' => 'required',
-            'nama_petugas' => 'required|string|max:50',
+            'nama' => 'required|string|max:50',
             'no_hp' => 'required|digits_between:6,15',
         ]);
 
         $data = Petugas::create($request->except(['_token']));
 
         //jika berhasil
-        return redirect('petugas')->with('success', 'petugas Berhasil Ditambahkan');
+        return redirect('petugas')
+                ->with('success', 'Petugas Berhasil Ditambahkan');
     }
 
     /**
@@ -70,8 +66,7 @@ class PetugasController extends Controller
      */
     public function show($id)
     {
-        $petugas = Petugas::where('id',$id)->get();
-        return view('petugas.detail_petugas', ['petugas' => $petugas[0]]);
+       
     }
 
     /**
@@ -82,9 +77,10 @@ class PetugasController extends Controller
      */
     public function edit($id)
     {
+        
         $petugas = Petugas::find($id);
         return view('petugas.create_petugas')
-                    ->with('petugas',$petugas)
+                    ->with('petugas', $petugas)
                     ->with('url_form',url('/petugas/'.$id));
     }
 
@@ -98,16 +94,15 @@ class PetugasController extends Controller
     public function update(Request $request, $id)
     {
         $request ->validate([
-                'id_order' => '',
-                'kode_petugas' => 'required|string|max:10|unique:petugas,kode_petugas,'.$id,
-                'nama' => 'required|string|max:50',
-                'no_hp' => 'required|digits_between:6,15',
+            'kode_petugas' => 'required|string|max:10|unique:petugas,kode_petugas,'.$id,
+            'nama' => 'required|string|max:50',
+            'no_hp' => 'required|digits_between:6,15',
 
         ]);
 
-        $data = petugas::where('id', $id)->update($request->except(['_token','_method']));
+        $data = Petugas::where('id', '=', $id)->update($request->except(['_token','_method']));
         return redirect('petugas')
-            ->with('success','petugas Berhasil Ditambahkan');
+            ->with('success','Petugas Berhasil Ditambahkan');
 
     }
 
@@ -119,29 +114,10 @@ class PetugasController extends Controller
      */
     public function destroy($id)
     {
-        petugas::where('id', '=', $id)->delete();
+        Petugas::where('id', '=', $id)->delete();
         return redirect('petugas')
-        ->with ('success', 'petugas Berhasil Dihapus');
+        ->with ('success', 'Petugas Berhasil Dihapus');
     }
 
-    public function search(Request $request)
-    {
-        $petugas = Petugas::count();
 
-        $keyword = $request->input('keyword');
-        $column = $request->input('column');
-
-        $query = Petugas::query();
-
-        if ($column == 'Kode') {
-            $query->where('kode_petugas', 'LIKE', "%$keyword%");
-        } elseif ($column == 'Nama') {
-            $query->where('nama_petugas', 'LIKE', "%$keyword%");
-
-        $results = $query->get();
-
-        return view('petugas.search_petugas', ['results' => $results])
-            ->with('petugas', $petugas);
-        }
-    }
 }
