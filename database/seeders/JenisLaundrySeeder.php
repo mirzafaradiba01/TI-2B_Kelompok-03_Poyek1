@@ -15,15 +15,15 @@ class JenisLaundrySeeder extends Seeder {
     public function run() {
 
         $jenis = [
-            ['kode_jenis_laundry' => '01',
+            ['kode_jenis_laundry' => '111',
               'nama' => 'Reguler',
               'biaya' => '5000'],
 
-            ['kode_jenis_laundry' => '02',
+            ['kode_jenis_laundry' => '222',
               'nama' => 'Express',
               'biaya' => '8000'],
             
-            ['kode_jenis_laundry' => '03',
+            ['kode_jenis_laundry' => '333',
               'nama' => 'Kilat',
               'biaya' => '12000'],
 

@@ -12,21 +12,23 @@
         <input type="date" class="form-control" required="required" name="tanggal_laundry"></br> 
 
         <label for="jenis-laundry">Jenis Laundry</label>
-            <select name="id_jenis_laundry" class="form-control @error('id_jenis_laundry') is-invalid @enderror">
-            @foreach($jenis as $js)
-              <option value="{{$js->id}}">{{$js->nama}}</option>
-            @endforeach
-            </select>
-            @error('id_jenis_laundry')
-              <span class="error invalid-feedback">{{ $message }} </span>
-            @enderror
+        <select name="id_jenis_laundry" class="form-control @error('id_jenis_laundry') is-invalid @enderror" onchange="updateInputValue(this)">
+          @foreach($jenis as $js)
+            <option value="{{$js->id}}" data-biaya="{{$js->biaya}}">{{$js->nama}}</option>
+          @endforeach
+        </select>
+        @error('id_jenis_laundry')
+          <span class="error invalid-feedback">{{ $message }}</span>
+        @enderror
 
-        <label for="berat">Berat Laundry: </label>
-        <input type="text" class="form-control" required="required" name="berat"></br> 
+        <label for="biaya">Biaya:</label>
+        <input type="text" class="form-control" required="required" name="biaya" id="inputBiaya" readonly></br>
 
+        <label for="berat">Berat: </label>
+        <input type="text" class="form-control" required="required" name="berat" oninput="hitungTotal()"></br> 
 
         <label for="total">Total Bayar: </label>
-        <input type="text" class="form-control" required="required" name="total"></br> 
+        <input type="text" class="form-control" required="required" name="total" id="inputTotal" readonly></br>
 
         <label for="catatan">Catatan: </label>
         <textarea type="text" class="form-control" required="required" name="catatan"></textarea></br>
