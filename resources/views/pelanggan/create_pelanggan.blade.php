@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ url('/pelanggan') }}">
+            <form method="POST" action="{{ $url_form }}" enctype="multipart/form-data">
                 @csrf
                 {!! (isset($pelanggan))? method_field('PUT') : '' !!}
                 <div class="form-group">

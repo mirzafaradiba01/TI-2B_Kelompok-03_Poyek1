@@ -12,10 +12,21 @@ class JenisLaundryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if($request->get('query') !== null){
+            $query = $request->get('query');
+            $jenisLaundry = JenisLaundry::where('kode_jenis_laundry', 'LIKE', '%'.$query.'%')
+                ->orWhere('nama', 'LIKE', '%'.$query.'%')
+                ->paginate(5);
+                
+        } else {
+            $jenisLaundry = JenisLaundry::paginate(5);
+        }
+        return view('jenisLayanan.jenisLayanan', ['jenisLaundry' => $jenisLaundry]);
     }
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -57,7 +68,7 @@ class JenisLaundryController extends Controller
      */
     public function edit(JenisLaundry $jenisLaundry)
     {
-        //
+       //
     }
 
     /**
@@ -78,8 +89,10 @@ class JenisLaundryController extends Controller
      * @param  \App\Models\JenisLaundry  $jenisLaundry
      * @return \Illuminate\Http\Response
      */
-    public function destroy(JenisLaundry $jenisLaundry)
+    public function destroy($id)
     {
-        //
+        JenisLaundry::where('id', '=', $id)->delete();
+        return redirect('jenis_laundry')
+        ->with ('success', 'Jenis Layanan Berhasil Dihapus');
     }
 }

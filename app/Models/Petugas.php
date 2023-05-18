@@ -11,12 +11,7 @@ class Petugas extends Model {
     protected $table = "petugas";
     protected $fillable = [
         'kode_petugas',
-        'id_order',
         'nama',
         'no_hp',
     ];
-
-    public function order() {
-        $this->belongsTo(Order::class);
-    }
 }

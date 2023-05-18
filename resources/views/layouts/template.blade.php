@@ -50,6 +50,26 @@
     <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('assets/dist/js/adminlte.min.js') }}"></script>
+    
+    <script>
+        function updateInputValue(select) {
+          var biaya = select.options[select.selectedIndex].getAttribute("data-biaya");
+          document.getElementById("inputBiaya").value = biaya;
+          hitungTotal();
+        }
+      
+        function hitungTotal() {
+          var biayaInput = document.getElementById("inputBiaya").value;
+          var beratInput = document.getElementsByName("berat")[0].value;
+      
+          var biaya = parseFloat(biayaInput);
+          var berat = parseFloat(beratInput);
+      
+          var total = biaya * berat;
+      
+          document.getElementById("inputTotal").value = total.toFixed(0);
+        }
+      </script>
     @stack('js')
 </body>
 </html>
