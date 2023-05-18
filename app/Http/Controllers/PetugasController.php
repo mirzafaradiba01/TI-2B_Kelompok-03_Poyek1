@@ -31,10 +31,9 @@ class PetugasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {   
-        return  view('petugas.create_petugas')
-        ->with('url_form',url('/petugas'));
+    public function create() {
+        $order = Order::all();
+        return  view('petugas.create_petugas', ['url_form' => url('/petugas'), 'order' => $order]);
     }
 
     /**
@@ -46,16 +45,14 @@ class PetugasController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'id_order' => 'required',
             'kode_petugas' => 'required|string|max:10|unique:petugas,kode_petugas',
             'nama' => 'required|string|max:50',
             'no_hp' => 'required|digits_between:6,15',
         ]);
 
         $data = Petugas::create($request->except(['_token']));
-
-        //jika berhasil
-        return redirect('petugas')
-                ->with('success', 'Petugas Berhasil Ditambahkan');
+        return redirect('petugas')->with('success', 'Petugas Berhasil Ditambahkan');
     }
 
     /**
@@ -64,9 +61,8 @@ class PetugasController extends Controller
      * @param  \App\Models\Petugas  $petugas
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-       
+    public function show($id) {
+
     }
 
     /**
@@ -75,12 +71,13 @@ class PetugasController extends Controller
      * @param  \App\Models\Petugas  $petugas
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        
+    public function edit($id) {
+
         $petugas = Petugas::find($id);
+        $order = Order::all();
         return view('petugas.create_petugas')
                     ->with('petugas', $petugas)
+                    ->with('order', $order)
                     ->with('url_form',url('/petugas/'.$id));
     }
 
@@ -91,9 +88,10 @@ class PetugasController extends Controller
      * @param  \App\Models\Petugas  $petugas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        $request ->validate([
+    public function update(Request $request, $id) {
+
+        $request->validate([
+            'id_order' => '',
             'kode_petugas' => 'required|string|max:10|unique:petugas,kode_petugas,'.$id,
             'nama' => 'required|string|max:50',
             'no_hp' => 'required|digits_between:6,15',
@@ -101,8 +99,7 @@ class PetugasController extends Controller
         ]);
 
         $data = Petugas::where('id', '=', $id)->update($request->except(['_token','_method']));
-        return redirect('petugas')
-            ->with('success','Petugas Berhasil Ditambahkan');
+        return redirect('petugas')->with('success','Petugas Berhasil Ditambahkan');
 
     }
 

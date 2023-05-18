@@ -10,6 +10,7 @@ class Petugas extends Model {
     use HasFactory;
     protected $table = "petugas";
     protected $fillable = [
+        'id_order',
         'kode_petugas',
         'nama',
         'no_hp',

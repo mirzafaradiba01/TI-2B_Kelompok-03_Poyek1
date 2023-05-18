@@ -42,7 +42,7 @@
                         <span class="error invalid-feedback">{{ $message }} </span>
                     @enderror
                 </div>
-                <div>
+                <div class="form-group">
                     <label for="id_user">User</label>
                     <select id="id_user" name="id_user" class="form-control @error('id_user') is-invalid @enderror">
                         @foreach($users as $akun_user)

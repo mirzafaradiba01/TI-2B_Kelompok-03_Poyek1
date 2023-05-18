@@ -54,3 +54,4 @@ Route::middleware(['auth','checkrole:pelanggan'])->group( function() {
     Route::resource('/homepage', HomePageController::class)->parameter('homepage', 'id');
 });
 
+
