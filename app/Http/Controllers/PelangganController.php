@@ -50,9 +50,8 @@ class PelangganController extends Controller {
             'no_hp' => 'required|digits_between:6,15',
         ]);
 
-        // $data = Pelanggan::create($request->except(['_token']));
-        // return redirect('pelanggan')->with('success', 'Pelanggan Berhasil Ditambahkan');
-        return dd($request->all());
+        $data = Pelanggan::create($request->except(['_token']));
+        return redirect('pelanggan')->with('success', 'Pelanggan Berhasil Ditambahkan');
     }
 
     /**
