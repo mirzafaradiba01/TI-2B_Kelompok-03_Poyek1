@@ -24,13 +24,13 @@
                 </section>
                 <section class="sec-two">
                     <div class="contact-our">
-                        <img src="" alt="telph-icn">
+                        <img src="{{ asset('images/telph-icon.png') }}" alt="telph-icn">
                         <div>
                             <p>kontak kami</p>
                             <p>+62 8953 9909 1596</p>
                         </div>
                     </div>
-                    <a href="#">daftar</a>
+                    <a href="{{ url('/login'); }}">daftar</a>
                 </section>
             </nav>
         </header>
@@ -49,26 +49,26 @@
                 </section>
                 <section class="btn-wrap">
                     <div>
-                        <a class="to-login" href="">masuk</a>
-                        <a class="to-more" href="">selengkapnya</a>
+                        <a class="to-login" href="#">masuk</a>
+                        <a class="to-more" href="#">selengkapnya</a>
                     </div>
                 </section>
             </div>
-            <section>
-                <div>
-                    <img src="" alt="ilustration-3d">
+            <section class="bottom-main-content">
+                <div class="main-desc">
+                    <img src="{{ asset('images/ilustration.png'); }}" alt="ilustration-3d">
                 </div>
-                <div>
+                <div class="option-delivery">
                     <h2>bisa diantar atau diambil</h2>
-                    <div>
+                    <div class="sub-option-delivery-text">
                         <p>
-                            kami telah memiliki pengalaman selama 25 tahun, selalu memberikan pelayanan yang terbaik bagi pelanggan kami
+                            kami telah memiliki pengalaman selama 25 tahun <br> selalu memberikan pelayanan yang terbaik bagi <br> pelanggan kami
                         </p>
                     </div>
-                    <div>
-                        <li>buka setiap hari</li>
-                        <li>berpengalaman</li>
-                        <li>pelayanan terbaik</li>
+                    <div class="advantage">
+                        <li class="fas fa-check">buka setiap hari</li>
+                        <li class="fas fa-check">berpengalaman</li>
+                        <li class="fas fa-check">pelayanan terbaik</li>
                     </div>
                 </div>
             </section>
