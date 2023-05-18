@@ -17,9 +17,8 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
-        $order = Order::with('jenis_laundry')->get();
-        return view('order.create_order')
-            ->with('order', $order);
+        // // $jenis = JenisLaundry::with('jenis_laundry')->get();
+        // return view('order.create_order');
     }
 
     /**
@@ -30,7 +29,7 @@ class OrderController extends Controller
     public function create()
     {
         $jenis = JenisLaundry::all(); //mendapatkan data dari tabel jenis laundry
-        return view('order.create_order',['jenis_laundry' => $jenis])
+        return view('order.create_order',['jenis' => $jenis])
            ->with('url_form',url('/order'));
     }
 
@@ -49,7 +48,8 @@ class OrderController extends Controller
             'catatan'=> $request-> catatan,
             'status_bayar '=> $request-> status_bayar,
         ]);
-        return 'Order berhasil ditambahkan';
+        // return 'Order berhasil ditambahkan';
+        return dd($request->all());
     }
 
     /**

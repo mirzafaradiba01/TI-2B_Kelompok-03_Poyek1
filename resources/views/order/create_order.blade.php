@@ -13,7 +13,7 @@
 
         <label for="jenis-laundry">Jenis Laundry</label>
             <select name="id_jenis_laundry" class="form-control @error('id_jenis_laundry') is-invalid @enderror">
-            @foreach($order as $js)
+            @foreach($jenis as $js)
               <option value="{{$js->id}}">{{$js->nama}}</option>
             @endforeach
             </select>
