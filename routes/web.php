@@ -39,6 +39,7 @@ Route::middleware(['auth','checkrole:admin,petugas'])->group( function() {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/pelanggan', PelangganController::class)->parameter('pelanggan', 'id');
+    Route::resource('/create_pelanggan', PelangganController::class)->parameter('pelanggan', 'id');
     Route::resource('/petugas', PetugasController::class)->parameter('petugas', 'id');
     Route::resource('/status', StatusController::class)->parameter('status', 'id');
     Route::resource('/transaksi', TransaksiController::class)->parameter('transaksi', 'id');

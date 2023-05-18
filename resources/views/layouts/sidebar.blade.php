@@ -31,10 +31,27 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href={{ url('/pelanggan') }} class="nav-link">
-                    <i class="nav-icon fas fa-users" style="color: #fff;"></i>
-                    <p>Data Pelanggan</p>
+                <a href="#" class="nav-link">
+                  <i class="fas fa-book-open pr-2"></i>
+                  <p>
+                    Pelanggan
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ url('/pelanggan/') }}" class="nav-link">
+                      <i class="fas fa-book pr-2"></i>
+                      <p>Data Pelanggan</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('pelanggan/create') }}" class="nav-link">
+                      <i class="fas fa-book pr-2"></i>
+                      <p>Tambah Pelanggan</p>
+                    </a>
+                  </li>
+                </ul>
             </li>
             <li class="nav-item">
                 <a href={{ url('/petugas') }} class="nav-link">
@@ -47,7 +64,7 @@
                     <i class="nav-icon fas fa-check" style="color: #fafafa;"></i>
                     <p>Status Laundry</p>
                 </a>
-            </li>
+                  </li>
 
             {{-- jika yang login admin, maka menu di bawah akan muncul, kalau petugas tidak akan muncul --}}
             @if ( auth()->user()->role == 'admin' )
@@ -58,11 +75,51 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="fas fa-book-open pr-2"></i>
+                      <p>
+                        Order
+                        <i class="fas fa-angle-left right"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="{{ url('/order/') }}" class="nav-link">
+                          <i class="fas fa-book pr-2"></i>
+                          <p>Data Order</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="{{ url('/order/') }}" class="nav-link">
+                          <i class="fas fa-book pr-2"></i>
+                          <p>Orderan Selesai</p>
+                        </a>
+                      </li>
+                    </ul>
+                </li>     
+                <li class="nav-item">
                     <a href={{ url('/komplain') }} class="nav-link">
                         <i class="nav-icon fas fa-comment-dots" style="color: #ffffff;"></i>
                         <p>Komplain</p>
                     </a>
                 </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fas fa-book-open pr-2"></i>
+                  <p>
+                    Jenis Layanan
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ url('/jenis_laundry/') }}" class="nav-link">
+                      <i class="fas fa-book pr-2"></i>
+                      <p>Data Jenis</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
                 <li class="nav-item">
                     <a href={{ url('/cetak_laporan') }} class="nav-link">
                         <i class="nav-icon fas fa-print" style="color: #ffffff;"></i>
