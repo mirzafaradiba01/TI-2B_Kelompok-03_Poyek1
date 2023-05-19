@@ -20,7 +20,7 @@
                     <th>Jenis Laundry</th>
                     <th>Total Biaya Laundry</th>
                     <th>No Hp</th>
-                    <th>Status</th>
+                 
                 </thead>
                 <body>
                     @if ($status->count() > 0)
