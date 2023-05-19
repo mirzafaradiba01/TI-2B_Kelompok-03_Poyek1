@@ -28,4 +28,8 @@ class Pelanggan extends Model {
     public function komplain(){
         return $this->belongsTo(KomplainController::class, 'id_komplain');
     }
+
+    public function order() {
+        return $this->hasMany(Order::class);
+    }
 }
