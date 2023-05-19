@@ -1,0 +1,228 @@
+/*
+       http://meyerweb.com/eric/tools/css/reset/
+       v2.0 | 20110126
+       License: none (public domain)
+   */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  color: #000;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "poppins";
+  src: url("/fonts/poppins-regular-webfont.woff") format("woff"), url("/fonts/poppins-regular-webfont.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+}
+
+.bg {
+  width: 100%;
+  height: 60vh;
+  background-image: url(/images/bg.png?70a9261712825309156307e33ae4bce2);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-sizing: border-box;
+  padding-top: 3rem;
+}
+
+.navbar {
+  width: 100%;
+  height: 50px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+.navbar p {
+  color: #000;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.navbar ul {
+  width: 35%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+.navbar ul li {
+  list-style-type: none;
+}
+.navbar ul li a {
+  line-height: 45px;
+  width: 100px;
+  height: 45px;
+  display: inline-block;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  color: #000;
+  text-align: center;
+  text-transform: capitalize;
+  text-decoration: none;
+}
+.navbar ul li a:hover {
+  color: #fff;
+  background-color: #2A7FCE;
+}
+
+.content-wrapper {
+  width: 55%;
+  height: 100%;
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+.content-wrapper .text-wrapper p.tiny-text {
+  color: #fff;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: normal;
+  color: #fff;
+  text-align: left;
+  text-transform: capitalize;
+  text-decoration: none;
+  margin-top: 1.5rem;
+  margin-bottom: 5px;
+}
+.content-wrapper .text-wrapper p.text-header {
+  color: #fff;
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: normal;
+  color: #fff;
+  text-align: left;
+  text-transform: capitalize;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+.content-wrapper .text-wrapper p.testimoni-text {
+  width: 50%;
+  height: 100%;
+  color: #fff;
+  font-size: 1.1rem;
+  font-style: normal;
+  font-weight: normal;
+  color: #fff;
+  text-align: left;
+  text-transform: capitalize;
+  text-decoration: none;
+  line-height: 1.5rem;
+}
+.content-wrapper section.btn-wrapper {
+  width: 45%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+.content-wrapper section.btn-wrapper form button {
+  width: 120px;
+  height: 54px;
+  color: #fff;
+  text-align: normal;
+  text-transform: capitalize;
+  -webkit-text-decoration: normal;
+          text-decoration: normal;
+  cursor: pointer;
+  outline: none;
+  border: 2px solid white;
+  background-color: #2A7FCE;
+}
+.content-wrapper section.btn-wrapper a {
+  line-height: 50px;
+  width: 120px;
+  height: 50px;
+  display: inline-block;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  color: #000;
+  text-align: center;
+  text-transform: capitalize;
+  text-decoration: none;
+  border: 2px solid #fff;
+  color: #fff;
+}
+.content-wrapper section.btn-wrapper a:hover {
+  color: #fff;
+  background-color: #2A7FCE;
+}

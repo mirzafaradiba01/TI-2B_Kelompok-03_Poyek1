@@ -1,71 +1,66 @@
-@mixin css-reset() {
-    /* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-    */
-
-    html, body, div, span, applet, object, iframe,
-    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-    a, abbr, acronym, address, big, cite, code,
-    del, dfn, em, img, ins, kbd, q, s, samp,
-    small, strike, strong, sub, sup, tt, var,
-    b, u, i, center,
-    dl, dt, dd, ol, ul, li,
-    fieldset, form, label, legend,
-    table, caption, tbody, tfoot, thead, tr, th, td,
-    article, aside, canvas, details, embed,
-    figure, figcaption, footer, header, hgroup,
-    menu, nav, output, ruby, section, summary,
-    time, mark, audio, video {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        font-size: 100%;
-        font: inherit;
-        vertical-align: baseline;
-    }
-    /* HTML5 display-role reset for older browsers */
-    article, aside, details, figcaption, figure,
-    footer, header, hgroup, menu, nav, section {
-        display: block;
-    }
-    body {
-        line-height: 1;
-    }
-    ol, ul {
-        list-style: none;
-    }
-    blockquote, q {
-        quotes: none;
-    }
-    blockquote:before, blockquote:after,
-    q:before, q:after {
-        content: '';
-        content: none;
-    }
-    table {
-        border-collapse: collapse;
-        border-spacing: 0;
-    }
-}
-
+// konfigurasi ukuran elemen
 @mixin size($width, $height) {
     width: $width;
     height: $height;
 }
 
-@mixin font-config($font-family: 'poppins', $font-size: 12px, $font-style: normal, $color: #fff) {
-    font-family: $font-family;
-    font-size: $font-size;
-    color: $color;
+// konfigurasi margin dan padding
+@mixin margin-config($type, $size: 0px, $top: 0px, $right: 0px, $bottom: 0px, $left: 0px) {
+    @if ($type == 'all') {
+        margin: $size;
+    } @else {
+        margin-top: $top;
+        margin-right: $right;
+        margin-bottom: $bottom;
+        margin-left: $left;
+    }
 }
 
-@mixin display-config($my-display, $align-items, $justify-content) {
+@mixin padding-config($type, $size: 0px, $top: 0px, $right: 0px, $bottom: 0px, $left: 0px) {
+    @if ($type == 'all') {
+        padding: $size;
+    } @else {
+        padding-top: $top;
+        padding-right: $right;
+        padding-bottom: $bottom;
+        padding-left: $left;
+    }
+}
+
+// konfigurasi font
+@mixin font-config($font-size: 12px, $font-style: normal, $font-weight: normal, $color: #fff) {
+    color: $color;
+    font-size: $font-size;
+    font-style: $font-style;
+    font-weight: $font-weight;
+}
+
+// konfigurasi text
+@mixin text-config($text-transform: lowercase, $text-decoration: none, $text-align: center, $color: #fff) {
+    color: $color;
+    text-align: $text-align;
+    text-transform: $text-transform;
+    text-decoration: $text-decoration;
+}
+
+// konfigurasi display
+@mixin display-config($my-display: block, $align-items: center, $justify-content: center, $direction: row) {
     display: $my-display;
     align-items: $align-items;
+    flex-direction: $direction;
     justify-content: $justify-content;
 }
 
+// konfigurasi posisition
+@mixin position-config($position) {
+    @if ($position == fixed) {
+        position: $position;
+        z-index: 999;
+        top: 0; right: 0; left: 0;
+    }
+}
+
+// konfigurasi background
 @mixin bg-config($folder, $file-name, $format ) {
     $image-path: '../images/#{$folder}/';
 

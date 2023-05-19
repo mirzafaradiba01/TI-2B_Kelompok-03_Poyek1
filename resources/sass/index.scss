@@ -1,0 +1,132 @@
+@use 'modules/fonts' as font;
+@use 'modules/func_template' as fun;
+@use 'modules/css_reset';
+
+
+* {
+    @include font.font("poppins","poppins-regular-webfont");
+    @include fun.font-config(1rem, normal, normal, #000);
+}
+
+.wrapper { @include fun.size(100%, 100vh); }
+
+// ----- styling background
+.bg {
+    @include fun.size(100%, 60vh);
+    @include fun.bg-config('home', 'bg', 'png');
+
+    box-sizing: border-box;
+    padding-top: 3rem;
+}
+
+
+// ----- styling navbar
+.navbar {
+
+    @include fun.size(100%, 50px);
+    @include fun.padding-config('all', 2rem);
+    @include fun.display-config(flex, center, space-between);
+    @include fun.position-config(fixed);
+
+    background-color: #fff;
+    box-sizing: border-box;
+
+    p {
+        @include fun.font-config(1.5rem, normal, bold, #000);
+        @include fun.text-config(uppercase, none, center, #000);
+    }
+
+    ul {
+        @include fun.size(35%, 100%);
+        @include fun.display-config(flex, center, space-between);
+        @include fun.padding-config('all', 2rem);
+
+        box-sizing: border-box;
+
+        li { list-style-type: none;
+
+            a {
+                line-height: 45px;
+                @include fun.size(100px, 45px);
+                @include fun.display-config(inline-block);
+                @include fun.text-config(capitalize, none, center, #000);
+            }
+
+            a:hover {
+                color: #fff;
+                background-color: #2A7FCE;
+            }
+        }
+    }
+}
+
+// ----- styling main
+.content-wrapper {
+
+    @include fun.size(55%, 100%);
+    @include fun.display-config(flex, left, center, column);
+    @include fun.padding-config('all', 2rem);
+
+    box-sizing: border-box;
+
+    .text-wrapper {
+
+        p.tiny-text {
+            @include fun.font-config(1.2rem, normal, normal);
+            @include fun.text-config(capitalize, none, left);
+
+            margin-top: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        p.text-header {
+            @include fun.font-config(3rem, normal, normal);
+            @include fun.text-config(capitalize, none, left);
+
+            margin-bottom: 10px;
+        }
+
+        p.testimoni-text {
+            @include fun.size(50%, 100%);
+            @include fun.font-config(1.1rem, normal, normal);
+            @include fun.text-config(capitalize, none, left);
+
+            line-height: 1.5rem;
+        }
+    }
+
+    section.btn-wrapper {
+        @include fun.size(45%, 50px);
+        @include fun.display-config(flex, center, space-between);
+
+        margin-top: 2rem;
+
+        form {
+            button {
+                @include fun.size(120px, 54px);
+                @include fun.text-config(capitalize, normal, normal);
+
+                cursor: pointer;
+                outline: none;
+                border: 2px solid white;
+                background-color: #2A7FCE;
+
+            }
+        }
+
+        a {
+            line-height: 50px;
+            @include fun.size(120px, 50px);
+            @include fun.display-config(inline-block);
+            @include fun.text-config(capitalize, none, center, #000);
+
+            border: 2px solid #fff;
+            color: #fff;
+        }
+
+        a:hover {
+            color: #fff;
+            background-color: #2A7FCE;
+        }
+    }
+}

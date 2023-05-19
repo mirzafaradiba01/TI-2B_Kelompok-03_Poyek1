@@ -20,4 +20,4 @@ mix.webpackConfig({
     watchOptions: {
         ignored: /node_modules/
     }
-}).sass('resources/sass/homepage.scss', 'css/homepage');
+}).sass('resources/sass/index.scss', 'css/index.css');
