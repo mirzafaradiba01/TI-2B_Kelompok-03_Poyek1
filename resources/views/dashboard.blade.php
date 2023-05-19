@@ -42,8 +42,8 @@
                     </div>
                   </div> --}}
 
-            <!-- ./col -->
-            
+            {{-- <!-- ./col -->
+            <div class="container-fluid"> --}}
             <div class="col-lg-6 col-4">
                 <!-- small box -->
                 <div class="small-box bg-success">
@@ -57,6 +57,9 @@
                     class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+            {{-- </div> --}}
+
+            
             <div class="col-lg-6 col-4">
                 <!-- small box -->
                 <div class="small-box bg-success">
@@ -70,6 +73,8 @@
                     class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+
+
             <div class="col-lg-6 col-4">
                 <!-- small box -->
                 <div class="small-box bg-success">
@@ -82,6 +87,8 @@
                     <a href="{{ url('/status') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+
+            
             <div class="col-lg-6 col-4">
                 <!-- small box -->
                 <div class="small-box bg-success">
@@ -94,6 +101,6 @@
                     <a href="{{ url('/komplain') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
-        </div>
+        {{-- </div> --}}
     </section>
 @endsection
