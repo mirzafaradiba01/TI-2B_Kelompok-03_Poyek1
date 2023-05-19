@@ -10,13 +10,9 @@ class Petugas extends Model {
     use HasFactory;
     protected $table = "petugas";
     protected $fillable = [
-        'kode_petugas',
         'id_order',
+        'kode_petugas',
         'nama',
         'no_hp',
     ];
-
-    public function order() {
-        $this->belongsTo(Order::class);
-    }
 }

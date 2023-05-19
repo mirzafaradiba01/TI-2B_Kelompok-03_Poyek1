@@ -2,8 +2,6 @@
 
 @section('content')
 <section class="content">
-
-    <!--Default box-->
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">DETAIL DATA PETUGAS</h3>
@@ -19,15 +17,11 @@
         </div>
         <div class="card-body">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><b>Kode petugas : </b>{{$petugas->kode_petugas}}</li>
-                <li class="list-group-item"><b>Nama petugas : </b>{{$petugas->nama}}</li>
-                <li class="list-group-item"><b>No Telepon : </b>{{$petugas->no_hp}}</li>
-                <li class="list-group-item"><b>id_order : </b>{{$petugas->id_order}}</li>
-                
+                <li class="list-group-item"><b>Kode Pelanggan : </b>{{$pelanggan->kode_pelanggan}}</li>
+                <li class="list-group-item"><b>Nama Petugas : </b>{{$pelanggan->nama}}</li>
+                <li class="list-group-item"><b>No Telepon     : </b>{{$pelanggan->no_hp}}</li>
             </ul>
         </div>
     </div>
-    <!-- /.card -->
-
-    </section>
+</section>
 @endsection

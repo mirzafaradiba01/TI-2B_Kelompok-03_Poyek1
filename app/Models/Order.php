@@ -20,18 +20,18 @@ class Order extends Model
     ];
 
     public function pelanggan() {
-        $this->belongsTo(Pelanggan::class);
+        return $this->belongsTo(Pelanggan::class);
     }
 
     public function jenis_laundry() {
-        $this->belongsTo(JenisLaundry::class);
+        return $this->belongsTo(JenisLaundry::class);
     }
 
     public function status() {
-        $this->hasMany(Status::class);
+        return $this->hasMany(Status::class);
     }
 
     public function petugas() {
-        $this->hasMany(Petugas::class);
+        return $this->hasMany(Petugas::class);
     }
 }

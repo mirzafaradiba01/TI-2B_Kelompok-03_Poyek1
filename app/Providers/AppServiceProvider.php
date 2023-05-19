@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Order;
+use App\Models\Pelanggan;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,6 +27,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot() {
         Paginator::useBootstrap();
+        View::share('hitungPelanggan', Pelanggan::count());
 
+        View::share('hitungOrder', Order::count());
+
+        View::share('hitungKomplain', Order::count());
     }
 }

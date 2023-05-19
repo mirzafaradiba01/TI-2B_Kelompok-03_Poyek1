@@ -8,6 +8,7 @@
         <div class="card-header">
             <h3 class="card-title">DATA PETUGAS</h3>
         </div>
+
         <div class="card-body">
            <a href="{{ url ('petugas/create')}}"class="btn btn-sm btn-info my-2">Tambah Data</a>
            <form action="" method="GET" class="form-inline my-2 my-lg-0">
@@ -21,38 +22,36 @@
                             <th>Kode</th>
                             <th>Nama Petugas</th>
                             <th>No Telepon</th>
-                            <th>Id Order</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <body>
                         @if($petugas->count() > 0)
-                            @foreach($petugas as $pt => $pe)
+                            @foreach($petugas as $i => $p)
                             <tr>
-                                <td>{{++$pt}}</td>
-                                <td>{{$pe->kode_petugas}}</td>
-                                <td>{{$pe->nama}}</td>
-                                <td>{{$pe->no_hp}}</td>
-                                <td>{{$pe->id_order}}</td>
-
+                                <td>{{++$i}}</td>
+                                <td>{{$p->kode_petugas}}</td>
+                                <td>{{$p->nama}}</td>
+                                <td>{{$p->no_hp}}</td> 
+                                
                                 <td>
                                     {{-- Bikin simbol edit dan delete --}}
-                                    <a href="{{url('/petugas/'.$pe->id)}}"
-                                        class="btn btn-sm btn-primary">show</a>
-
-                                    <a href="{{url('/petugas/'.$pe->id.'/edit')}}"
+                                    <a href="{{url('/petugas/'.$p->id)}}" class="btn btn-sm btn-primary">
+                                        show
+                                    </a>
+                                    <a href="{{url('/petugas/'.$p->id.'/edit')}}" 
                                         class="btn btn-sm btn-warning">edit</a>
-
-                                    <form method="POST" action="{{url('/petugas/'.$pe->id)}}" onsubmit="return confirm('Apakah yakin ingin menghapus data?')">
+                                    
+                                    <form method="POST" action="{{url('/petugas/'.$p->id)}}" onsubmit="return confirm('Apakah yakin ingin menghapus data?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger">hapus</button>
-
+                                        
                                     </form>
                                 </td>
                             </tr>
                             @endforeach
-
+                            
                         @else
                             <tr><td colspan="7" class="text-center">Data Tidak Ada</td></tr>
                         @endif
@@ -60,10 +59,6 @@
             </table>
             <div class="pagination justify-content-end mt-2">  {{ $petugas->withQueryString()->links() }}</div>
         </div>
-    </div>
-    <!-- /.card -->
-    <div class="card-footer">
-        Footer
     </div>
 
     </section>

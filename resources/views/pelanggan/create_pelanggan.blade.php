@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ url('/pelanggan') }}">
+            <form method="POST" action="{{ $url_form }}" enctype="multipart/form-data">
                 @csrf
                 {!! (isset($pelanggan))? method_field('PUT') : '' !!}
                 <div class="form-group">
@@ -42,7 +42,7 @@
                         <span class="error invalid-feedback">{{ $message }} </span>
                     @enderror
                 </div>
-                <div>
+                <div class="form-group">
                     <label for="id_user">User</label>
                     <select id="id_user" name="id_user" class="form-control @error('id_user') is-invalid @enderror">
                         @foreach($users as $akun_user)
