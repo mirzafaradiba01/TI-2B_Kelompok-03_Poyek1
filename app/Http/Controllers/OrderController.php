@@ -21,6 +21,29 @@ class OrderController extends Controller
         $pelanggan = Pelanggan::all();
         return view('order.create_order', ['jenis' => $jenis], ['pelanggan' => $pelanggan]);
     }
+    
+    // cek status 
+    public function searching(Request $request){
+        if($request->get('query') !== null){
+            $query = $request->get('query');
+            $order = Order ::where('kode_order', 'LIKE', '%'.$query.'%')
+        
+                ->with('order')
+                ->paginate(5);
+        } else {
+            $order = Order ::with('order')->paginate(5);
+        }
+        return view('searching.searching', ['order' => $order]);
+    }
+ // statuslaundry
+
+    public function statuslaudry()
+    {
+        $statuslaundry = Order::all();
+        return view('statuslaundry.statuslaundry', ['statuslaundry' => $statuslaundry]);
+    }
+
+    
 
     /**
      * Show the form for creating a new resource.

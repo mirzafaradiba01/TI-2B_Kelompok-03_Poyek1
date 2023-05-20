@@ -25,6 +25,10 @@ Route::get('/', function() {
 Auth::routes();
 Route::get('/logout', [LoginController::class, 'logout']);
 
+// sebentar
+// Route::get();
+// Route::resource('/cariorder',  [OrderController ::class,'searching'])->;
+
 /**
  * * * * * * * * * * * * * * * * * * * * * * * * * *
  *                                                 *
@@ -48,6 +52,8 @@ Route::middleware(['auth','checkrole:admin,petugas'])->group( function() {
     // Rute untuk submit order dan mengarahkan ke halaman tampilan transaksi
     Route::post('/order/submit', [OrderController::class, 'submit'])->name('order.submit');
 
+    Route::get('/order/statuslaundry', [OrderController::class, 'statuslaundry'])->name('statuslaundry');
+
     // Rute untuk halaman tampilan transaksi
     Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
     Route::resource('/komplain', KomplainController::class)->parameter('komplain', 'id');
@@ -57,6 +63,12 @@ Route::middleware(['auth','checkrole:admin,petugas'])->group( function() {
 
 Route::middleware(['auth','checkrole:pelanggan'])->group( function() {
     Route::resource('/index', HomePageController::class)->parameter('homepage', 'id');
+    
 });
+
+// Status Laundry
+
+
+
 
 

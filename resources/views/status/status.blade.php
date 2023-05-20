@@ -1,6 +1,7 @@
 @extends('layouts.template')
 
 @section('content')
+<script src="index.js"></script>
     <section>
         <div class="container-fluid">
             <div class="row mb-2">
@@ -85,3 +86,9 @@
         </div>
     </section>
 @endsection
+
+{{-- tombol pop up warning 
+<button type="submit" class="btn btn-info btn-circle"
+ onclick="return confirm('Apakah anda yakin update status {{$c->nota}} 
+ dari cuci ke setrika ?')">{{$c->nota}}</button> --}}
+

@@ -19,8 +19,8 @@
                 <thead>
                         <tr>
                             <th>No</th>
-                            <th>Kode</th>
-                            <th>Jenis Laundry</th>
+                            <th>Kode Order </th>
+                            <th>Jenis  Laundry</th>
                             <th>Berat</th>
                             <th>Total Pembayaran</th>
                             <th>Status</th>
@@ -28,24 +28,25 @@
                         </tr>
                     </thead>
                     <body>
-                        {{-- @if($petugas->count() > 0) --}}
+                        {{-- @if  ($petugas->count() > 0) --}}
                         {{-- @foreach($petugas as $i => $p) --}}
                         @if($statuslaundry->count() > 0)
                             @foreach($statuslaundry as $s => $si)
                             <tr>
                                 <td>{{++$s}}</td>
-                                <td>{{$si->kode_petugas}}</td>
-                                <td>{{$si->jenis_laundry}}</td>
+                                <td>{{$si->kode_order}}</td>
+                                <td>{{$si->jenis_laundry->nama}}</td>
                                 <td>{{$si->berat}}</td>
                                 <td>{{$si->total}}</td>
                                 <td>{{$si->Status}}</td>
+
                                   
                                 <td>
                              {{-- Bikin simbol edit dan delete --}}
                                     <a href="{{url('/komplain/'.$p->id)}}" class="btn btn-sm btn-primary">
                                         Komplain
                                     </a>
-                                    <a href="{{url('/status/'.$p->id)}}" class="btn btn-sm btn-primary">
+                                    <a href="{{url('/pelanggan/'.$p->id)}}" class="btn btn-sm btn-primary">
                                         show
                                     </a>
                                     
