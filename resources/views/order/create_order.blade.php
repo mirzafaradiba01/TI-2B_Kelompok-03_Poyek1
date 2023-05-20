@@ -5,8 +5,6 @@
   <form action="/order" method="post" enctype="multipart/form-data">     
     @csrf 
     <div class="form-group"> 
-        <label for="kode_order">Kode Order</label>
-        <input type="text" class="form-control" required="required" name="kode_order"></br> 
 
         <label for="nama">Nama Pelanggan</label>
           <select name="id_pelanggan" class="form-control @error('id_pelanggan') is-invalid @enderror">
@@ -43,8 +41,8 @@
         <label for="catatan">Catatan: </label>
         <textarea type="text" class="form-control" required="required" name="catatan"></textarea></br>
 
-        <label for="payment">Metode Pembayaran:</label>
-        <select id="payment" name="payment" class="form-control">
+        <label for="status_bayar">Metode Pembayaran:</label>
+        <select id="status_bayar" name="status_bayar" class="form-control">
           <option value="DP">DP</option>
           <option value="Lunas">Lunas</option>
           <option value="Bayar di Akhir">Bayar di Akhir</option>

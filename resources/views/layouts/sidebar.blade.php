@@ -59,12 +59,15 @@
                     <p>Data Petugas</p>
                 </a>
             </li>
+            @if ( auth()->user()->role == 'petugas' )
             <li class="nav-item">
-                <a href={{ url('/status') }} class="nav-link">
+                <a href={{ url('/status_petugas') }} class="nav-link">
                     <i class="nav-icon fas fa-check" style="color: #fafafa;"></i>
                     <p>Status Laundry</p>
                 </a>
                   </li>
+
+            @endif
 
             {{-- jika yang login admin, maka menu di bawah akan muncul, kalau petugas tidak akan muncul --}}
             @if ( auth()->user()->role == 'admin' )
@@ -103,6 +106,12 @@
                         <p>Komplain</p>
                     </a>
                 </li>
+              <li class="nav-item">
+                  <a href={{ url('/status_admin') }} class="nav-link">
+                      <i class="nav-icon fas fa-check" style="color: #fafafa;"></i>
+                      <p>Status Laundry</p>
+                  </a>
+              </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="fas fa-book-open pr-2"></i>

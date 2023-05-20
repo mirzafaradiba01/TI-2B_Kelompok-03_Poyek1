@@ -26,6 +26,8 @@ class KomplainController extends Controller
         return view('komplain.komplain', ['komplain' => $komplain]);
     }
 
+    
+
     /**
      * Show the form for creating a new resource.
      *

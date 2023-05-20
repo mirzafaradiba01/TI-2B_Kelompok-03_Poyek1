@@ -8,19 +8,12 @@
         <div class="card-header">
             <h3 class="card-title">STATUS LAUNDRY</h3>
         </div>
-
-        {{-- <div class="card-body">
-           <a href="{{ url ('petugas/create')}}"class="btn btn-sm btn-info my-2">Tambah Data</a>
-           <form action="" method="GET" class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" name="query" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search Petugas</button>
-        </form> --}}
             <table class="table table-bordered table-striped">
                 <thead>
                         <tr>
                             <th>No</th>
-                            <th>Kode</th>
-                            <th>Jenis Laundry</th>
+                            <th>Kode Order </th>
+                            <th>Jenis  Laundry</th>
                             <th>Berat</th>
                             <th>Total Pembayaran</th>
                             <th>Status</th>
@@ -28,24 +21,25 @@
                         </tr>
                     </thead>
                     <body>
-                        {{-- @if($petugas->count() > 0) --}}
+                        {{-- @if  ($petugas->count() > 0) --}}
                         {{-- @foreach($petugas as $i => $p) --}}
-                        @if($statuslaundry->count() > 0)
-                            @foreach($statuslaundry as $s => $si)
+                        @if($status_admin->count() > 0)
+                            @foreach($status_admin as $s => $si)
                             <tr>
                                 <td>{{++$s}}</td>
-                                <td>{{$si->kode_petugas}}</td>
-                                <td>{{$si->jenis_laundry}}</td>
+                                <td>{{$si->kode_order}}</td>
+                                <td>{{$si->jenis_laundry->nama}}</td>
                                 <td>{{$si->berat}}</td>
                                 <td>{{$si->total}}</td>
                                 <td>{{$si->Status}}</td>
+
                                   
                                 <td>
                              {{-- Bikin simbol edit dan delete --}}
                                     <a href="{{url('/komplain/'.$p->id)}}" class="btn btn-sm btn-primary">
                                         Komplain
                                     </a>
-                                    <a href="{{url('/status/'.$p->id)}}" class="btn btn-sm btn-primary">
+                                    <a href="{{url('/pelanggan/'.$p->id)}}" class="btn btn-sm btn-primary">
                                         show
                                     </a>
                                     
@@ -60,7 +54,7 @@
                         @endif
                     </body>
             </table>
-            <div class="pagination justify-content-end mt-2">  {{ $petugas->withQueryString()->links() }}</div>
+            <div class="pagination justify-content-end mt-2">  {{ $status_admin->withQueryString()->links() }}</div>
         </div>
     </div>
 

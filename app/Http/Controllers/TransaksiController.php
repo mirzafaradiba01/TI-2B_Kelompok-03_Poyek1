@@ -15,13 +15,16 @@ class TransaksiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
-        if($request->get('query') !== null){
-            $query = $request->get('query');
-            $order = Order::where('kode_order', 'LIKE', '%'.$query.'%')
-                ->orWhere('nama_pelanggan', 'LIKE', '%'.$query.'%')
-                ->orWhere('kode_pelanggan', 'LIKE', '%'.$query.'%')
-                ->paginate(5);
-        } else {
+        if ($request->has('query')) {
+            $searchQuery = $request->input('query');
+            $order = Order::where(function ($query) use ($searchQuery) {
+                $query->where('kode_order', 'LIKE', '%'.$searchQuery.'%')
+                    ->orWhereHas('pelanggan', function ($query) use ($searchQuery) {
+                        $query->where('kode_pelanggan', 'LIKE', '%'.$searchQuery.'%')
+                            ->orWhere('nama', 'LIKE', '%'.$searchQuery.'%');
+                    });
+            })->paginate(5);
+        }else {
             $order = Order::paginate(5);
         }
         return view('order.transaksi', ['order' => $order]);
