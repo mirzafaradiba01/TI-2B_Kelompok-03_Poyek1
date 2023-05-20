@@ -61,8 +61,8 @@
 }
 
 // konfigurasi background
-@mixin bg-config($folder, $file-name, $format ) {
-    $image-path: '../images/#{$folder}/';
+@mixin bg-config($file-name, $format ) {
+    $image-path: '../images/';
 
     background-image: url('#{$image-path}#{$file-name}.#{$format}');
     background-size: cover;

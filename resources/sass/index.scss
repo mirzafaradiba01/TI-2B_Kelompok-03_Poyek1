@@ -6,14 +6,16 @@
 * {
     @include font.font("poppins","poppins-regular-webfont");
     @include fun.font-config(1rem, normal, normal, #000);
+
+    font-family: 'poppins';
 }
 
-.wrapper { @include fun.size(100%, 100vh); }
+// .wrapper { @include fun.size(100%, 100vh); }
 
 // ----- styling background
 .bg {
     @include fun.size(100%, 60vh);
-    @include fun.bg-config('home', 'bg', 'png');
+    @include fun.bg-config('bg', 'png');
 
     box-sizing: border-box;
     padding-top: 3rem;
@@ -21,40 +23,19 @@
 
 
 // ----- styling navbar
-.navbar {
-
-    @include fun.size(100%, 50px);
-    @include fun.padding-config('all', 2rem);
-    @include fun.display-config(flex, center, space-between);
-    @include fun.position-config(fixed);
-
-    background-color: #fff;
-    box-sizing: border-box;
-
-    p {
-        @include fun.font-config(1.5rem, normal, bold, #000);
-        @include fun.text-config(uppercase, none, center, #000);
-    }
+.nav-list {
 
     ul {
-        @include fun.size(35%, 100%);
-        @include fun.display-config(flex, center, space-between);
-        @include fun.padding-config('all', 2rem);
 
-        box-sizing: border-box;
-
-        li { list-style-type: none;
-
+        li {
             a {
-                line-height: 45px;
-                @include fun.size(100px, 45px);
                 @include fun.display-config(inline-block);
                 @include fun.text-config(capitalize, none, center, #000);
             }
 
             a:hover {
                 color: #fff;
-                background-color: #2A7FCE;
+                background-color: #48a2f7;
             }
         }
     }
@@ -63,75 +44,83 @@
 // ----- styling main
 .content-wrapper {
 
-    @include fun.size(55%, 100%);
-    @include fun.display-config(flex, left, center, column);
-    @include fun.padding-config('all', 2rem);
-
     box-sizing: border-box;
 
-    .text-wrapper {
-
-        p.tiny-text {
-            @include fun.font-config(1.2rem, normal, normal);
-            @include fun.text-config(capitalize, none, left);
-
-            margin-top: 1.5rem;
-            margin-bottom: 5px;
-        }
-
-        p.text-header {
-            @include fun.font-config(3rem, normal, normal);
-            @include fun.text-config(capitalize, none, left);
-
-            margin-bottom: 10px;
-        }
-
-        p.testimoni-text {
-            @include fun.size(50%, 100%);
-            @include fun.font-config(1.1rem, normal, normal);
-            @include fun.text-config(capitalize, none, left);
-
-            line-height: 1.5rem;
-        }
-    }
-
     section.btn-wrapper {
-        @include fun.size(45%, 50px);
-        @include fun.display-config(flex, center, space-between);
 
-        margin-top: 2rem;
-
-        form {
-            button {
-                @include fun.size(120px, 54px);
-                @include fun.text-config(capitalize, normal, normal);
-
-                cursor: pointer;
-                outline: none;
-                border: 2px solid white;
-                background-color: #2A7FCE;
-
-            }
-
-            button:hover {
-                background-color: #000;
-            }
+        button {
+            @include fun.size(100px, 50px);
+            @include fun.text-config(capitalize, none, center, #000);
         }
 
         a {
-            line-height: 50px;
             @include fun.size(120px, 50px);
-            @include fun.display-config(inline-block);
-            @include fun.text-config(capitalize, none, center, #000);
+            @include fun.text-config(capitalize, none, center, #fff);
 
-            border: 2px solid #fff;
-            color: #fff;
+            display: inline-block;
+            background-color: #1a82e4;
         }
 
         a:hover {
             color: #000;
+            border: 2px solid #1a82e4;
             background-color: #fff;
-            border: 2px solid #2A7FCE;
+        }
+
+        button:hover {
+            color: #fff;
+            border: 2px solid #fff;;
+            background-color: #000;
+        }
+    }
+
+    .right-content {
+
+        margin-top: 100px;
+
+        .img-wrapper {
+            img {
+                @include fun.size(577px, 405px);
+            }
+        }
+    }
+}
+
+.about-us {
+
+    border: 2px solid 2px;
+
+    .left {
+
+        img.img-one {
+            @include fun.size(400px, 200px);
+            top: 20px;
+            left: 20px;
+        }
+
+        img.img-two {
+            @include fun.size(400px, 200px);
+            top: 250px;
+            left: 100px;
+        }
+    }
+
+    .right {
+        .contact-us {
+
+            width: 350px;
+            margin-top: 30px;
+            box-sizing: border-box;
+
+            div {
+                img {
+                    @include fun.size(70px, 70px);
+                }
+
+                p {
+                    margin-top: 10px;;
+                }
+            }
         }
     }
 }
