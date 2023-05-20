@@ -40,12 +40,7 @@
                                 <td>{{$si->total}}</td>
                                 <td>{{$si->Status}}</td>
                                   
-                                
-                         
-                                
                                 <td>
-                                    
-
                              {{-- Bikin simbol edit dan delete --}}
                                     <a href="{{url('/komplain/'.$p->id)}}" class="btn btn-sm btn-primary">
                                         Komplain
