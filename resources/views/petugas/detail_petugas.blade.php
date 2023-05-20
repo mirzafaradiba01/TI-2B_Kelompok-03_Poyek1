@@ -17,9 +17,9 @@
         </div>
         <div class="card-body">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><b>Kode Pelanggan : </b>{{$pelanggan->kode_pelanggan}}</li>
-                <li class="list-group-item"><b>Nama Petugas : </b>{{$pelanggan->nama}}</li>
-                <li class="list-group-item"><b>No Telepon     : </b>{{$pelanggan->no_hp}}</li>
+                <li class="list-group-item"><b>Kode Pelanggan : </b>{{$petugas->kode_petugas}}</li>
+                <li class="list-group-item"><b>Nama Petugas : </b>{{$petugas->nama}}</li>
+                <li class="list-group-item"><b>No Telepon     : </b>{{$petugas->no_hp}}</li>
             </ul>
         </div>
     </div>

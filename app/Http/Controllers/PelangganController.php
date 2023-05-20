@@ -43,14 +43,24 @@ class PelangganController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+        $countPelanggan = Pelanggan::count();
+
+        $kode = '11';
+
+        $kode_pelanggan = $kode . ($countPelanggan + 1);
+
         $request->validate([
             'id_user' => 'required',
-            'kode_pelanggan' => 'required|string|max:10|unique:pelanggan,kode_pelanggan',
             'nama' => 'required|string|max:50',
             'no_hp' => 'required|digits_between:6,15',
         ]);
 
-        $data = Pelanggan::create($request->except(['_token']));
+        Pelanggan::create([
+            'id_user' => $request->id_user ,
+            'kode_pelanggan' => $kode_pelanggan,
+            'nama' => $request->nama,
+            'no_hp'=> $request->no_hp,
+        ]);
         return redirect('pelanggan')->with('success', 'Pelanggan Berhasil Ditambahkan');
     }
 

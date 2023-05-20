@@ -66,18 +66,22 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        $countOrder = Order::count();
+
+        $kode_order = '100' . ($countOrder + 1);
+        
         Order::create([
             'id_pelanggan' => $request-> id_pelanggan,
             'id_jenis_laundry' => $request->id_jenis_laundry,
-            'kode_order' => $request->kode_order,
+            'kode_order' => $kode_order,
             'tanggal_laundry' => $request-> tanggal_laundry,
             'berat'=> $request-> berat,
             'total'=> $request-> total,
             'catatan'=> $request-> catatan,
-            'status_bayar '=> $request-> status_bayar,
+            'status_bayar'=> $request-> status_bayar,
         ]);
-        // return 'Order berhasil ditambahkan';
-        return redirect('order')->with('success', 'Order Berhasil Ditambahkan');
+
+        return redirect('transaksi')->with('success', 'Order Berhasil Ditambahkan');
     }
 
     /**

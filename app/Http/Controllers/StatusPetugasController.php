@@ -8,7 +8,7 @@ use App\Models\Pelanggan;
 use App\Models\Status;
 use Illuminate\Http\Request;
 
-class StatusController extends Controller
+class StatusPetugasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,16 +18,15 @@ class StatusController extends Controller
     public function index(Request $request) {
         if($request->get('query') !== null){
             $query = $request->get('query');
-            $status_admin = Status::where('kode_status', 'LIKE', '%'.$query.'%')
+            $status_petugas = Status::where('kode_status', 'LIKE', '%'.$query.'%')
                 ->orWhere('nama_pelanggan', 'LIKE', '%'.$query.'%')
                 ->orWhere('no_hp', 'LIKE', '%'.$query.'%')
                 ->paginate(5);
         } else {
-            $status_admin = Status::paginate(5);
+            $status_petugas = Status::paginate(5);
         }
-        return view('status.status_admin', ['status_admin' => $status_admin]);
+        return view('status.status_petugas', ['status_admin' => $status_petugas]);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -53,15 +52,16 @@ class StatusController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Status  $status
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
+    public function show($id)
+    {
         $status = Status::find($id);
         $order = Order::finc($id);
         $pelanggan = Pelanggan::find($id);
         $jenis_laundry = JenisLaundry::find($id);
-        return view('status.status_admin', [
+        return view('status.status_petugas', [
             'order' => $order,
             'status' => $status,
             'pelanggan' => $pelanggan,
@@ -69,15 +69,13 @@ class StatusController extends Controller
         ]);
     }
 
-
-
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Status  $status
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Status $status)
+    public function edit($id)
     {
         //
     }
@@ -86,10 +84,10 @@ class StatusController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Status  $status
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Status $status)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -97,10 +95,10 @@ class StatusController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Status  $status
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Status $status)
+    public function destroy($id)
     {
         //
     }
