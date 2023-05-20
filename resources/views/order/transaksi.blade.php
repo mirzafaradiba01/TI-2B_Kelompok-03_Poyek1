@@ -20,8 +20,8 @@
                     <th>Tanggal</th>
                     <th>Jenis Laundry</th>
                     <th>Berat</th>
-                    <th>Catatan</th>
                     <th>Total Biaya</th>
+                    <th>Catatan</th>
                     <th>No Hp</th>
                     <th>Status Bayar</th>
                 </thead>
