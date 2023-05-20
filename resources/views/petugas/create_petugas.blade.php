@@ -34,19 +34,6 @@
                     @enderror
                     </div>
                 </div>
-                <div class="form-group ml-3 mr-3">
-                    <label for="id_order">Order</label>
-                    <select id="id_order" name="id_order" class="form-control @error('id_order') is-invalid @enderror">
-                        @foreach($order as $orders)
-                            <option value="{{ $orders->id }}">
-                                {{ $orders->kode_order }}
-                            </option>
-                        @endforeach
-                    </select>
-                    @error('id_order')
-                        <span class="error invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
                 <div class="form-group">
                     <button class="btn btn-sm btn-primary ml-3">Simpan</button>
                 </div>

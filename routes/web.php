@@ -11,6 +11,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\StatusPetugasController;
 use App\Http\Controllers\TransaksiController;
 use App\Models\HomePage;
 use Illuminate\Support\Facades\Auth;
@@ -42,11 +43,14 @@ Route::middleware(['auth','checkrole:admin,petugas'])->group( function() {
     Route::resource('/pelanggan', PelangganController::class)->parameter('pelanggan', 'id');
     Route::resource('/create_pelanggan', PelangganController::class)->parameter('pelanggan', 'id');
     Route::resource('/petugas', PetugasController::class)->parameter('petugas', 'id');
-    Route::resource('/status', StatusController::class)->parameter('status', 'id');
+    Route::resource('/status_admin', StatusController::class)->parameter('status', 'id');
     Route::resource('/transaksi', TransaksiController::class)->parameter('transaksi', 'id');
     Route::resource('/order', OrderController::class)->parameter('jenis_laundry', 'id');
     // Rute untuk submit order dan mengarahkan ke halaman tampilan transaksi
     Route::post('/order/submit', [OrderController::class, 'submit'])->name('order.submit');
+
+    //Route Status Laundry Petugas
+    Route::resource('/status_petugas', StatusPetugasController::class)->parameter('status', 'id');
 
     // Rute untuk halaman tampilan transaksi
     Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');

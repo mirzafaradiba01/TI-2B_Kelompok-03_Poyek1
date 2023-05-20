@@ -8,13 +8,6 @@
         <div class="card-header">
             <h3 class="card-title">STATUS LAUNDRY</h3>
         </div>
-
-        {{-- <div class="card-body">
-           <a href="{{ url ('petugas/create')}}"class="btn btn-sm btn-info my-2">Tambah Data</a>
-           <form action="" method="GET" class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" name="query" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search Petugas</button>
-        </form> --}}
             <table class="table table-bordered table-striped">
                 <thead>
                         <tr>
@@ -30,8 +23,8 @@
                     <body>
                         {{-- @if($petugas->count() > 0) --}}
                         {{-- @foreach($petugas as $i => $p) --}}
-                        @if($statuslaundry->count() > 0)
-                            @foreach($statuslaundry as $s => $si)
+                        @if($status_admin->count() > 0)
+                            @foreach($status_admin as $s => $si)
                             <tr>
                                 <td>{{++$s}}</td>
                                 <td>{{$si->kode_petugas}}</td>
@@ -60,7 +53,7 @@
                         @endif
                     </body>
             </table>
-            <div class="pagination justify-content-end mt-2">  {{ $petugas->withQueryString()->links() }}</div>
+            <div class="pagination justify-content-end mt-2">  {{ $status_admin->withQueryString()->links() }}</div>
         </div>
     </div>
 

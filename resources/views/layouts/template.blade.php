@@ -70,6 +70,44 @@
           document.getElementById("inputTotal").value = total.toFixed(0);
         }
       </script>
+
+<script>
+    // Fungsi untuk menampilkan popup
+    function showPopup(status) {
+        var popup = document.getElementById("popup");
+        popup.style.display = "block";
+        // Mengatur nilai input hidden sesuai dengan status yang dipilih
+        document.getElementById("statusInput").value = status;
+    }
+
+    // Fungsi untuk menyembunyikan popup
+    function hidePopup() {
+        var popup = document.getElementById("popup");
+        popup.style.display = "none";
+    }
+
+    // Fungsi untuk memperbarui status laundry
+    function updateStatus(status) {
+        // Kirim permintaan AJAX ke server untuk memperbarui status dengan status yang dipilih
+        // Contoh menggunakan jQuery AJAX
+        $.ajax({
+            url: '/update-status', // Ganti dengan URL endpoint yang sesuai
+            type: 'POST',
+            data: { status: status },
+            success: function(response) {
+                // Berhasil memperbarui status
+                var statusElement = document.querySelector("h1");
+                statusElement.textContent = "Status Laundry: " + status;
+
+                hidePopup();
+            },
+            error: function(error) {
+                // Terjadi kesalahan dalam memperbarui status
+                console.log(error);
+            }
+        });
+    }
+    </script>
     @stack('js')
 </body>
 </html>
