@@ -10,21 +10,22 @@ class Order extends Model
     use HasFactory;
     protected $table = 'order';
     protected $fillable = [
-        'kode_order',
         'id_pelanggan',
         'id_jenis_laundry',
+        'kode_order',
+        'tanggal_laundry',
         'berat',
         'total',
         'catatan',
-        'status_bayar'
+        'status_bayar',
     ];
 
     public function pelanggan() {
-        return $this->belongsTo(Pelanggan::class);
+        return $this->belongsTo(Pelanggan::class, 'id_pelanggan', 'id');
     }
 
     public function jenis_laundry() {
-        return $this->belongsTo(JenisLaundry::class);
+        return $this->belongsTo(JenisLaundry::class, 'id_jenis_laundry', 'id');
     }
 
     public function status() {

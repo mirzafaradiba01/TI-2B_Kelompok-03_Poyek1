@@ -20,13 +20,6 @@
                 @csrf
                 {!! (isset($petugas))? method_field('PUT') : '' !!}
                 <div class="form-group">
-                    <label>Kode Petugas</label>
-                    <input class="form-control @error('kode_petugas') is-invalid @enderror" value="{{ isset($petugas)? $petugas->kode_petugas: old('kode_petugas') }}" name="kode_petugas" type="text" />
-                    @error('kode_petugas')
-                      <span class="error invalid-feedback">{{ $message }} </span>
-                    @enderror
-                </div>
-                <div class="form-group">
                     <label>Nama Petugas</label>
                     <input class="form-control @error('nama') is-invalid @enderror" value="{{isset($petugas)? $petugas->nama:old('nama') }}" name="nama" type="text"/>
                     @error('nama')

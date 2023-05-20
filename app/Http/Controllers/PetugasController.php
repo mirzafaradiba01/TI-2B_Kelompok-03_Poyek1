@@ -44,6 +44,12 @@ class PetugasController extends Controller
      */
     public function store(Request $request)
     {
+        $countPetugas = Petugas::count();
+
+        $kode = '11';
+
+        $kode_petugas = $kode . ($countPetugas + 1);
+
         $request->validate([
             'id_order' => 'required',
             'kode_petugas' => 'required|string|max:10|unique:petugas,kode_petugas',
@@ -51,7 +57,12 @@ class PetugasController extends Controller
             'no_hp' => 'required|digits_between:6,15',
         ]);
 
-        $data = Petugas::create($request->except(['_token']));
+        Petugas::create([
+            'kode_petugas' => $kode_petugas,
+            'nama' => $request->nama,
+            'no_hp'=> $request->no_hp,
+        ]);
+        
         return redirect('petugas')->with('success', 'Petugas Berhasil Ditambahkan');
     }
 

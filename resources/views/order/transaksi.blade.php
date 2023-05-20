@@ -29,6 +29,7 @@
                     @if ($order->count() > 0)
                         @foreach($order as $or => $o)
                             <tr>
+                                <td>{{$or+1}}</td>
                                 <td>{{$o->kode_order}}</td>
                                 <td>{{$o->pelanggan->kode_pelanggan}}</td>
                                 <td>{{$o->pelanggan->nama}}</td>
