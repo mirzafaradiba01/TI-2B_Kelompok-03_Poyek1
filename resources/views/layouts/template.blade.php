@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Blank Page</title>
+    <title>Dashboard</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
@@ -50,23 +50,23 @@
     <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('assets/dist/js/adminlte.min.js') }}"></script>
-    
+
     <script>
         function updateInputValue(select) {
           var biaya = select.options[select.selectedIndex].getAttribute("data-biaya");
           document.getElementById("inputBiaya").value = biaya;
           hitungTotal();
         }
-      
+
         function hitungTotal() {
           var biayaInput = document.getElementById("inputBiaya").value;
           var beratInput = document.getElementsByName("berat")[0].value;
-      
+
           var biaya = parseFloat(biayaInput);
           var berat = parseFloat(beratInput);
-      
+
           var total = biaya * berat;
-      
+
           document.getElementById("inputTotal").value = total.toFixed(0);
         }
       </script>

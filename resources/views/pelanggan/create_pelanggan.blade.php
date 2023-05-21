@@ -2,8 +2,6 @@
 
 @section('content')
 <section class="content">
-
-    <!--Default box-->
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">DATA PELANGGAN</h3>
@@ -18,10 +16,10 @@
             </div>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ $url_form }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ url( auth()->user()->role . '/order') }}" enctype="multipart/form-data">
                 @csrf
                 {!! (isset($pelanggan))? method_field('PUT') : '' !!}
-                  <div class="form-group">
+                <div class="form-group">
                     <label>Nama Pelanggan</label>
                     <input class="form-control @error('nama') is-invalid @enderror" value="{{isset($pelanggan)? $pelanggan->nama:old('nama') }}" name="nama" type="text"/>
                     @error('nama')

@@ -33,7 +33,7 @@ class PelangganController extends Controller {
      */
     public function create() {
         $users = User::all();
-        return view('pelanggan.create_pelanggan', ['url_form' => url('/pelanggan'), 'users' => $users]);
+        return view('pelanggan.create_pelanggan', ['url_form' => url( auth()->user()->role . '/pelanggan' ), 'users' => $users]);
     }
 
     /**
@@ -61,7 +61,7 @@ class PelangganController extends Controller {
             'nama' => $request->nama,
             'no_hp'=> $request->no_hp,
         ]);
-        return redirect('pelanggan')->with('success', 'Pelanggan Berhasil Ditambahkan');
+        return redirect( auth()->user()->role . '/pelanggan' )->with('success', 'Pelanggan Berhasil Ditambahkan');
     }
 
     /**
@@ -90,7 +90,7 @@ class PelangganController extends Controller {
         return view('pelanggan.update_pelanggan')
                     ->with('pelanggan', $pelanggan)
                     ->with('users', $users)
-                    ->with('url_form', url('/pelanggan/'. $id));
+                    ->with('url_form', url( auth()->user()->role . '/pelanggan/'. $id));
     }
 
     /**
@@ -110,7 +110,7 @@ class PelangganController extends Controller {
         ]);
 
         $data = Pelanggan::where('id',$id)->update($request->except(['_token','_method']));
-        return redirect('pelanggan')->with('success','Data Pelanggan Berhasil Dirubah!');
+        return redirect( auth()->user()->role . '/pelanggan' )->with('success','Data Pelanggan Berhasil Dirubah!');
     }
 
     /**
@@ -122,6 +122,6 @@ class PelangganController extends Controller {
     public function destroy($id) {
 
         Pelanggan::where('id', '=', $id)->delete();
-        return redirect('pelanggan')->with ('success', 'Pelanggan Berhasil Dihapus');
+        return redirect( auth()->user()->role . '/pelanggan' )->with ('success', 'Pelanggan Berhasil Dihapus');
     }
 }

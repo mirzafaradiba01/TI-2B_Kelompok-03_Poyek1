@@ -21,13 +21,13 @@ class OrderController extends Controller
         $pelanggan = Pelanggan::all();
         return view('order.create_order', ['jenis' => $jenis], ['pelanggan' => $pelanggan]);
     }
-    
-    // cek status 
+
+    // cek status
     public function searching(Request $request){
         if($request->get('query') !== null){
             $query = $request->get('query');
             $order = Order ::where('kode_order', 'LIKE', '%'.$query.'%')
-        
+
                 ->with('order')
                 ->paginate(5);
         } else {
@@ -35,27 +35,28 @@ class OrderController extends Controller
         }
         return view('searching.searching', ['order' => $order]);
     }
- // statuslaundry
 
-    public function statuslaudry()
-    {
+    // statuslaundry
+    public function statuslaudry() {
         $statuslaundry = Order::all();
         return view('statuslaundry.statuslaundry', ['statuslaundry' => $statuslaundry]);
     }
-
-    
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $jenis = JenisLaundry::all(); //mendapatkan data dari tabel jenis laundry
+    public function create() {
+
+        $jenis = JenisLaundry::all();
         $pelanggan = Pelanggan::all();
-        return view('order.create_order',['jenis' => $jenis],['pelanggan' => $pelanggan])
-           ->with('url_form',url('/order'));
+        return view('order.create_order',
+        [
+            'url_form' => url( auth()->user()->role . '/order') ,
+            'jenis' => $jenis,
+            'pelanggan' => $pelanggan
+        ]);
     }
 
     /**
@@ -64,12 +65,12 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
+
         $countOrder = Order::count();
 
         $kode_order = '100' . ($countOrder + 1);
-        
+
         Order::create([
             'id_pelanggan' => $request-> id_pelanggan,
             'id_jenis_laundry' => $request->id_jenis_laundry,
@@ -81,7 +82,7 @@ class OrderController extends Controller
             'status_bayar'=> $request-> status_bayar,
         ]);
 
-        return redirect('transaksi')->with('success', 'Order Berhasil Ditambahkan');
+        return redirect( auth()->user()->role . '/transaksi')->with('success', 'Order Berhasil Ditambahkan');
     }
 
     /**

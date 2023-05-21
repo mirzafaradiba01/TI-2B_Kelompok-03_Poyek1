@@ -5,16 +5,19 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Dashboard</h1>
+                    <h1 class="mb-4">
+                        <span>Selamat Datang,
+                            <span class="font-weight-bold">
+                                {{auth()->user()->username; }}
+                            </span>
+                        </span>
+                    </h1>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Main content -->
     <section class="content">
-
-        <!-- Default box -->
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">

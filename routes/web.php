@@ -26,10 +26,6 @@ Route::get('/', function() {
 Auth::routes();
 Route::get('/logout', [LoginController::class, 'logout']);
 
-// sebentar
-// Route::get();
-// Route::resource('/cariorder',  [OrderController ::class,'searching'])->;
-
 /**
  * * * * * * * * * * * * * * * * * * * * * * * * * *
  *                                                 *
@@ -39,31 +35,54 @@ Route::get('/logout', [LoginController::class, 'logout']);
  * * * * * * * * * * * * * * * * * * * * * * * * * *
  */
 
-// membuat middleware untuk mengecek level user
-// setelah login sebagai admin, maka admin dapat mengakses halaman dibawah ini
-Route::middleware(['auth','checkrole:admin,petugas'])->group( function() {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('/pelanggan', PelangganController::class)->parameter('pelanggan', 'id');
-    Route::resource('/create_pelanggan', PelangganController::class)->parameter('pelanggan', 'id');
-    Route::resource('/petugas', PetugasController::class)->parameter('petugas', 'id');
-    Route::resource('/status_admin', StatusController::class)->parameter('status', 'id');
-    Route::resource('/transaksi', TransaksiController::class)->parameter('transaksi', 'id');
-    Route::resource('/order', OrderController::class)->parameter('jenis_laundry', 'id');
+// --- middleware untuk admin
+Route::middleware(['auth', 'checkrole:admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');
+
+    // admin dapat mengakses data pelanggan
+    Route::resource('/pelanggan', PelangganController::class)->parameter('pelanggan', 'id')->names('admin.pelanggan');
+
+    // admin dapat mengakses data petugas
+    Route::resource('/petugas', PetugasController::class)->parameter('petugas', 'id')->names('admin.petugas');
+
+    // admin dapat mengakses transaksi dan order
+    Route::resource('/transaksi', TransaksiController::class)->parameter('transaksi', 'id')->names('admin.transaksi');
+    Route::resource('/order', OrderController::class)->parameter('order', 'id')->names('admin.order');
+    Route::resource('/status', StatusController::class)->parameter('status', 'id')->names('admin.status');
+
+    // admin dapat mengakses data jenis laundry dan komplain
+    Route::resource('/komplain', KomplainController::class)->parameter('komplain', 'id')->names('admin.komplain');
+    Route::resource('/jenis_laundry', JenisLaundryController::class)->parameter('jenis_laundry', 'id')->names('admin.jenis_laundry');
+
+    
+    // ----- route di bawah masih dalam percobaan
+    Route::get('/transaksi', [TransaksiController::class, 'index'])->name('admin.transaksi');
+    Route::resource('/status_admin', StatusController::class)->parameter('status', 'id')->names('admin.status_admin');
+    Route::resource('/create_pelanggan', PelangganController::class)->parameter('pelanggan', 'id')->names('admin.create_pelanggan');
+
+    // Route untuk mencari kode order di halaman website
+    Route::get('/cariorder', [OrderController ::class,'searching'])->name('admin.cariorder');
+
+    // Route untuk update status laundry petugas
+    Route::resource('/status_petugas', StatusPetugasController::class)->parameter('status', 'id')->names('admin.status_petugas');
+
     // Rute untuk submit order dan mengarahkan ke halaman tampilan transaksi
-    Route::post('/order/submit', [OrderController::class, 'submit'])->name('order.submit');
-
-    //Route Status Laundry Petugas
-    Route::resource('/status_petugas', StatusPetugasController::class)->parameter('status', 'id');
-
-    // Rute untuk halaman tampilan transaksi
-    Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
-    Route::resource('/komplain', KomplainController::class)->parameter('komplain', 'id');
-    Route::resource('/jenis_laundry', JenisLaundryController::class)->parameter('jenis_laundry', 'id');
-
+    Route::post('/order/submit', [OrderController::class, 'submit'])->name('admin.order.submit');
 });
 
-Route::middleware(['auth','checkrole:pelanggan'])->group( function() {
-    Route::resource('/index', HomePageController::class)->parameter('homepage', 'id');
+// --- middleware untuk petugas
+Route::middleware(['auth', 'checkrole:petugas'])->prefix('petugas')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'petugas'])->name('petugas.dashboard');
+    Route::resource('/petugas', PetugasController::class)->parameter('petugas', 'id')->names('petugas.petugas');
+    Route::resource('/pelanggan', PelangganController::class)->parameter('pelanggan', 'id')->names('petugas.pelanggan');
 
+    // Route untuk update status laundry petugas
+    Route::resource('/status_petugas', StatusPetugasController::class)->parameter('status', 'id')->names('petugas.status_petugas');
+});
+
+// --- middleware untuk pelanggan
+Route::middleware(['auth', 'checkrole:pelanggan'])->prefix('pelanggan')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'pelanggan'])->name('pelanggan.dashboard');
+    Route::resource('/status', StatusController::class)->parameter('status', 'id')->names('petugas.status');
+    Route::resource('/ayalaundry', HomePageController::class)->parameters(['index' => 'id'])->names(['index' => 'pelanggan.index']);
 });

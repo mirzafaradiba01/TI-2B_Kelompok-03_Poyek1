@@ -11,8 +11,9 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        return view('dashboard');
+    public function index()
+    {
+       //
     }
 
     /**
@@ -79,5 +80,20 @@ class DashboardController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    // menampilkan dashboard khusus admin
+    public function admin() {
+        return view('dashboard.admin');
+    }
+
+    // menampilkan dashboard khusus petugas
+    public function petugas() {
+        return  view('dashboard.petugas');
+    }
+
+    // menampilkan dashboard khusus pelanggan
+    public function pelanggan() {
+        return view('dashboard.pelanggan');
     }
 }

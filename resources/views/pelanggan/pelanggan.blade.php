@@ -22,7 +22,9 @@
                             <th>Nama Pelanggan</th>
                             <th>Username</th>
                             <th>No Hp</th>
-                            <th>Action</th>
+                            @if (auth()->user()->role === 'admin')
+                                <th>Action</th>
+                            @endif
                         </tr>
                     </thead>
                     <body>
@@ -35,20 +37,23 @@
                                 <td>{{ $p->nama }}</td>
                                 <td>{{ $p->users->username }}</td>
                                 <td>{{ $p->no_hp }}</td>
-                                <td class="">
-                                    {{-- Bikin simbol edit dan delete --}}
-                                    <a href="{{url('/pelanggan/'.$p->id)}}" class="btn btn-sm btn-primary">
-                                        show
-                                    </a>
-                                    <a href="{{url('/pelanggan/'.$p->id.'/edit')}}" class="btn btn-sm btn-warning">
-                                        edit
-                                    </a>
-                                    <form class="d-inline" method="POST" action="{{url('/pelanggan/'.$p->id)}}" onsubmit="return confirm('Apakah yakin ingin menghapus data tersebut?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">hapus</button>
-                                    </form>
-                                </td>
+
+                                @if (auth()->user()->role === 'admin')
+                                    <td class="">
+                                        {{-- Bikin simbol edit dan delete --}}
+                                        <a href="{{url( auth()->user()->role . '/pelanggan/'.$p->id)}}" class="btn btn-sm btn-primary">
+                                            show
+                                        </a>
+                                        <a href="{{url( auth()->user()->role . '/pelanggan/'.$p->id.'/edit')}}" class="btn btn-sm btn-warning">
+                                            edit
+                                        </a>
+                                        <form class="d-inline" method="POST" action="{{url( auth()->user()->role . '/pelanggan/'.$p->id)}}" onsubmit="return confirm('Apakah yakin ingin menghapus data tersebut?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">hapus</button>
+                                        </form>
+                                    </td>
+                                @endif
                             </tr>
                             @endforeach
 

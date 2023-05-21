@@ -33,7 +33,7 @@ class PetugasController extends Controller
      */
     public function create() {
         $order = Order::all();
-        return  view('petugas.create_petugas', ['url_form' => url('/petugas'), 'order' => $order]);
+        return view('petugas.create_petugas', ['url_form' => url( auth()->user()->role . '/petugas' ), 'order' => $order]);
     }
 
     /**
@@ -42,12 +42,10 @@ class PetugasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
+
         $countPetugas = Petugas::count();
-
         $kode = '11';
-
         $kode_petugas = $kode . ($countPetugas + 1);
 
         $request->validate([
@@ -62,8 +60,8 @@ class PetugasController extends Controller
             'nama' => $request->nama,
             'no_hp'=> $request->no_hp,
         ]);
-        
-        return redirect('petugas')->with('success', 'Petugas Berhasil Ditambahkan');
+
+        return redirect( auth()->user()->role . '/petugas' )->with('success', 'Petugas Berhasil Ditambahkan');
     }
 
     /**
@@ -89,7 +87,7 @@ class PetugasController extends Controller
         return view('petugas.create_petugas')
                     ->with('petugas', $petugas)
                     ->with('order', $order)
-                    ->with('url_form',url('/petugas/'.$id));
+                    ->with('url_form',url( auth()->user()->role . '/petugas/' . $id ));
     }
 
     /**
@@ -103,14 +101,14 @@ class PetugasController extends Controller
 
         $request->validate([
             'id_order' => '',
-            'kode_petugas' => 'required|string|max:10|unique:petugas,kode_petugas,'.$id,
+            'kode_petugas' => 'required|string|max:10|unique:petugas,kode_petugas,' . $id,
             'nama' => 'required|string|max:50',
             'no_hp' => 'required|digits_between:6,15',
 
         ]);
 
         $data = Petugas::where('id', '=', $id)->update($request->except(['_token','_method']));
-        return redirect('petugas')->with('success','Petugas Berhasil Ditambahkan');
+        return redirect( auth()->user()->role . 'petugas' )->with('success','Petugas Berhasil Ditambahkan');
 
     }
 
@@ -123,7 +121,7 @@ class PetugasController extends Controller
     public function destroy($id)
     {
         Petugas::where('id', '=', $id)->delete();
-        return redirect('petugas')
+        return redirect( auth()->user()->role . '/petugas' )
         ->with ('success', 'Petugas Berhasil Dihapus');
     }
 

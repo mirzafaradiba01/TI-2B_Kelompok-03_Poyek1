@@ -29,7 +29,7 @@ class LoginController extends Controller
      * @var string
      */
     // protected $redirectTo = RouteServiceProvider::HOME;
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -61,9 +61,7 @@ class LoginController extends Controller
 
     public function logout(Request $request) {
         $this->guard()->logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
         if ($response = $this->loggedOut($request)) {
@@ -73,5 +71,21 @@ class LoginController extends Controller
         return $request->wantsJson()
             ? new JsonResponse([], 204)
             : redirect('/login');
+    }
+
+    protected function authenticated(Request $request, $user) {
+
+        // Lakukan logika redirect sesuai dengan peran pengguna
+        if ($request->user() && $user->role === 'admin') {
+            return redirect()->route('admin.dashboard');
+        } elseif ($request->user() && $user->role === 'petugas') {
+            return redirect()->route('petugas.dashboard');
+        } elseif ($request->user() && $user->role === 'pelanggan') {
+            return redirect()->route('pelanggan.index');
+        }
+
+        // Jika peran pengguna tidak cocok dengan peran yang diperiksa,
+        // lakukan redirect ke halaman default atau halaman beranda
+        return redirect('/');
     }
 }

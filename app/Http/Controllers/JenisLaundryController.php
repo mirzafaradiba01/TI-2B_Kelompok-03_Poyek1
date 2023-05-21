@@ -19,14 +19,14 @@ class JenisLaundryController extends Controller
             $jenisLaundry = JenisLaundry::where('kode_jenis_laundry', 'LIKE', '%'.$query.'%')
                 ->orWhere('nama', 'LIKE', '%'.$query.'%')
                 ->paginate(5);
-                
+
         } else {
             $jenisLaundry = JenisLaundry::paginate(5);
         }
         return view('jenisLayanan.jenisLayanan', ['jenisLaundry' => $jenisLaundry]);
     }
 
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -92,7 +92,7 @@ class JenisLaundryController extends Controller
     public function destroy($id)
     {
         JenisLaundry::where('id', '=', $id)->delete();
-        return redirect('jenis_laundry')
+        return redirect( auth()->user()->role . '/jenis_laundry' )
         ->with ('success', 'Jenis Layanan Berhasil Dihapus');
     }
 }
