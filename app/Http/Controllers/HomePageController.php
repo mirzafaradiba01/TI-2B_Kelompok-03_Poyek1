@@ -74,4 +74,19 @@ class HomePageController extends Controller {
     public function destroy(HomePage $homePage) {
         //
     }
+
+    // menampilkan dashboard khusus admin
+    public function admin() {
+        return view('dashboard.admin');
+    }
+
+    // menampilkan dashboard khusus petugas
+    public function petugas() {
+        return  view('dashboard.petugas');
+    }
+
+    // menampilkan dashboard khusus pelanggan
+    public function pelanggan() {
+        return view('dashboard.pelanggan');
+    }
 }

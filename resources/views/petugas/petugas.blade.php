@@ -10,7 +10,7 @@
         </div>
 
         <div class="card-body">
-           <a href="{{ url ('petugas/create')}}"class="btn btn-sm btn-info my-2">Tambah Data</a>
+           <a href="{{ url ( auth()->user()->role . '/petugas/create')}}"class="btn btn-sm btn-info my-2">Tambah Data</a>
            <form action="" method="GET" class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" name="query" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search Petugas</button>
@@ -34,26 +34,26 @@
                                 <td>{{$p->kode_petugas}}</td>
                                 <td>{{$p->nama}}</td>
                                 <td>{{$p->alamat}}</td>
-                                <td>{{$p->no_hp}}</td> 
-                                
+                                <td>{{$p->no_hp}}</td>
+
                                 <td>
                                     {{-- Bikin simbol edit dan delete --}}
                                     <a href="{{url('/petugas/'.$p->id)}}" class="btn btn-sm btn-primary">
                                         show
                                     </a>
-                                    <a href="{{url('/petugas/'.$p->id.'/edit')}}" 
+                                    <a href="{{url('/petugas/'.$p->id.'/edit')}}"
                                         class="btn btn-sm btn-warning">edit</a>
-                                    
+
                                     <form method="POST" action="{{url('/petugas/'.$p->id)}}" onsubmit="return confirm('Apakah yakin ingin menghapus data?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger">hapus</button>
-                                        
+
                                     </form>
                                 </td>
                             </tr>
                             @endforeach
-                            
+
                         @else
                             <tr><td colspan="7" class="text-center">Data Tidak Ada</td></tr>
                         @endif

@@ -128,6 +128,4 @@ class OrderController extends Controller
     {
         //
     }
-
-
 }

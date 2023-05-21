@@ -25,6 +25,61 @@
                     <p>Dashboard</p>
                 </a>
             </li>
+
+            {{-- jika yang login admin atau petugas, selain itu tidak akan muncul --}}
+            @if (auth()->user()->role === 'admin' || auth()->user()->role === 'petugas')
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-book-open pr-2"></i>
+                        <p>
+                            Pelanggan
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ url('/' . auth()->user()->role . '/pelanggan') }}" class="nav-link">
+                                <i class="fas fa-book pr-2"></i>
+                                <p>Data Pelanggan</p>
+                            </a>
+                        </li>
+                        @if (auth()->user()->role === 'admin')
+                            <li class="nav-item">
+                                <a href="{{ url('/' . auth()->user()->role . '/pelanggan/create') }}" class="nav-link">
+                                    <i class="fas fa-book pr-2"></i>
+                                    <p>Tambah Pelanggan</p>
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+
+                {{-- jika yang login hanya admin, maka menu di bawah akan muncul, kalau petugas dan pelanggan tidak akan muncul --}}
+                @if (auth()->user()->role === 'admin')
+                    <li class="nav-item">
+                        <a href={{ url('/' . auth()->user()->role . '/petugas') }} class="nav-link">
+                            <i class="nav-icon fas fa-user-tie" style="color: #fafafa;"></i>
+                            <p>Data Petugas</p>
+                        </a>
+                    </li>
+                @endif
+
+                <li class="nav-item">
+                    @if (auth()->user()->role === 'admin')
+                        <a href="{{ url( auth()->user()->role . '/status_admin') }}" class="nav-link">
+                    @elseif(auth()->user()->role === 'petugas')
+                        <a href="{{ url( auth()->user()->role . '/status_petugas') }}" class="nav-link">
+                    @endif
+                        <i class="nav-icon fas fa-check" style="color: #fafafa;"></i>
+                        <p>Status Laundry</p>
+                    </a>
+                </li>
+            @endif
+
+            {{-- jika yang login admin, maka menu di bawah akan muncul, kalau petugas, pelanggan tidak akan muncul --}}
+            @if (auth()->user()->role === 'admin')
+                <li class="nav-item">
+                    <a href={{ url('/' . auth()->user()->role . '/transaksi') }} class="nav-link">
                         <i class="nav-icon fas fa-wallet" style="color: #fff;"></i>
                         <p>Transaksi</p>
                     </a>
@@ -56,12 +111,6 @@
                     <a href={{ url('/' . auth()->user()->role . '/komplain') }} class="nav-link">
                         <i class="nav-icon fas fa-comment-dots" style="color: #ffffff;"></i>
                         <p>Komplain</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href={{ url('/' . auth()->user()->role . '/status_admin') }} class="nav-link">
-                        <i class="nav-icon fas fa-check" style="color: #fafafa;"></i>
-                        <p>Status Laundry</p>
                     </a>
                 </li>
                 <li class="nav-item">

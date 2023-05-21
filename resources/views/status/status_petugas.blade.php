@@ -5,9 +5,10 @@
     <section>
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1><b>Status Laundry</b></h1>
-                    <br> <br> <br> <br>
+                <div class="col-sm-6 mb-4">
+                    <h1>
+                        <b>Status Laundry</b>
+                    </h1>
                 </div>
             </div>
         </div>
@@ -18,7 +19,7 @@
         </form>
 
     </section>
-    <br> <br> <br>
+    <br> <br>
 
     <!-- Main content -->
     <section class="content">
@@ -93,8 +94,8 @@
     </div> --}}
 @endsection
 
-{{-- tombol pop up warning 
+{{-- tombol pop up warning
 <button type="submit" class="btn btn-info btn-circle"
- onclick="return confirm('Apakah anda yakin update status {{$c->nota}} 
+ onclick="return confirm('Apakah anda yakin update status {{$c->nota}}
  dari cuci ke setrika ?')">{{$c->nota}}</button> --}}
 

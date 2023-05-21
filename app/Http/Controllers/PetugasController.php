@@ -13,25 +13,24 @@ class PetugasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-{
-    $query = $request->get('query');
-    $petugas = Petugas::query();
+    public function index(Request $request) {
 
-    if ($query) {
-        $petugas = $petugas->where('kode_petugas', 'LIKE', '%' . $query . '%')
-            ->orWhere('nama', 'LIKE', '%' . $query . '%')
-            ->orWhere('no_hp', 'LIKE', '%' . $query . '%');
+        $query = $request->get('query');
+        $petugas = Petugas::query();
+
+        if ($query) {
+            $petugas = $petugas->where('kode_petugas', 'LIKE', '%' . $query . '%')
+                ->orWhere('nama', 'LIKE', '%' . $query . '%')
+                ->orWhere('no_hp', 'LIKE', '%' . $query . '%');
+        }
+
+        $petugas = $petugas->paginate(5);
+
+        // Menambahkan parameter pencarian ke URL halaman
+        $petugas->appends(['query' => $query]);
+
+        return view('petugas.petugas', ['petugas' => $petugas]);
     }
-
-    $petugas = $petugas->paginate(5);
-
-    // Menambahkan parameter pencarian ke URL halaman
-    $petugas->appends(['query' => $query]);
-
-    return view('petugas.petugas', ['petugas' => $petugas]);
-}
-
 
     /**
      * Show the form for creating a new resource.
@@ -40,6 +39,7 @@ class PetugasController extends Controller
      */
     public function create() {
         $order = Order::all();
+        return view('petugas.create_petugas', ['url_form' => url( auth()->user()->role . '/petugas' ), 'order' => $order]);
     }
 
     /**
@@ -48,8 +48,11 @@ class PetugasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function store(Request $request) {
 
         $request->validate([
+            'id_order' => 'required',
+            'kode_petugas' => 'required|string|max:10|unique:petugas,kode_petugas',
             'nama' => 'required|string|max:50',
             'alamat' => 'required|string|max:50',
             'no_hp' => 'required|digits_between:6,15',
@@ -75,7 +78,7 @@ class PetugasController extends Controller
             'no_hp'=> $request->no_hp,
         ]);
 
-        return redirect('petugas')->with('success', 'Petugas Berhasil Ditambahkan');
+        return redirect( auth()->user()->role . '/petugas' )->with('success', 'Petugas Berhasil Ditambahkan');
     }
 
     /**
@@ -85,8 +88,7 @@ class PetugasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        $petugas = Petugas::where('id',$id)->get();
-        return view('petugas.detail_petugas', ['petugas' => $petugas[0]]);
+
     }
 
     /**
@@ -96,11 +98,11 @@ class PetugasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-{
-    $petugas = Petugas::findOrFail($id);
-    $url_form = url('/petugas/'.$id);
-
-
+    {
+        $petugas = Petugas::findOrFail($id);
+        $url_form = url( auth()->user()->role . '/petugas/' . $id );
+        return view('petugas.create_petugas', compact('petugas', 'url_form'));
+    }
 
     /**
      * Update the specified resource in storage.
