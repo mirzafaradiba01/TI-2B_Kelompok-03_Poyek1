@@ -18,8 +18,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('kode_petugas')->unique();
             $table->string('nama')->nullable();
+            $table->string('alamat')->nullable();
             $table->string('no_hp', 13)->nullable();
-            $table->rememberToken();
             $table->timestamps();
         });
     }

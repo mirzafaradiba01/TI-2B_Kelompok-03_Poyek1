@@ -21,6 +21,7 @@
                             <th>No</th>
                             <th>Kode</th>
                             <th>Nama Petugas</th>
+                            <th>Alamat</th>
                             <th>No Telepon</th>
                             <th>Action</th>
                         </tr>
@@ -32,6 +33,7 @@
                                 <td>{{++$i}}</td>
                                 <td>{{$p->kode_petugas}}</td>
                                 <td>{{$p->nama}}</td>
+                                <td>{{$p->alamat}}</td>
                                 <td>{{$p->no_hp}}</td> 
                                 
                                 <td>

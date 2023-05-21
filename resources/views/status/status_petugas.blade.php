@@ -29,49 +29,50 @@
             <div class="">
 
                 <section>
-                    <div class="text d-flex justify-content-around flex-row p-2">
-                        <h1>Cuci</h1>
-                        <h1>Setrika</h1>
-                        <h1>Packing</h1>
-                    </div>
                     <div class="container-fluid">
-                        <div class="row-mb-2 d-flex flex-row justify-content-around">
-                            <div class="">
+                        <div class="row">
+                            @foreach($statusCuci as $sc)
+                            <div class="col-4">
                                 <div class="card border-left-info shadow h-70 py-2 bg-info">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <div class="h5 mb-0 font-weight-bold">Nota Order</div>
-                                                <button class="btn btn-primary" onclick="showPopup('cuci')">Update Status</button>
+                                                <div class="h5 mb-0 font-weight-bold">Nota Order {{ $sc->kode_order }}</div>
+                                                <button class="btn btn-primary" onclick="showPopup('cuci')">{{ $sc->status }}</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="">
+                            @endforeach
+                            @foreach($statusSetrika as $ss)
+                            <div class="col-4">
                                 <div class="card border-left-info shadow h-70 py-2 bg-info">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <div class="h5 mb-0 font-weight-bold">Nota Order</div>
-                                                <button class="btn btn-primary" onclick="showPopup('setrika')">Update Status</button>
+                                                <div class="h5 mb-0 font-weight-bold">Nota Order {{ $ss->kode_order }}</div>
+                                                <button class="btn btn-primary" onclick="showPopup('cuci')">{{ $ss->status }}</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="">
+                            @endforeach
+                            @foreach($statusPacking as $sp)
+                            <div class="col-4">
                                 <div class="card border-left-info shadow h-70 py-2 bg-info">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <div class="h5 mb-0 font-weight-bold">Nota Order</div>
-                                                <button class="btn btn-primary" onclick="showPopup('packing')">Update Status</button>
+                                                <div class="h5 mb-0 font-weight-bold">Nota Order {{ $sp->kode_order }}</div>
+                                                <button class="btn btn-primary" onclick="showPopup('cuci')">{{ $sp->status }}</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
                         </div>
                     </div>
                 </section>
@@ -79,7 +80,7 @@
         </div>
     </section>
 
-    <!-- Pop-up -->
+    {{-- <!-- Pop-up -->
     <div id="popup" class="popup">
         <h2>Update Status</h2>
         <form>
@@ -89,7 +90,7 @@
             <input type="submit" value="Packing ke Selesai" onclick="updateStatus('selesai')" />
             <input type="button" value="Cancel" onclick="hidePopup()" />
         </form>
-    </div>
+    </div> --}}
 @endsection
 
 {{-- tombol pop up warning 

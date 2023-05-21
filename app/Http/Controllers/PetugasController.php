@@ -14,17 +14,24 @@ class PetugasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
-        if($request->get('query') !== null){
-            $query = $request->get('query');
-            $petugas = Petugas::where('kode_petugas', 'LIKE', '%'.$query.'%')
-                ->orWhere('nama', 'LIKE', '%'.$query.'%')
-                ->paginate(5);
-        } else {
-            $petugas = Petugas::paginate(5);
-        }
-        return view('petugas.petugas', ['petugas' => $petugas]);
+{
+    $query = $request->get('query');
+    $petugas = Petugas::query();
+
+    if ($query) {
+        $petugas = $petugas->where('kode_petugas', 'LIKE', '%' . $query . '%')
+            ->orWhere('nama', 'LIKE', '%' . $query . '%')
+            ->orWhere('no_hp', 'LIKE', '%' . $query . '%');
     }
+
+    $petugas = $petugas->paginate(5);
+
+    // Menambahkan parameter pencarian ke URL halaman
+    $petugas->appends(['query' => $query]);
+
+    return view('petugas.petugas', ['petugas' => $petugas]);
+}
+
 
     /**
      * Show the form for creating a new resource.
@@ -33,7 +40,6 @@ class PetugasController extends Controller
      */
     public function create() {
         $order = Order::all();
-        return view('petugas.create_petugas', ['url_form' => url( auth()->user()->role . '/petugas' ), 'order' => $order]);
     }
 
     /**
@@ -42,26 +48,34 @@ class PetugasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
-
-        $countPetugas = Petugas::count();
-        $kode = '11';
-        $kode_petugas = $kode . ($countPetugas + 1);
 
         $request->validate([
-            'id_order' => 'required',
-            'kode_petugas' => 'required|string|max:10|unique:petugas,kode_petugas',
             'nama' => 'required|string|max:50',
+            'alamat' => 'required|string|max:50',
             'no_hp' => 'required|digits_between:6,15',
         ]);
 
-        Petugas::create([
+        if (isset($request->petugas_id)) {
+            $petugas = petugas::find($request->petugas_id);
+            $petugas->nama = $request->nama;
+            $petugas->alamat = $request->alamat;
+            $petugas->no_hp = $request->no_hp;
+            $petugas->save();
+            return redirect('petugas')->with('success', 'Data Petugas Berhasil Diperbarui');
+        }
+
+        $countPetugas = petugas::count();
+        $kode = '11';
+        $kode_petugas = $kode . ($countPetugas + 1);
+
+        petugas::create([
             'kode_petugas' => $kode_petugas,
             'nama' => $request->nama,
+            'alamat' => $request->alamat,
             'no_hp'=> $request->no_hp,
         ]);
 
-        return redirect( auth()->user()->role . '/petugas' )->with('success', 'Petugas Berhasil Ditambahkan');
+        return redirect('petugas')->with('success', 'Petugas Berhasil Ditambahkan');
     }
 
     /**
@@ -71,7 +85,8 @@ class PetugasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-
+        $petugas = Petugas::where('id',$id)->get();
+        return view('petugas.detail_petugas', ['petugas' => $petugas[0]]);
     }
 
     /**
@@ -80,15 +95,12 @@ class PetugasController extends Controller
      * @param  \App\Models\Petugas  $petugas
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
+    public function edit($id)
+{
+    $petugas = Petugas::findOrFail($id);
+    $url_form = url('/petugas/'.$id);
 
-        $petugas = Petugas::find($id);
-        $order = Order::all();
-        return view('petugas.create_petugas')
-                    ->with('petugas', $petugas)
-                    ->with('order', $order)
-                    ->with('url_form',url( auth()->user()->role . '/petugas/' . $id ));
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -103,6 +115,7 @@ class PetugasController extends Controller
             'id_order' => '',
             'kode_petugas' => 'required|string|max:10|unique:petugas,kode_petugas,' . $id,
             'nama' => 'required|string|max:50',
+            'alamat' => 'required|string|max:50',
             'no_hp' => 'required|digits_between:6,15',
 
         ]);

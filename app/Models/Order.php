@@ -29,10 +29,10 @@ class Order extends Model
     }
 
     public function status() {
-        return $this->hasMany(Status::class);
+        return $this->hasMany(Status::class, 'kode_order', 'id');
     }
 
-    public function petugas() {
-        return $this->hasMany(Petugas::class);
-    }
+    // public function petugas() {
+    //     return $this->hasMany(Petugas::class);
+    // }
 }
