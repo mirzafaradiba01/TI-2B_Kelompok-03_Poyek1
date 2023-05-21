@@ -22,10 +22,16 @@ class StatusPetugasController extends Controller
                 ->orWhere('nama_pelanggan', 'LIKE', '%'.$query.'%')
                 ->orWhere('no_hp', 'LIKE', '%'.$query.'%')
                 ->paginate(5);
+            $statusCuci = Status::where('status', 'cuci')->get();
+            $statusSetrika = Status::where('status', 'setrika')->get();
+            $statusPacking = Status::where('status', 'packing')->get();
         } else {
             $status_petugas = Status::paginate(5);
+            $statusCuci = Status::where('status', 'cuci')->get();
+            $statusSetrika = Status::where('status', 'setrika')->get();
+            $statusPacking = Status::where('status', 'packing')->get();
         }
-        return view('status.status_petugas', ['status_admin' => $status_petugas]);
+        return view('status.status_petugas', ['status_petugas' => $status_petugas, 'statusCuci' => $statusCuci, 'statusSetrika' => $statusSetrika, 'statusPacking' => $statusPacking]);
     }
 
     /**

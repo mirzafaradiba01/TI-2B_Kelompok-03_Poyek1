@@ -24,6 +24,6 @@ class CheckRole
                 return $next($request);
             }
         }
-        // return redirect('/index');
+        return redirect('/index');
     }
 }

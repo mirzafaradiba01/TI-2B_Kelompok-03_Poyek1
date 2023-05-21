@@ -30,35 +30,7 @@
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-book-open pr-2"></i>
-                  <p>
-                    Pelanggan
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="{{ url('/pelanggan/') }}" class="nav-link">
-                      <i class="fas fa-book pr-2"></i>
-                      <p>Data Pelanggan</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{ url('pelanggan/create') }}" class="nav-link">
-                      <i class="fas fa-book pr-2"></i>
-                      <p>Tambah Pelanggan</p>
-                    </a>
-                  </li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <a href={{ url('/petugas') }} class="nav-link">
-                    <i class="nav-icon fas fa-user-tie" style="color: #fafafa;"></i>
-                    <p>Data Petugas</p>
-                </a>
-            </li>
+             {{-- jika yang login petugas, maka menu di bawah akan muncul --}}
             @if ( auth()->user()->role == 'petugas' )
             <li class="nav-item">
                 <a href={{ url('/status_petugas') }} class="nav-link">
@@ -71,6 +43,35 @@
 
             {{-- jika yang login admin, maka menu di bawah akan muncul, kalau petugas tidak akan muncul --}}
             @if ( auth()->user()->role == 'admin' )
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-book-open pr-2"></i>
+                <p>
+                  Pelanggan
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ url('/pelanggan/') }}" class="nav-link">
+                    <i class="fas fa-book pr-2"></i>
+                    <p>Data Pelanggan</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ url('pelanggan/create') }}" class="nav-link">
+                    <i class="fas fa-book pr-2"></i>
+                    <p>Tambah Pelanggan</p>
+                  </a>
+                </li>
+              </ul>
+          </li>
+            <li class="nav-item">
+              <a href={{ url('/petugas') }} class="nav-link">
+                  <i class="nav-icon fas fa-user-tie" style="color: #fafafa;"></i>
+                  <p>Data Petugas</p>
+              </a>
+              </li>
                 <li class="nav-item">
                     <a href={{ url('/transaksi') }} class="nav-link">
                         <i class="nav-icon fas fa-wallet" style="color: #fff;"></i>
