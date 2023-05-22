@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\JenisLaundry;
 use App\Models\Order;
-use App\Models\Pelanggan;
 use App\Models\Status;
 use Illuminate\Http\Request;
 
@@ -15,12 +13,13 @@ class StatusPetugasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request) {
-        if($request->get('query') !== null){
+    public function index(Request $request)
+    {
+        if ($request->get('query') !== null) {
             $query = $request->get('query');
-            $status_petugas = Status::where('kode_status', 'LIKE', '%'.$query.'%')
-                ->orWhere('nama_pelanggan', 'LIKE', '%'.$query.'%')
-                ->orWhere('no_hp', 'LIKE', '%'.$query.'%')
+            $status_petugas = Status::where('kode_status', 'LIKE', '%' . $query . '%')
+                ->orWhere('nama_pelanggan', 'LIKE', '%' . $query . '%')
+                ->orWhere('no_hp', 'LIKE', '%' . $query . '%')
                 ->paginate(5);
             $statusCuci = Status::where('status', 'cuci')->get();
             $statusSetrika = Status::where('status', 'setrika')->get();
@@ -31,7 +30,12 @@ class StatusPetugasController extends Controller
             $statusSetrika = Status::where('status', 'setrika')->get();
             $statusPacking = Status::where('status', 'packing')->get();
         }
-        return view('status.status_petugas', ['status_petugas' => $status_petugas, 'statusCuci' => $statusCuci, 'statusSetrika' => $statusSetrika, 'statusPacking' => $statusPacking]);
+        return view('status.status_petugas', [
+            'status_petugas' => $status_petugas,
+            'statusCuci' => $statusCuci,
+            'statusSetrika' => $statusSetrika,
+            'statusPacking' => $statusPacking
+        ]);
     }
 
     /**
@@ -64,14 +68,10 @@ class StatusPetugasController extends Controller
     public function show($id)
     {
         $status = Status::find($id);
-        $order = Order::finc($id);
-        $pelanggan = Pelanggan::find($id);
-        $jenis_laundry = JenisLaundry::find($id);
+        $order = Order::find($id);
         return view('status.status_petugas', [
             'order' => $order,
-            'status' => $status,
-            'pelanggan' => $pelanggan,
-            'jenis_laundry' => $jenis_laundry
+            'status' => $status
         ]);
     }
 
@@ -95,7 +95,11 @@ class StatusPetugasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $status = Status::find($id);
+        $status->status = $request->status;
+        $status->save();
+
+        return redirect()->back()->with('success', 'Status updated successfully.');
     }
 
     /**
