@@ -19,11 +19,11 @@ class Status extends Model {
     ];
 
     public function pelanggan() {
-        return $this->belongsTo(Pelanggan::class);
+        return $this->belongsTo(Pelanggan::class, 'id_pelanggan');
     }
 
     public function jenis_laundry() {
-        return $this->belongsTo(JenisLaundry::class);
+        return $this->belongsTo(JenisLaundry::class, 'id_jenis_laundry');
     }
 
     public function order() {

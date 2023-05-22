@@ -18,12 +18,12 @@ class StatusController extends Controller
     public function index(Request $request) {
         if($request->get('query') !== null){
             $query = $request->get('query');
-            $status_admin = Status::where('kode_status', 'LIKE', '%'.$query.'%')
+            $status_admin = Order::where('kode_status', 'LIKE', '%'.$query.'%')
                 ->orWhere('nama_pelanggan', 'LIKE', '%'.$query.'%')
                 ->orWhere('no_hp', 'LIKE', '%'.$query.'%')
                 ->paginate(5);
         } else {
-            $status_admin = Status::paginate(5);
+            $status_admin = Order::paginate(5);
         }
         return view('status.status_admin', ['status_admin' => $status_admin]);
     }
@@ -56,11 +56,11 @@ class StatusController extends Controller
      * @param  \App\Models\Status  $status
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
-        $status = Status::find($id);
-        $order = Order::finc($id);
-        $pelanggan = Pelanggan::find($id);
-        $jenis_laundry = JenisLaundry::find($id);
+    public function show() {
+        $status = Status::all();
+        $order = Order::all();
+        $pelanggan = Pelanggan::all();
+        $jenis_laundry = JenisLaundry::all();
         return view('status.status_admin', [
             'order' => $order,
             'status' => $status,

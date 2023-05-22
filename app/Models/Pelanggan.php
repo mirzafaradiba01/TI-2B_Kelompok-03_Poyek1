@@ -18,7 +18,7 @@ class Pelanggan extends Model {
     ];
 
     public function status() {
-        return $this->hasMany(Status::class);
+        return $this->hasMany(Status::class, 'id_pelanggan');
     }
 
     public function users() {
