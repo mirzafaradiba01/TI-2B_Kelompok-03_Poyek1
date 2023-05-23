@@ -55,6 +55,9 @@ Route::middleware(['auth', 'checkrole:admin'])->prefix('admin')->group(function 
     Route::resource('/komplain', KomplainController::class)->parameter('komplain', 'id')->names('admin.komplain');
     Route::resource('/jenis_laundry', JenisLaundryController::class)->parameter('jenis_laundry', 'id')->names('admin.jenis_laundry');
 
+    //admin mengakses cetak laporan transaksi
+    Route::post('/transaksi/cetak_laporan', [TransaksiController::class, 'cetak_laporan']);
+
 
     // ----- route di bawah masih dalam percobaan
     Route::get('/transaksi', [TransaksiController::class, 'index'])->name('admin.transaksi');
