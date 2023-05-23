@@ -6,18 +6,16 @@ use App\Models\Order;
 use App\Models\Petugas;
 use Illuminate\Http\Request;
 
-class PetugasController extends Controller
-{
+class PetugasController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
-
         $query = $request->get('query');
         $petugas = Petugas::query();
-
         if ($query) {
             $petugas = $petugas->where('kode_petugas', 'LIKE', '%' . $query . '%')
                 ->orWhere('nama', 'LIKE', '%' . $query . '%')
@@ -25,10 +23,7 @@ class PetugasController extends Controller
         }
 
         $petugas = $petugas->paginate(5);
-
-        // Menambahkan parameter pencarian ke URL halaman
         $petugas->appends(['query' => $query]);
-
         return view('petugas.petugas', ['petugas' => $petugas]);
     }
 
@@ -76,7 +71,6 @@ class PetugasController extends Controller
             'no_hp'=> $request->no_hp,
         ]);
 
-
         return redirect( auth()->user()->role . '/petugas' )->with('success', 'Petugas Berhasil Ditambahkan');
     }
 
@@ -87,7 +81,8 @@ class PetugasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-
+        $petugas = petugas::where('id',$id)->get();
+        return view('petugas.detail_petugas', ['petugas' => $petugas[0]]);
     }
 
     /**
@@ -96,11 +91,11 @@ class PetugasController extends Controller
      * @param  \App\Models\Petugas  $petugas
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $petugas = Petugas::findOrFail($id);
-        $url_form = url( auth()->user()->role . '/petugas/' . $id );
-        return view('petugas.create_petugas', compact('petugas', 'url_form'));
+    public function edit($id) {
+        $petugas = Petugas::find($id);
+        return view('petugas.update_petugas')
+            ->with('petugas', $petugas)
+            ->with('url_form', url( auth()->user()->role . '/petugas/'. $id));
     }
 
     /**
@@ -113,16 +108,14 @@ class PetugasController extends Controller
     public function update(Request $request, $id) {
 
         $request->validate([
-            'id_order' => '',
             'kode_petugas' => 'required|string|max:10|unique:petugas,kode_petugas,' . $id,
             'nama' => 'required|string|max:50',
             'alamat' => 'required|string|max:50',
             'no_hp' => 'required|digits_between:6,15',
-
         ]);
 
-        $data = Petugas::where('id', '=', $id)->update($request->except(['_token','_method']));
-        return redirect( auth()->user()->role . 'petugas' )->with('success','Petugas Berhasil Ditambahkan');
+        $data = Petugas::where('id', $id)->update($request->except(['_token','_method']));
+        return redirect( auth()->user()->role . '/petugas' )->with('success','Petugas Berhasil Ditambahkan');
 
     }
 

@@ -45,7 +45,6 @@ Route::middleware(['auth', 'checkrole:admin'])->prefix('admin')->group(function 
     //admin mengakses cetak laporan transaksi
     Route::post('/transaksi/cetak_laporan', [TransaksiController::class, 'cetak_laporan']);
 
-
     // ----- route di bawah masih dalam percobaan
     Route::get('/transaksi', [TransaksiController::class, 'index'])->name('admin.transaksi');
     Route::resource('/status_admin', StatusController::class)->parameter('status', 'id')->names('admin.status_admin');

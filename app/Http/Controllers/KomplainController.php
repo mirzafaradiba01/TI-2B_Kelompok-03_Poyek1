@@ -27,7 +27,7 @@ class KomplainController extends Controller
         return view('komplain.komplain', ['komplain' => $komplain]);
     }
 
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -35,9 +35,8 @@ class KomplainController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $komplain = Komplain::with('pelanggan')->get();
-        dd($komplain);
-        return view('komplain.create_komplain', ['url_form' => url( auth()->user()->role . '/komplain' ), 'komplain' => $komplain]);
+        $pelanggan = auth()->user()->id;
+        return view('komplain.create_komplain', ['url_form' => url( auth()->user()->role . '/komplain' ), 'pelanggan' => $pelanggan]);
     }
 
     /**
@@ -46,10 +45,8 @@ class KomplainController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $countkomplain = Komplain::count();
-
         $kode = '001';
         $kode_komplain = $kode . ($countkomplain + 1);
 
@@ -63,7 +60,7 @@ class KomplainController extends Controller
             'id_pelanggan' => $request->id_pelanggan,
             'kode_komplain' => $kode_komplain,
             'balasan' => $request->balasan,
-            'gambar' => $image_name,     
+            'gambar' => $image_name,
         ]);
 
          return redirect( auth()->user()->role . '/komplain' )->with('success', 'komplain Berhasil Ditambahkan');

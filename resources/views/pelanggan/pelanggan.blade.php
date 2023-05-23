@@ -49,8 +49,7 @@
                                                 class="btn btn-sm btn-warning">
                                                 edit
                                             </a>
-                                            <form class="d-inline" method="POST"
-                                                action="{{ url(auth()->user()->role . '/pelanggan/' . $p->id) }}"
+                                            <form class="d-inline" method="POST" action="{{ url(auth()->user()->role . '/pelanggan/' . $p->id) }}"
                                                 onsubmit="return confirm('Apakah yakin ingin menghapus data tersebut?')">
                                                 @csrf
                                                 @method('DELETE')

@@ -13,8 +13,8 @@ class StatusPetugasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
+    public function index(Request $request) {
+        
         if ($request->get('query') !== null) {
             $query = $request->get('query');
             $status_petugas = Status::where('kode_status', 'LIKE', '%' . $query . '%')

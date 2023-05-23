@@ -18,7 +18,7 @@
                 @csrf
                 <div class="form-group">
                   <label>ID Pelanggan</label>
-                  <input class="form-control @error('id_pelanggan') is-invalid @enderror" value="{{$komplain}}" name="id_pelanggan" type="text"/>
+                  <input class="form-control @error('id_pelanggan') is-invalid @enderror" value="{{$pelanggan}}" name="id_pelanggan" type="text"/>
                   @error('id_pelanggan')
                     <span class="error invalid-feedback">{{ $message }} </span>
                   @enderror

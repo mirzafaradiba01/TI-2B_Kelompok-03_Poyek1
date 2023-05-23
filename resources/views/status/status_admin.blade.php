@@ -32,23 +32,14 @@
                                 <td>{{$si->berat}}</td>
                                 <td>{{$si->total}}</td>
                                 <td>{{ $si->order->status ?? 'Cuci' }}</td>
-
-                                  
                                 <td>
                              {{-- Bikin simbol edit dan delete --}}
-                                    <a href="{{url('/komplain/'.$si->id)}}" class="btn btn-sm btn-primary">
+                                    <a href="{{ url( auth()->user()->role . '/komplain/create' ) }}" class="btn btn-sm btn-primary">
                                         Komplain
                                     </a>
-                                    <a href="{{url('/pelanggan/'.$si->id)}}" class="btn btn-sm btn-primary">
-                                        show
-                                    </a>
-                                    
-                                    
                                 </td>
                             </tr>
                             @endforeach
-                            
-                            
                         @else
                             <tr><td colspan="9" class="text-center">Data Tidak Ada</td></tr>
                         @endif
@@ -57,6 +48,5 @@
             <div class="pagination justify-content-end mt-2">  {{ $status_admin->withQueryString()->links() }}</div>
         </div>
     </div>
-
     </section>
 @endsection

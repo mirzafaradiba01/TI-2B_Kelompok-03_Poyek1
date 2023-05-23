@@ -35,25 +35,21 @@
                                 <td>{{$p->nama}}</td>
                                 <td>{{$p->alamat}}</td>
                                 <td>{{$p->no_hp}}</td>
-
                                 <td>
-                                    {{-- Bikin simbol edit dan delete --}}
-                                    <a href="{{url('/petugas/'.$p->id)}}" class="btn btn-sm btn-primary">
+                                    <a href="{{ url( auth()->user()->role . '/petugas/'.$p->id)}}" class="btn btn-sm btn-primary">
                                         show
                                     </a>
-                                    <a href="{{url('/petugas/'.$p->id.'/edit')}}"
-                                        class="btn btn-sm btn-warning">edit</a>
-
-                                    <form method="POST" action="{{url('/petugas/'.$p->id)}}" onsubmit="return confirm('Apakah yakin ingin menghapus data?')">
+                                    <a href="{{ url( auth()->user()->role . '/petugas/'. $p->id . '/edit' ) }}" class="btn btn-sm btn-warning">
+                                        edit
+                                    </a>
+                                    <form class="d-inline" method="POST" action="{{ url('/petugas/' . $p->id) }}" onsubmit="return confirm('Apakah yakin ingin menghapus data?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger">hapus</button>
-
                                     </form>
                                 </td>
                             </tr>
-                            @endforeach
-
+                        @endforeach
                         @else
                             <tr><td colspan="7" class="text-center">Data Tidak Ada</td></tr>
                         @endif

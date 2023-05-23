@@ -27,9 +27,36 @@
                 </div>
                 <div class="nav-list" id="navbarNav" style="width: 40%;">
                     <ul class="navbar-nav ml-auto d-flex justify-content-evenly align-items-human">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark fs-5" aria-current="page" href="#">home</a>
-                        </li>
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fs-5" aria-current="page" href="#">home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fs-5" aria-current="page" href="#">service</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fs-5" aria-current="page" href="{{ url('/login') }}">masuk</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fs-5" aria-current="page" href="#">home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fs-5" aria-current="page" href="#">service</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fs-5" aria-current="page" href="{{ url('/login') }}">masuk</a>
+                            </li>
+                            <div class="dropdown mt-1">
+                                <a class="text-capitalize btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    menu
+                                </a>
+                                <ul class="dropdown-menu">
+                                <li><a class="dropdown-item text-capitalize" href="{{ url( auth()->user()->role . '/dashboard') }}">dashboard</a></li>
+                                <li><a class="dropdown-item text-capitalize" href="{{ url('/logout') }}">keluar</a></li>
+                                </ul>
+                            </div>
+                        @endguest
 
                     </ul>
                 </div>

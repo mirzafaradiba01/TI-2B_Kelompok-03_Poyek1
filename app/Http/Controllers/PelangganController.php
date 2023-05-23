@@ -43,7 +43,7 @@ class PelangganController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        
+
         $countPelanggan = Pelanggan::count();
         $kode = '11';
         $kode_pelanggan = $kode . ($countPelanggan + 1);
@@ -70,10 +70,8 @@ class PelangganController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-
         $pelanggan = Pelanggan::where('id',$id)->get();
         return view('pelanggan.detail_pelanggan', ['pelanggan' => $pelanggan[0]]);
-
     }
 
     /**
@@ -83,7 +81,6 @@ class PelangganController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-
         $pelanggan = Pelanggan::find($id);
         $users = User::all();
         return view('pelanggan.update_pelanggan')
@@ -100,7 +97,6 @@ class PelangganController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-
         $request ->validate([
             'id_user' => '',
             'kode_pelanggan' => 'required|string|max:10|unique:pelanggan,kode_pelanggan,'.$id,

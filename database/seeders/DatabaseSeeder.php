@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder {
 
         // gunakan fungsi ini agar mengisi data tanpa menuliskan nama seedernya
         $this->call([UserSeeder::class]);
+        $this->call([JenisLaundrySeeder::class]);
     }
 }
