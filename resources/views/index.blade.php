@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,15 +30,30 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark fs-5" aria-current="page" href="#">home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark fs-5" href="#">cek status</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark fs-5" href="#">service</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark fs-5" href="#">masuk</a>
-                        </li>
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fs-5" href="#">service</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fs-5" href="{{ url('/login') }}">masuk</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fs-5" href="#">service</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fs-5" href="#">cek status</a>
+                            </li>
+                            <div class="dropdown mt-1">
+                                <button class="bg-primary text-capitalize btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  Menu
+                                </button>
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" style="pointer: cursor;" href="{{ url( auth()->user()->role . '/dashboard' ) }}">Dashboard</a></li>
+                                  <li><a class="dropdown-item" style="pointer: cursor;" href="{{ url('/logout') }}">Logout</a></li>
+                                </ul>
+                              </div>
+                        @endguest
                     </ul>
                 </div>
             </div>
@@ -56,10 +70,7 @@
                     </p>
 
                     <section class="btn-wrapper d-flex gap-5 align-items-center">
-                        <form action="#" method="POST">
-                            <button class="fw-bold text-capitalize d-flex justify-content-center align-items-center"
-                                type="sumbmit">daftar</button>
-                        </form>
+                        <a href="#" class="link-reg d-flex justify-content-center align-items-center">daftar</a>
                         <a href="#" class="d-flex justify-content-center align-items-center">selengkapnya</a>
                     </section>
                 </div>
@@ -100,7 +111,9 @@
                         <div>
                             <p class="text-capitalize text-primary">
                                 kontak kami <br>
-                                <b class="text-primary">+62 8953 8804 1354</b>
+                                <b class="text-primary">
+                                    +62 8953 8804 1354
+                                </b>
                             </p>
                         </div>
                     </div>
@@ -108,8 +121,7 @@
             </div>
         </main>
 
-        <div
-            class="mt-5 bg-info rounded shadow-lg right-content gap-1 d-flex justify-content-evenly align-items-center flex-row">
+        <div class="mt-5 bg-info rounded shadow-lg right-content gap-1 d-flex justify-content-evenly align-items-center flex-row">
             <div class="img-wrapper">
                 <img src="{{ url('images/ilustration.png') }}" class="img-fluid" alt="...">
             </div>
@@ -139,7 +151,6 @@
 
     </div>
 </body>
-
 </html>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
