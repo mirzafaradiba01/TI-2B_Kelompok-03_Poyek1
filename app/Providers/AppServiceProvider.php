@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Komplain;
 use App\Models\Order;
 use App\Models\Pelanggan;
 use Illuminate\Pagination\Paginator;
@@ -31,6 +32,6 @@ class AppServiceProvider extends ServiceProvider
 
         View::share('hitungOrder', Order::count());
 
-        View::share('hitungKomplain', Order::count());
+        View::share('hitungKomplain', Komplain::count());
     }
 }

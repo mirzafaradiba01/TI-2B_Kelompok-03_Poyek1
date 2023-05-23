@@ -115,6 +115,11 @@ class TransaksiController extends Controller
     //     // Download atau tampilkan PDF dalam browser
     //     return $pdf->download($filename);
     // }
+    public function showForm()
+    {
+        return view('cetakLaporan.form_cetak');
+    }
+
     public function cetak_laporan(Request $request)
 {
     $tanggal = $request->tanggal;
@@ -122,12 +127,11 @@ class TransaksiController extends Controller
 
     $data = [
         'transaksi' => $transaksi,
-        'tanggal' => $tanggal,
+        'tanggal_laundry' => $tanggal,
     ];
-
-    $pdf = PDF::loadView('.cetak_laporan', $data);
-
-    return $pdf->download('laporan_transaksi.pdf');
+    $pdf = PDF::loadview('cetakLaporan.cetakLaporan', ['transaksi' => $transaksi, 'data' => $data]);
+        return $pdf->stream();
+   
 }
     
 }
