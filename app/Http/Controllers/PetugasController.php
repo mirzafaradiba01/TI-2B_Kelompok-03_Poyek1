@@ -50,33 +50,32 @@ class PetugasController extends Controller
      */
     public function store(Request $request) {
 
+        // if (isset($request->id)) {
+        //     $petugas = petugas::find($request->id);
+        //     $petugas->nama = $request->nama;
+        //     $petugas->alamat = $request->alamat;
+        //     $petugas->no_hp = $request->no_hp;
+        //     $petugas->save();
+        //     return redirect( auth()->user()->role . '/petugas')->with('success', 'Data Petugas Berhasil Diperbarui');
+        // }
+
+        $countPetugas = Petugas::count();
+        $kode = '11';
+        $kode_petugas = $kode . ($countPetugas + 1);
+
         $request->validate([
-            'id_order' => 'required',
-            'kode_petugas' => 'required|string|max:10|unique:petugas,kode_petugas',
             'nama' => 'required|string|max:50',
             'alamat' => 'required|string|max:50',
             'no_hp' => 'required|digits_between:6,15',
         ]);
 
-        if (isset($request->petugas_id)) {
-            $petugas = petugas::find($request->petugas_id);
-            $petugas->nama = $request->nama;
-            $petugas->alamat = $request->alamat;
-            $petugas->no_hp = $request->no_hp;
-            $petugas->save();
-            return redirect('petugas')->with('success', 'Data Petugas Berhasil Diperbarui');
-        }
-
-        $countPetugas = petugas::count();
-        $kode = '11';
-        $kode_petugas = $kode . ($countPetugas + 1);
-
-        petugas::create([
+        Petugas::create([
             'kode_petugas' => $kode_petugas,
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'no_hp'=> $request->no_hp,
         ]);
+
 
         return redirect( auth()->user()->role . '/petugas' )->with('success', 'Petugas Berhasil Ditambahkan');
     }

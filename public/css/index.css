@@ -96,13 +96,15 @@ table {
 .content-wrapper {
   box-sizing: border-box;
 }
-.content-wrapper section.btn-wrapper button {
+.content-wrapper section.btn-wrapper a.link-reg {
   width: 100px;
   height: 50px;
   color: #000;
   text-align: center;
   text-transform: capitalize;
   text-decoration: none;
+  color: white;
+  background-color: #1a82e4;
 }
 .content-wrapper section.btn-wrapper a {
   width: 120px;
@@ -112,17 +114,18 @@ table {
   text-transform: capitalize;
   text-decoration: none;
   display: inline-block;
-  background-color: #1a82e4;
+  border: 2px solid #fff;
+  background-color: transparent;
 }
 .content-wrapper section.btn-wrapper a:hover {
-  color: #000;
+  color: #fff;
+  border: 2px solid #1a82e4;
+  background-color: #1a82e4;
+}
+.content-wrapper section.btn-wrapper a.link-reg:hover {
+  color: #1a82e4;
   border: 2px solid #1a82e4;
   background-color: #fff;
-}
-.content-wrapper section.btn-wrapper button:hover {
-  color: #fff;
-  border: 2px solid #fff;
-  background-color: #000;
 }
 .content-wrapper .right-content {
   margin-top: 100px;

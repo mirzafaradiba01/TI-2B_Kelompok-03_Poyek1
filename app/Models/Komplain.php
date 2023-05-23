@@ -13,6 +13,7 @@ class Komplain extends Model
        'kode_komplain',
        'kode_pelanggan',
        'kode_order',
+       'id_pelanggan',
        'pesan',
        'gambar',
        'balasan',
@@ -20,6 +21,6 @@ class Komplain extends Model
     ];
 
     public function pelanggan(){
-        $this->belongsTo((Pelanggan::class));
+       return $this->belongsTo(Pelanggan::class, 'id');
     }
 }

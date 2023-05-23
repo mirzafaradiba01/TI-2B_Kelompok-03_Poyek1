@@ -43,10 +43,9 @@ class PelangganController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+        
         $countPelanggan = Pelanggan::count();
-
         $kode = '11';
-
         $kode_pelanggan = $kode . ($countPelanggan + 1);
 
         $request->validate([

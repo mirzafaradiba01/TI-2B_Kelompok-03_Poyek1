@@ -27,7 +27,6 @@ class OrderController extends Controller
         if($request->get('query') !== null){
             $query = $request->get('query');
             $order = Order ::where('kode_order', 'LIKE', '%'.$query.'%')
-
                 ->with('order')
                 ->paginate(5);
         } else {
