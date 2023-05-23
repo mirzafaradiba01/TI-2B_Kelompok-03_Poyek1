@@ -26,7 +26,7 @@ class Pelanggan extends Model {
     }
 
     public function komplain(){
-        return $this->belongsTo(KomplainController::class, 'id_komplain');
+        return $this->hasMany(Komplain::class, 'id_pelanggan');
     }
 
     public function order() {

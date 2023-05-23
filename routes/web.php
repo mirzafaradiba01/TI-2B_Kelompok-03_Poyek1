@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminKomplain;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
@@ -85,4 +86,9 @@ Route::middleware(['auth', 'checkrole:pelanggan'])->prefix('pelanggan')->group(f
     Route::get('/dashboard', [DashboardController::class, 'pelanggan'])->name('pelanggan.dashboard');
     Route::resource('/status', StatusController::class)->parameter('status', 'id')->names('petugas.status');
     Route::resource('/ayalaundry', HomePageController::class)->parameters(['index' => 'id'])->names(['index' => 'pelanggan.index']);
+    Route::resource('/komplain' , KomplainController::class)->parameters(['komplain' => 'id'])->names(['pelanggan.komplain']);
+
+    // Route::get('/cekstatus', [StatusController::class, 'cekstatus'])->name('komplain.cekstatus');
+
 });
+

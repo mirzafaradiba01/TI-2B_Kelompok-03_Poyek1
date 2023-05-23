@@ -32,7 +32,12 @@
                             <a class="nav-link text-dark fs-5" aria-current="page" href="#">home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark fs-5" href="#">cek status</a>
+                            <a class="nav-link text-dark fs-5" href="{{ url(auth()->user()->role.'/cek-status')}}">Cek Status</a>
+                            {{-- <form action="{{ url( auth()->user()->role . '/cekstatus')}}"method="GET">
+                               <button type="submit">Laundry</button>
+                               <button type="submit">Komplain</button>
+                        </form> --}}
+                        <a href="{{url(auth()->user()->role.'/komplain/create')}}">Komplain</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark fs-5" href="#">service</a>
