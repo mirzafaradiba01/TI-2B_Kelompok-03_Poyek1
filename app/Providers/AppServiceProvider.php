@@ -30,6 +30,5 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
         View::share('hitungPelanggan', Pelanggan::count());
         View::share('hitungOrder', Order::count());
-        View::share('hitungKomplain', Komplain::count());
     }
 }

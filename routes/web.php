@@ -77,4 +77,7 @@ Route::middleware(['auth', 'checkrole:pelanggan'])->prefix('pelanggan')->group(f
     // Route::get('/cekstatus', [StatusController::class, 'cekstatus'])->name('komplain.cekstatus');
 
 });
+//admin mengakses cetak laporan transaksi
+Route::get('/transaksi/showForm', [TransaksiController::class, 'showForm'])->name('admin.form_cetak');
+Route::post('/transaksi/cetak_laporan', [TransaksiController::class, 'cetak_laporan']);
 
