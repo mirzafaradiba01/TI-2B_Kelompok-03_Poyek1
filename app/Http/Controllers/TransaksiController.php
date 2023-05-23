@@ -121,16 +121,13 @@ class TransaksiController extends Controller
     }
 
     public function cetak_laporan(Request $request) {
-    $tanggal = $request->tanggal;
-    $transaksi = Order::all();
-
-    $data = [
-        'transaksi' => $transaksi,
-        'tanggal_laundry' => $tanggal,
-    ];
-    $pdf = PDF::loadview('cetakLaporan.cetakLaporan', ['transaksi' => $transaksi, 'data' => $data, 'tanggal' => $tanggal]);
-    return $pdf->stream();
-
-}
-
+        $tanggal = $request->tanggal;
+        $transaksi = Order::all();
+        $data = [
+            'transaksi' => $transaksi,
+            'tanggal_laundry' => $tanggal,
+        ];
+        $pdf = PDF::loadview('cetakLaporan.cetakLaporan', ['transaksi' => $transaksi, 'data' => $data, 'tanggal' => $tanggal])->setPaper('A4', 'landscape');
+        return $pdf->stream();
+    }
 }
