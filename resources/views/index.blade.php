@@ -30,30 +30,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark fs-5" aria-current="page" href="#">home</a>
                         </li>
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link text-dark fs-5" href="#">service</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark fs-5" href="{{ url('/login') }}">masuk</a>
-                            </li>
-                        @else
-                            <li class="nav-item">
-                                <a class="nav-link text-dark fs-5" href="#">service</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark fs-5" href="#">cek status</a>
-                            </li>
-                            <div class="dropdown mt-1">
-                                <button class="bg-primary text-capitalize btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                  Menu
-                                </button>
-                                <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" style="pointer: cursor;" href="{{ url( auth()->user()->role . '/dashboard' ) }}">Dashboard</a></li>
-                                  <li><a class="dropdown-item" style="pointer: cursor;" href="{{ url('/logout') }}">Logout</a></li>
-                                </ul>
-                              </div>
-                        @endguest
+
                     </ul>
                 </div>
             </div>

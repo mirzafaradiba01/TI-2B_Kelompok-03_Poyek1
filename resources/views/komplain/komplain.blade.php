@@ -14,8 +14,11 @@
             <table class="table table-bordered table-striped mt-3">
                 <thead>
                     <th>No</th>
+                    <th>Kode Komplain</th>
                     <th>Kode Order</th>
                     <th>Nama Pelanggan</th>
+                    <th>Tanggal Laundry</th>
+                    <th>Jenis Laundry</th>
                     <th>Komplain</th>
                     <th>Gambar</th>
                     <th>Opsi</th>
@@ -25,18 +28,20 @@
                     @if ($komplain->count() > 0)
                         @foreach($komplain as $st => $s)
                             <tr>
-                                <td>{{$s->kode_status}}</td>
+                                <td> {{ $st+1}}</td>
+                                <td>{{$s->kode_komplain}}</td>
+                                <td>{{$s->order->kode_order}}</td>
+                                <td>{{$s->pelanggan->nama}}</td>
                                 <td>{{$s->order->tanggal_laundry}}</td>
                                 <td>{{$s->jenis_laundry->nama}}</td>
-                                <td>{{$s->komplain->komplain}}</td>
-                                <td>{{$s->komplain->Gambar}}</td>
-                                <td>{{$s->opsi}}</td>
+                                <td>{{$s->balasan}}</td>
+                                <td>{{$s->Gambar}}</td>
                                 </tr>
                             </td>
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="6" class="text-center">Data tidak ada</td>
+                            <td colspan="9" class="text-center">Data tidak ada</td>
                         </tr>
                     @endif
                 </body>

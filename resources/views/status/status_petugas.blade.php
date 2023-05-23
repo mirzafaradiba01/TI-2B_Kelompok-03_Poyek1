@@ -38,13 +38,13 @@
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <div class="h5 mb-0 font-weight-bold">Nota Order {{ $sc->kode_order }}</div>
-                                                <button class="btn btn-primary" onclick="showPopup('cuci')">{{ $sc->status }}</button>
+                                                <div class="h5 mb-0 font-weight-bold">Nota Order {{ $sc->order->kode_order }}</div>
+                                                 <button class="btn btn-primary" onclick="showPopup('cuci')">{{ $sc->status }}</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             @endforeach
                             @foreach($statusSetrika as $ss)
                             <div class="col-4">
@@ -81,7 +81,7 @@
         </div>
     </section>
 
-    {{-- <!-- Pop-up -->
+    <!-- Pop-up -->
     <div id="popup" class="popup">
         <h2>Update Status</h2>
         <form>
@@ -91,11 +91,29 @@
             <input type="submit" value="Packing ke Selesai" onclick="updateStatus('selesai')" />
             <input type="button" value="Cancel" onclick="hidePopup()" />
         </form>
-    </div> --}}
+    </div>
 @endsection
 
-{{-- tombol pop up warning
-<button type="submit" class="btn btn-info btn-circle"
- onclick="return confirm('Apakah anda yakin update status {{$c->nota}}
- dari cuci ke setrika ?')">{{$c->nota}}</button> --}}
+{{-- tombol pop up warning --}}
 
+ @foreach($statusCuci as $sc)
+<button type="submit" class="btn btn-info btn-circle"
+     onclick="return confirm('Apakah anda yakin update status {{$sc->order->kode_order}} dari cuci ke setrika?')">
+{{$sc->order->kode_order}}
+</button>
+@endforeach
+
+@foreach($statusSetrika as $ss)
+<button type="submit" class="btn btn-info btn-circle"
+     onclick="return confirm('Apakah anda yakin update status {{$ss->order->kode_order}} dari setrika ke packing?')">
+{{$ss->order->kode_order}}
+</button>
+@endforeach
+
+
+@foreach($statusPacking as $sp)
+<button type="submit" class="btn btn-info btn-circle"
+     onclick="return confirm('Apakah anda yakin update status {{$sp->order->kode_order}} dari packing ke selesai?')">
+{{$sp->order->kode_order}}
+</button>
+@endforeach

@@ -16,12 +16,13 @@ class KomplainController extends Controller
     public function index(Request $request) {
         if($request->get('query') !== null){
             $query = $request->get('query');
-            $komplain = Komplain::where('id', 'LIKE', '%'.$query.'%')
+            $komplain = Komplain::where('kode_komplain', 'LIKE', '%'.$query.'%')
                 ->orWhere('nama', 'LIKE', '%'.$query.'%')
                 ->orWhere('no_hp', 'LIKE', '%'.$query.'%')
+                ->with('pelanggan')
                 ->paginate(5);
         } else {
-            $komplain = Komplain::paginate(5);
+            $komplain = Komplain::with('pelanggan')->paginate(5);
         }
         return view('komplain.komplain', ['komplain' => $komplain]);
     }
@@ -33,21 +34,42 @@ class KomplainController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create() {
+        $komplain = Komplain::with('pelanggan')->get();
+        dd($komplain);
+        return view('komplain.create_komplain', ['url_form' => url( auth()->user()->role . '/komplain' ), 'komplain' => $komplain]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage.;
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $countkomplain = Komplain::count();
+
+        $kode = '001';
+        $kode_komplain = $kode . ($countkomplain + 1);
+
+        $image_name = null;
+        if ($request->hasFile('image')){
+            $image_name = $request->file('image')->store('images', 'public');
+
+        }
+
+        Komplain::create([
+            'id_pelanggan' => $request->id_pelanggan,
+            'kode_komplain' => $kode_komplain,
+            'balasan' => $request->balasan,
+            'gambar' => $image_name,     
+        ]);
+
+         return redirect( auth()->user()->role . '/komplain' )->with('success', 'komplain Berhasil Ditambahkan');
+
     }
+
 
     /**
      * Display the specified resource.
@@ -57,10 +79,10 @@ class KomplainController extends Controller
      */
     public function show($id) {
         $komplain = Komplain::find($id);
-        $pelanggan = Pelanggan::find($id);
+        // $pelanggan = Pelanggan::find($id);
         return view('komplain.komplain', [
-            'komplian' => $komplain,
-            'pelanggan' => $pelanggan,
+            'komplain' => $komplain,
+            // 'pelanggan' => $pelanggan,
         ]);
     }
 
@@ -96,5 +118,14 @@ class KomplainController extends Controller
     public function destroy(Komplain $komplain)
     {
         //
+    }
+
+    public function komplainpelanggan(Request $request)
+    {
+        $image_name = null;
+        if ($request->hasFile('image')){
+            $image_name = $request->file('image')->store('images', 'public');
+
+        }
     }
 }

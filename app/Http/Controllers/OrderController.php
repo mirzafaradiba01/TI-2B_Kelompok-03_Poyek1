@@ -37,8 +37,8 @@ class OrderController extends Controller
 
     // statuslaundry
     public function statuslaudry() {
-        $statuslaundry = Order::all();
-        return view('statuslaundry.statuslaundry', ['statuslaundry' => $statuslaundry]);
+        $statusAdmin = Order::all();
+        return view('status.status_admin', ['statusAdmin' => $statusAdmin]);
     }
 
     /**

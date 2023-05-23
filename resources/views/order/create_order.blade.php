@@ -15,9 +15,9 @@
                 </div>
             </div>
             {{-- action="{{ url( auth()->user()->role . '/order') }}" --}}
-            <form action="{{ $url_form }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url(auth()->user()->role . '/order') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                {!! (isset($pelanggan))? method_field('PUT') : '' !!}
+                {{-- {!! (isset($pelanggan))? method_field('PUT') : '' !!} --}}
                 <div class="form-group">
                     <label for="nama">Nama Pelanggan</label>
                     <select name="id_pelanggan" class="form-control @error('id_pelanggan') is-invalid @enderror">

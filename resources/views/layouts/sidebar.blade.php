@@ -131,7 +131,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href={{ url('/' . auth()->user()->role . '/cetak_laporan') }} class="nav-link">
+                    <a href={{ url('/' . auth()->user()->role . '/transaksi/cetakLaporan') }} class="nav-link">
                         <i class="nav-icon fas fa-print" style="color: #ffffff;"></i>
                         <p>Cetak Laporan</p>
                     </a>

@@ -42,6 +42,9 @@ Route::middleware(['auth', 'checkrole:admin'])->prefix('admin')->group(function 
     Route::resource('/komplain', KomplainController::class)->parameter('komplain', 'id')->names('admin.komplain');
     Route::resource('/jenis_laundry', JenisLaundryController::class)->parameter('jenis_laundry', 'id')->names('admin.jenis_laundry');
 
+    //admin mengakses cetak laporan transaksi
+    Route::post('/transaksi/cetak_laporan', [TransaksiController::class, 'cetak_laporan']);
+
 
     // ----- route di bawah masih dalam percobaan
     Route::get('/transaksi', [TransaksiController::class, 'index'])->name('admin.transaksi');
@@ -68,9 +71,11 @@ Route::middleware(['auth', 'checkrole:petugas'])->prefix('petugas')->group(funct
 // --- middleware untuk pelanggan
 Route::middleware(['auth', 'checkrole:pelanggan'])->prefix('pelanggan')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'pelanggan'])->name('pelanggan.dashboard');
-    Route::resource('/status', StatusController::class)->parameter('status', 'id')->names('pelanggan.status');
+    Route::resource('/status', StatusController::class)->parameter('status', 'id')->names('petugas.status');
     Route::resource('/ayalaundry', HomePageController::class)->parameters(['index' => 'id'])->names(['index' => 'pelanggan.index']);
+    Route::resource('/komplain' , KomplainController::class)->parameters(['komplain' => 'id'])->names(['pelanggan.komplain']);
 
-    // Route untuk mencari kode order di halaman website
-    Route::get('/cariorder', [OrderController ::class, 'searching'])->name('admin.cariorder');
+    // Route::get('/cekstatus', [StatusController::class, 'cekstatus'])->name('komplain.cekstatus');
+
 });
+

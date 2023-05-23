@@ -26,7 +26,7 @@
                     <th>Status Bayar</th>
                 </thead>
                 <body>
-                    @if ($order->count() > 0)
+                    @if(isset($order) && $order->count() > 0)
                         @foreach($order as $or => $o)
                             <tr>
                                 <td>{{$or+1}}</td>
@@ -50,6 +50,7 @@
                     @endif
                 </body>
             </table>
+            {{-- <div class="pagination justify-content-end mt-2">  {{ $order->withQueryString()->links() }}</div> --}}
         </div>
     </section>
 @endsection
