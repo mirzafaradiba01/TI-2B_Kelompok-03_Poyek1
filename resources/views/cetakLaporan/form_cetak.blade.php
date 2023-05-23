@@ -9,7 +9,7 @@
         </div>
         <div class="card-body">
             <h1>Pilih Tanggal Laporan</h1>
-            <form action="{{ route('admin.form_cetak') }}" method="post">
+            <form action="{{ url( auth()->user()->role . '/cetak_laporan') }}" method="post">
                 @csrf
                 <label for="tanggal">Tanggal:</label>
                 <input type="date" id="tanggal" name="tanggal" required>

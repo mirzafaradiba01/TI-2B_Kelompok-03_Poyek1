@@ -63,7 +63,6 @@
                         </a>
                     </li>
                 @endif
-
                 <li class="nav-item">
                     @if (auth()->user()->role === 'admin')
                         <a href="{{ url( auth()->user()->role . '/status_admin') }}" class="nav-link">
@@ -131,12 +130,12 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route(auth()->user()->role . '.form_cetak') }}" class="nav-link">
+                    <a href="{{ url( auth()->user()->role . '/form_cetak') }}" class="nav-link">
                         <i class="nav-icon fas fa-print" style="color: #ffffff;"></i>
                         <p>Cetak Laporan</p>
                     </a>
                 </li>
-                
+
             @endif
 
             {{-- jika yang login pelanggan, maka menu di bawah akan muncul, kalau petugas, pelanggan tidak akan muncul --}}

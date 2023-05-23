@@ -6,7 +6,7 @@ use App\Models\JenisLaundry;
 use App\Models\Order;
 use App\Models\Pelanggan;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\Pdf;
+use Barryvdh\DomPDF\Facade\PDF;
 class TransaksiController extends Controller
 {
     /**
@@ -108,30 +108,29 @@ class TransaksiController extends Controller
     //     $order = Order::whereDate('created_at', $tanggal)->get();
 
     //     $pdf = PDF::loadview('cetakLaporan.cetakLaporan', ['order' =>$order]);
-       
+
     //     // Set nama file PDF
     //     $filename = 'laporan_transaksi' . $tanggal . '.pdf';
 
     //     // Download atau tampilkan PDF dalam browser
     //     return $pdf->download($filename);
     // }
-    public function showForm()
+    public function show_form()
     {
         return view('cetakLaporan.form_cetak');
     }
 
-    public function cetak_laporan(Request $request)
-{
+    public function cetak_laporan(Request $request) {
     $tanggal = $request->tanggal;
-    $transaksi = Order::whereDate('tanggal_laundry', $tanggal)->get();
+    $transaksi = Order::all();
 
     $data = [
         'transaksi' => $transaksi,
         'tanggal_laundry' => $tanggal,
     ];
-    $pdf = PDF::loadview('cetakLaporan.cetakLaporan', ['transaksi' => $transaksi, 'data' => $data]);
-        return $pdf->stream();
-   
+    $pdf = PDF::loadview('cetakLaporan.cetakLaporan', ['transaksi' => $transaksi, 'data' => $data, 'tanggal' => $tanggal]);
+    return $pdf->stream();
+
 }
-    
+
 }

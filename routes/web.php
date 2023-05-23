@@ -55,6 +55,9 @@ Route::middleware(['auth', 'checkrole:admin'])->prefix('admin')->group(function 
 
     // Rute untuk submit order dan mengarahkan ke halaman tampilan transaksi
     Route::post('/order/submit', [OrderController::class, 'submit'])->name('admin.order.submit');
+    //admin mengakses cetak laporan transaksi
+    Route::get('/form_cetak', [TransaksiController::class, 'show_form'])->name('admin.form_cetak');
+    Route::post('/cetak_laporan', [TransaksiController::class, 'cetak_laporan'])->name('admin.cetak_laporan');
 });
 
 // --- middleware untuk petugas
@@ -77,7 +80,5 @@ Route::middleware(['auth', 'checkrole:pelanggan'])->prefix('pelanggan')->group(f
     // Route::get('/cekstatus', [StatusController::class, 'cekstatus'])->name('komplain.cekstatus');
 
 });
-//admin mengakses cetak laporan transaksi
-Route::get('/transaksi/showForm', [TransaksiController::class, 'showForm'])->name('admin.form_cetak');
-Route::post('/transaksi/cetak_laporan', [TransaksiController::class, 'cetak_laporan']);
+
 
