@@ -62,7 +62,7 @@
                 
                 <div>
                   <label>Gambar</label>
-                  <input class="form-control @error('gambar') is-invalid @enderror" value="{{isset($komplain)?$komplain->gambar:old('gambar')}}" name="gambar" type="file"/>
+                  {{-- <input class="form-control @error('gambar') is-invalid @enderror" value="{{isset($komplain)?$komplain->gambar:old('gambar')}}" name="gambar" type="file"/> --}}
                 </div>
                   @error('gambar')
                     <small class="text-danger">{{ $message }}</small>
