@@ -1,4 +1,4 @@
-<div class="sidebar">
+<div class="sidebar ">
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
             {{-- <img src="https://www.eatlogos.com/food_and_drinks/png/vector_ice_cream_food_logo.png" class="img-circle elevation-2" alt="User Image"> --}}
@@ -33,7 +33,7 @@
                         <i class="fas fa-book-open pr-2"></i>
                         <p>
                             Pelanggan
-                            <i class="fas fa-angle-left right"></i>
+                            <i class="fas fa-angle-left right "></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">

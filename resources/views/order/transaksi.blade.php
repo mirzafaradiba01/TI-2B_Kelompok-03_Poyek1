@@ -50,7 +50,7 @@
                     @endif
                 </body>
             </table>
-            {{-- <div class="pagination justify-content-end mt-2">  {{ $order->withQueryString()->links() }}</div> --}}
+            <div class="pagination justify-content-end mt-2">  {{ $order->withQueryString()->links() }}</div>
         </div>
     </section>
 @endsection

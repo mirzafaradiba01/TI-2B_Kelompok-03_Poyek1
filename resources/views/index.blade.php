@@ -74,7 +74,7 @@
                     </p>
 
                     <section class="btn-wrapper d-flex gap-5 align-items-center">
-                        <a href="#" class="link-reg d-flex justify-content-center align-items-center">daftar</a>
+                        <a href="{{url ('/register')}}" class="link-reg d-flex justify-content-center align-items-center">daftar</a>
                         <a href="#" class="d-flex justify-content-center align-items-center">selengkapnya</a>
                     </section>
                 </div>

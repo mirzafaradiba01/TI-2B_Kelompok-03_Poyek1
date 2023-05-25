@@ -16,7 +16,7 @@
     <div class="wrapper">
         @include('layouts.navbar')
 
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar sidebar-primary elevation-4">
             <!-- Brand Logo -->
             <a href="{{ asset('assets/index3.html" class="brand-link') }}">
                 {{-- <img src="https://www.eatlogos.com/food_and_drinks/png/vector_ice_cream_food_logo.png"
