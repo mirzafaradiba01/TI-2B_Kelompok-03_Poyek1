@@ -169,6 +169,12 @@
                         <p>Cek Status</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href={{ url('/' . auth()->user()->role . '/komplain') }} class="nav-link">
+                        <i class="nav-icon fas fa-comment-dots" style="color: #ffffff;"></i>
+                        <p>Komplain</p>
+                    </a>
+                </li>
             @endif
 
             <li class="nav-item">

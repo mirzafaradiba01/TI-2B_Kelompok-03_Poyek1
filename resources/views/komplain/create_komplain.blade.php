@@ -17,16 +17,22 @@
             <form action="{{ $url_form }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                  <label>ID Pelanggan</label>
-                  <input class="form-control @error('id_pelanggan') is-invalid @enderror" value="{{$pelanggan}}" name="id_pelanggan" type="text"/>
-                  @error('id_pelanggan')
-                    <span class="error invalid-feedback">{{ $message }} </span>
-                  @enderror
+                  @foreach($pelanggan as $p)
+                    <label>Nama Pelanggan</label>
+                    <input class="form-control @error('id_pelanggan') is-invalid @enderror" value="{{$p->id}}" name="id_pelanggan" type="text" hidden/>
+                    @error('id_pelanggan')
+                        <span class="error invalid-feedback">{{ $message }} </span>
+                    @enderror
+                    <input class="form-control @error('nama') is-invalid @enderror" value="{{$p->nama}}" name="nama" type="text"/>
+                    @error('nama')
+                        <span class="error invalid-feedback">{{ $message }} </span>
+                    @enderror
+                  @endforeach
               </div>
                 <div class="form-group">
-                  <label for="komplain">Komplain: </label>
-                  <textarea type="text" class="form-control @error('komplain') is-invalid @enderror" required="required" name="komplain"></textarea></br>
-                  @error('komplain')
+                  <label for="pesan">Komplain: </label>
+                  <textarea type="text" class="form-control @error('pesan') is-invalid @enderror" required="required" name="pesan"></textarea></br>
+                  @error('pesan')
                       <span class="error invalid-feedback">{{ $message }}</span>
                   @enderror
               </div>
