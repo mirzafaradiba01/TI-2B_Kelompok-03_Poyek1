@@ -36,10 +36,10 @@ class KomplainController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
-        $pelanggan = Pelanggan::all();
-        return view('komplain.create_komplain', ['url_form' => url( auth()->user()->role . '/komplain' ), 'pelanggan' => $pelanggan]);
-    }
+    public function create($id) {
+        $pelanggan = Pelanggan::where('id', $id)->get();
+        return view('komplain.create_komplain', ['url_form' => url(auth()->user()->role . '/komplain'), 'pelanggan' => $pelanggan]);
+    }    
 
     /**
      * Store a newly created resource in storage.;

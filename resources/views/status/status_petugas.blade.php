@@ -3,20 +3,11 @@
 @section('content')
 <script src="index.js"></script>
     <section>
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6 mb-4">
-                    <h1>
-                        <b>Status Laundry</b>
-                    </h1>
-                </div>
-            </div>
+        <div class="container-fluid text-center mb-2 mt-5">
+            <h1>
+                <b>Status Laundry</b>
+            </h1>
         </div>
-
-        <form action="" method="GET" class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" name="query" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
-        </form>
 
     </section>
     <br> <br>
@@ -32,68 +23,130 @@
                 <section>
                     <div class="container-fluid">
                         <div class="row">
-                            @foreach($statusCuci as $sc)
-                            <div class="col-4">
-                                <div class="card border-left-info shadow h-70 py-2 bg-info">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="h5 mb-0 font-weight-bold">Nota Order</div>
-                                                @foreach($statusCuci as $sc)
-                                                    <button type="submit" class="btn btn-info btn-circle"
-                                                    onclick="return confirm('Apakah anda yakin update status {{$sc->order->kode_order}} dari cuci ke setrika?')">
-                                                    {{$sc->order->kode_order}}</button>
-                                                @endforeach
-                                                <div class="div">
-                                                    <button class="btn btn-primary" onclick="showPopup('cuci')">{{ $sc->status }}</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="col-4 text-center mb-2">
+                                <h2>CUCI</h2>
                             </div>
-                            @endforeach
-                            @foreach($statusSetrika as $ss)
-                            <div class="col-4">
-                                <div class="card border-left-info shadow h-70 py-2 bg-info">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="h5 mb-0 font-weight-bold">Nota Order</div>
-                                                @foreach($statusSetrika as $ss)
-                                                    <button type="submit" class="btn btn-info btn-circle"
-                                                        onclick="return confirm('Apakah anda yakin update status {{$ss->order->kode_order}} dari setrika ke packing?')">{{$ss->order->kode_order}}
-                                                    </button>
-                                                @endforeach
-                                                <div class="div">
-                                                    <button class="btn btn-primary" onclick="showPopup('cuci')">{{ $ss->status }}</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="col-4 text-center mb-2">
+                                <h2>SETRIKA</h2>
                             </div>
-                            @endforeach
-                            @foreach($statusPacking as $sp)
+                            <div class="col-4 text-center mb-2">
+                                <h2>PACKING</h2>
+                            </div>
                             <div class="col-4">
-                                <div class="card border-left-info shadow h-70 py-2 bg-info">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="h5 mb-0 font-weight-bold">Nota Order</div>
-                                                @foreach($statusPacking as $sp)
-                                                <button type="submit" class="btn btn-info btn-circle"
-                                                    onclick="return confirm('Apakah anda yakin update status {{$sp->order->kode_order}} dari packing ke selesai?')">{{$sp->order->kode_order}}
-                                                </button>
-                                                @endforeach
-                                                 <button class="btn btn-primary" onclick="showPopup('cuci')">{{ $sp->status }}</button>
+                                @foreach($statusCuci as $sc)
+                                    <form method="POST" action="{{ url('/petugas/update_status/'.$sc->id) }}">
+                                        @csrf
+                                        <div class="card border-left-info shadow h-70 py-2 bg-info">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="h5 mb-5 font-weight-bold">Nota Order<span class="float-right">{{$sc->kode_order}}</span></div>
+                                                        <div class="div d-flex justify-content-center">
+                                                            <a href="#" class="btn btn-light btn-block" data-toggle="modal" data-target="#statusModal{{ $sc->id }}">{{ $sc->status }}</a>
+                                                        </div>                                                                                                               
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            @endforeach
+                                        <div class="modal fade" id="statusModal{{ $sc->id }}" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel{{ $sc->id }}" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="statusModalLabel{{ $sc->id }}">Update {{ $sc->status }}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Apakah Anda yakin sudah di{{ $sc->status }} ?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-primary">Yakin</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                @endforeach
+                            </div>                            
+                            
+                            <div class="col-4">
+                                @foreach($statusSetrika as $ss)
+                                    <form method="POST" action="{{ url('/petugas/update_status/'.$ss->id) }}">
+                                        @csrf
+                                        <div class="card border-left-info shadow h-70 py-2 bg-info">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="h5 mb-5 font-weight-bold">Nota Order<span class="float-right">{{$ss->kode_order}}</span></div>
+                                                        <div class="div d-flex justify-content-center">
+                                                            <a href="#" class="btn btn-light btn-block" data-toggle="modal" data-target="#statusModal{{ $ss->id }}">{{ $ss->status }}</a>
+                                                        </div>                                                                                                               
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal fade" id="statusModal{{ $ss->id }}" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel{{ $ss->id }}" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="statusModalLabel{{ $ss->id }}">Update {{ $ss->status }}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Apakah Anda yakin sudah di{{ $ss->status }} ?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-primary">Yakin</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                @endforeach
+                            </div>
+                            
+                            <div class="col-4">
+                                @foreach($statusPacking as $sp)
+                                    <form method="POST" action="{{ url('/petugas/update_status/'.$sp->id) }}">
+                                        @csrf
+                                        <div class="card border-left-info shadow h-70 py-2 bg-info">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="h5 mb-5 font-weight-bold">Nota Order<span class="float-right">{{$sp->kode_order}}</span></div>
+                                                        <div class="div d-flex justify-content-center">
+                                                            <a href="#" class="btn btn-light btn-block" data-toggle="modal" data-target="#statusModal{{ $sp->id }}">{{ $sp->status }}</a>
+                                                        </div>                                                                                                               
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal fade" id="statusModal{{ $sp->id }}" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel{{ $sp->id }}" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="statusModalLabel{{ $sp->id }}">Update {{ $sp->status }}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Apakah Anda yakin sudah di{{ $sp->status }} ?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-primary">Yakin</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                @endforeach
+                            </div>
                         </div>
+                        
                     </div>
                 </section>
             </div>

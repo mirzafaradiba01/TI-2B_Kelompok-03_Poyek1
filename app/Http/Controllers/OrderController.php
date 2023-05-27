@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JenisLaundry;
 use App\Models\Order;
 use App\Models\Pelanggan;
+use App\Models\Status;
 use Illuminate\Http\Request;
 
 use function Ramsey\Uuid\v1;
@@ -70,16 +71,29 @@ class OrderController extends Controller
 
         $kode_order = '100' . ($countOrder + 1);
 
-        Order::create([
-            'id_pelanggan' => $request-> id_pelanggan,
+        $countStatus = Status::count();
+
+        $kode_status = 'S-00' . ($countStatus + 1);
+
+        $order = Order::create([
+            'id_pelanggan' => $request->id_pelanggan,
             'id_jenis_laundry' => $request->id_jenis_laundry,
             'kode_order' => $kode_order,
-            'tanggal_laundry' => $request-> tanggal_laundry,
-            'berat'=> $request-> berat,
-            'total'=> $request-> total,
-            'catatan'=> $request-> catatan,
-            'status_bayar'=> $request-> status_bayar,
+            'tanggal_laundry' => $request->tanggal_laundry,
+            'berat' => $request->berat,
+            'total' => $request->total,
+            'catatan' => $request->catatan,
+            'status_bayar' => $request->status_bayar,
         ]);
+        
+        Status::create([
+            'id_pelanggan' => $request->id_pelanggan,
+            'id_jenis_laundry' => $request->id_jenis_laundry,
+            'kode_order' => $order->kode_order,
+            'id_order' => $order->id, // Menggunakan ID dari order yang baru ditambahkan
+            'kode_status' => $kode_status,
+            'status' => 'Cuci',
+        ]);        
 
         return redirect( auth()->user()->role . '/transaksi')->with('success', 'Order Berhasil Ditambahkan');
     }

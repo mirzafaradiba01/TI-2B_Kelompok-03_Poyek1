@@ -68,6 +68,7 @@ Route::middleware(['auth', 'checkrole:petugas'])->prefix('petugas')->group(funct
 
     // Route untuk update status laundry petugas
     Route::resource('/status_petugas', StatusPetugasController::class)->parameter('status', 'id')->names('petugas.status_petugas');
+    Route::post('/update_status/{id}', [StatusPetugasController::class, 'update_status']);
 });
 
 // --- middleware untuk pelanggan
@@ -75,8 +76,9 @@ Route::middleware(['auth', 'checkrole:pelanggan'])->prefix('pelanggan')->group(f
     Route::get('/dashboard', [DashboardController::class, 'pelanggan'])->name('pelanggan.dashboard');
     Route::resource('/status', StatusController::class)->parameter('status', 'id')->names('petugas.status');
     Route::resource('/ayalaundry', HomePageController::class)->parameters(['index' => 'id'])->names(['index' => 'pelanggan.index']);
-    Route::resource('/komplain' , KomplainController::class)->parameters(['komplain' => 'id'])->names(['pelanggan.komplain']);
-
+    Route::resource('/komplain', KomplainController::class)->parameters(['komplain' => 'id'])->names(['pelanggan.komplain'])->except(['create']);
+    Route::get('/komplain/create/{id}', [KomplainController::class, 'create']);
+    Route::get('/status/{id}', [StatusController::class, 'status_pelanggan']);
     // Route::get('/cekstatus', [StatusController::class, 'cekstatus'])->name('komplain.cekstatus');
 
 });

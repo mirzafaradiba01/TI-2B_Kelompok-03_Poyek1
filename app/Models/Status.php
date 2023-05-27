@@ -14,6 +14,7 @@ class Status extends Model {
        'id_pelanggan',
        'id_jenis_laundry',
        'id_order',
+       'kode_order',
        'kode_status',
        'status'
     ];

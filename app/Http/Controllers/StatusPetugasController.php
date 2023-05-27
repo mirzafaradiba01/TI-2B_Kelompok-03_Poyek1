@@ -112,4 +112,20 @@ class StatusPetugasController extends Controller
     {
         //
     }
+
+    public function update_status($id)
+    {
+        $status = Status::find($id);
+        if ($status->status == 'Cuci') {
+            $status->status = 'Setrika';
+        } elseif ($status->status == 'Setrika') {
+            $status->status = 'Packing';
+        } elseif ($status->status == 'Packing'){
+            $status->status = 'Selesai';
+        }
+        
+        $status->save();
+
+        return redirect()->back()->with('Success', 'Status diperbarui.');
+    }
 }

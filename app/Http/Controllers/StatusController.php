@@ -22,10 +22,12 @@ class StatusController extends Controller
                 ->orWhere('nama_pelanggan', 'LIKE', '%'.$query.'%')
                 ->orWhere('no_hp', 'LIKE', '%'.$query.'%')
                 ->paginate(5);
+            $status = Status::all();
         } else {
+            $status = Status::all();
             $status_admin = Order::paginate(5);
         }
-        return view('status.status_admin', ['status_admin' => $status_admin]);
+        return view('status.status_admin', ['status_admin' => $status_admin, 'status' => $status]);
     }
 
 
@@ -103,5 +105,12 @@ class StatusController extends Controller
     public function destroy(Status $status)
     {
         //
+    }
+
+    public function status_pelanggan($id)
+    {
+        $order_pelanggan = Order::where('id_pelanggan', $id)->get();
+        $status_pelanggan = Status::where('id_pelanggan', $id)->get();
+        return view('status.status_pelanggan', ['order_pelanggan' => $order_pelanggan, 'status_pelanggan' => $status_pelanggan]);
     }
 }

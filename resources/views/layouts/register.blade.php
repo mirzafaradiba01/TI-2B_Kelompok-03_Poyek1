@@ -25,11 +25,33 @@
                 <p class="login-box-msg">Daftar Pengguna Baru Aya Laundry</p>
                 <form action="{{ url('/register') }}" method="post">
                     @csrf
+                    @error('nama')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Nama" name="nama">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
                     @error('username')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Username" name="username">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    @error('no_hp')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Telepon" name="no_hp">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>

@@ -164,10 +164,15 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href={{ url('/' . auth()->user()->role . '/status') }} class="nav-link">
+                    <?php
+                    $users = DB::table('pelanggan')->where('id_user', '=', auth()->user()->id)->get();
+                    ?>
+                    @foreach($users as $u)
+                    <a href={{ url('/' . auth()->user()->role . '/status/'.$u->id) }} class="nav-link">
                         <i class="nav-icon fas fa-check" style="color: #fafafa;"></i>
                         <p>Cek Status</p>
                     </a>
+                    @endforeach
                 </li>
                 <li class="nav-item">
                     <a href={{ url('/' . auth()->user()->role . '/komplain') }} class="nav-link">

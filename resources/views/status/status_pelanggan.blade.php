@@ -22,8 +22,8 @@
                         </tr>
                     </thead>
                     <body>
-                        @if($status_admin->count() > 0)
-                        @foreach($status_admin as $s => $si)
+                        @if($order_pelanggan->count() > 0)
+                        @foreach($order_pelanggan as $s => $si)
                         <tr>
                             <td>{{++$s}}</td>
                             <td>{{$si->kode_order}}</td>
@@ -32,7 +32,7 @@
                             <td>{{$si->berat}}</td>
                             <td>{{$si->total}}</td>
                             <td>
-                                @foreach($status as $sa)
+                                @foreach($status_pelanggan as $sa)
                                     @if($sa->kode_order == $si->kode_order)
                                         {{$sa->status}}
                                     @endif
@@ -51,7 +51,7 @@
                         @endif
                     </body>
             </table>
-            <div class="pagination justify-content-end mt-2">  {{ $status_admin->withQueryString()->links() }}</div>
+            {{-- <div class="pagination justify-content-end mt-2">  {{ $order_pelanggan->withQueryString()->links() }}</div> --}}
         </div>
     </div>
     </section>

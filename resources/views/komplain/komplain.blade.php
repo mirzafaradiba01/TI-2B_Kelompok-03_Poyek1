@@ -37,7 +37,7 @@
                                 <td>{{$s->pesan}}</td>
                                 <td>
                                   <center>
-                                    <img src="{{ asset('storage/' . $s->gambar) }}" alt="" style="width: 100px; height: 100px; border-radius: 50%;">  
+                                    <img src="{{ asset('storage/' . $s->gambar) }}" alt="" style="width: 100px; height: 100px;">  
                                   </center>
                                 </td>
                                 @if( auth()->user()->role === 'pelanggan' )
