@@ -20,8 +20,9 @@
                     <th>Nama Pelanggan</th>
                     <th>Komplain</th>
                     <th>Gambar</th>
-                    <th>Balasan</th>
-                   
+                    @if( auth()->user()->role === 'pelanggan' )
+                        <th>Balasan</th>
+                    @endif
                     @if( auth()->user()->role === 'admin' )
                         <th>Opsi</th>
                     @endif
@@ -37,18 +38,14 @@
                                 <td>{{$s->pesan}}</td>
                                 <td>
                                   <center>
-                                    <img src="{{ asset('storage/' . $s->gambar) }}" alt="" style="width: 100px; height: 100px;">  
+                                    <img src="{{ asset('storage/' . $s->gambar) }}" alt="" style="width: 100px; height: 100px;">
                                   </center>
                                 </td>
                                 @if( auth()->user()->role === 'pelanggan' )
                                 <td>{{$s->balasan ? $s->balasan : ' mohon maaf admin belum membalas pesan anda'}}</td>
-
                             @endif
-                                
                                 @if( auth()->user()->role === 'admin' )
                                     <td class="">
-                                        {{-- Bikin simbol edit dan delete --}}
-                                       
                                         <a href="{{ url(auth()->user()->role . '/komplain/'  . $s->id .'/edit') }}"
                                             class="btn btn-sm btn-warning">
                                             Balasan
