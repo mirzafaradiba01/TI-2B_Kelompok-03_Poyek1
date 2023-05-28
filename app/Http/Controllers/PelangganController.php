@@ -115,7 +115,6 @@ class PelangganController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-
         Pelanggan::where('id', '=', $id)->delete();
         return redirect( auth()->user()->role . '/pelanggan' )->with ('success', 'Pelanggan Berhasil Dihapus');
     }

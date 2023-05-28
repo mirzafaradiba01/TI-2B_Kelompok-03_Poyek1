@@ -7,8 +7,7 @@ use App\Models\Pelanggan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class KomplainController extends Controller
-{
+class KomplainController extends Controller {
     /**
      * Display a listing of the resource.
      *
@@ -24,12 +23,8 @@ class KomplainController extends Controller
         } else {
             $komplain = Komplain::with('pelanggan')->paginate(5);
         }
-        //dd($komplain);
-
         return view('komplain.komplain', ['komplain' => $komplain]);
     }
-
-
 
     /**
      * Show the form for creating a new resource.
@@ -39,7 +34,7 @@ class KomplainController extends Controller
     public function create($id) {
         $pelanggan = Pelanggan::where('id', $id)->get();
         return view('komplain.create_komplain', ['url_form' => url(auth()->user()->role . '/komplain'), 'pelanggan' => $pelanggan]);
-    }    
+    }
 
     /**
      * Store a newly created resource in storage.;
@@ -101,7 +96,7 @@ class KomplainController extends Controller
                     ->with('pelanggan', $pelanggan)
                     ->with('url_form', url( auth()->user()->role . '/komplain/'. $id));
     }
-    
+
 
     /**
      * Update the specified resource in storage.
@@ -113,7 +108,7 @@ class KomplainController extends Controller
     public function update(Request $request, $id)
 {
     $komplain = Komplain::find($id);
-    
+
     if (!$komplain) {
         return redirect()->back()->with('error', 'Komplain tidak ditemukan.');
     }
@@ -155,10 +150,10 @@ class KomplainController extends Controller
         //     'pesan' => $request->pesan,
         //     'gambar' => $gambar,
         //     'balasan' => $request->balasan,
-            
+
         // ]);
     //     return redirect( auth()->user()->role . '/komplain' )->with('success','Data Komplain Berhasil Dirubah!');
-    
+
 
 
     /**
@@ -167,9 +162,9 @@ class KomplainController extends Controller
      * @param  \App\Models\Komplain  $komplain
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Komplain $komplain)
-    {
-        //
+    public function destroy($id) {
+        Komplain::where('id', '=', $id)->delete();
+        return redirect( auth()->user()->role . '/komplain' )->with ('success', 'Pelanggan Berhasil Dihapus');
     }
 
     public function komplainpelanggan(Request $request)
@@ -177,7 +172,6 @@ class KomplainController extends Controller
         $image_name = null;
         if ($request->hasFile('image')){
             $image_name = $request->file('image')->store('images', 'public');
-
         }
     }
 }
