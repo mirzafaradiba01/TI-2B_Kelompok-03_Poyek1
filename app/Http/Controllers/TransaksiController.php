@@ -7,6 +7,8 @@ use App\Models\Order;
 use App\Models\Pelanggan;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\PDF;
+use Carbon\Carbon;
+
 class TransaksiController extends Controller
 {
     /**
@@ -122,7 +124,8 @@ class TransaksiController extends Controller
 
     public function cetak_laporan(Request $request) {
         $tanggal = $request->tanggal;
-        $transaksi = Order::all();
+        $transaksi = Order::whereDate('created_at', Carbon ::parse($tanggal)->format('Y-m-d'))->get();
+        // $transaksi = Order::all();
         $data = [
             'transaksi' => $transaksi,
             'tanggal_laundry' => $tanggal,
