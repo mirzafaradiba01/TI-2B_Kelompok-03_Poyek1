@@ -32,6 +32,8 @@ Route::middleware(['auth', 'checkrole:admin'])->prefix('admin')->group(function 
 
     // admin dapat mengakses data petugas
     Route::resource('/petugas', PetugasController::class)->parameter('petugas', 'id')->names('admin.petugas');
+    Route::post('/petugas/data', [PetugasController::class, 'data']);
+    Route::post('/petugas/delete/{id}', [PetugasController::class, 'destroy']);
 
     // admin dapat mengakses transaksi dan order
     Route::resource('/transaksi', TransaksiController::class)->parameter('transaksi', 'id')->names('admin.transaksi');
@@ -61,9 +63,10 @@ Route::middleware(['auth', 'checkrole:admin'])->prefix('admin')->group(function 
 });
 
 // --- middleware untuk petugas
-Route::middleware(['auth', 'checkrole:petugas'])->prefix('petugas')->group(function () {
+    Route::middleware(['auth', 'checkrole:petugas'])->prefix('petugas')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'petugas'])->name('petugas.dashboard');
     Route::resource('/petugas', PetugasController::class)->parameter('petugas', 'id')->names('petugas.petugas');
+    
     Route::resource('/pelanggan', PelangganController::class)->parameter('pelanggan', 'id')->names('petugas.pelanggan');
 
     // Route untuk update status laundry petugas

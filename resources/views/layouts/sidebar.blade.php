@@ -30,7 +30,7 @@
             @if (auth()->user()->role === 'admin' || auth()->user()->role === 'petugas')
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-book-open pr-2"></i>
+                        <i class="nav-icon fas fa-users" style="color: #ffffff"></i>
                         <p>
                             Pelanggan
                             <i class="fas fa-angle-left right "></i>
@@ -39,14 +39,14 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ url('/' . auth()->user()->role . '/pelanggan') }}" class="nav-link">
-                                <i class="fas fa-book pr-2"></i>
+                                <i class="nav-icon fas fa-user-check"></i>
                                 <p>Data Pelanggan</p>
                             </a>
                         </li>
                         @if (auth()->user()->role === 'admin')
                             <li class="nav-item">
                                 <a href="{{ url('/' . auth()->user()->role . '/pelanggan/create') }}" class="nav-link">
-                                    <i class="fas fa-book pr-2"></i>
+                                    <i class="nav-icon fas fa-user-plus"></i>
                                     <p>Tambah Pelanggan</p>
                                 </a>
                             </li>
@@ -85,7 +85,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-book-open pr-2"></i>
+                        <i class="nav-icon fas fa-window-restore " style="color: #ffffff"></i>
                         <p>
                             Order
                             <i class="fas fa-angle-left right"></i>
@@ -94,13 +94,13 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ url('/' . auth()->user()->role . '/order/create') }}" class="nav-link">
-                                <i class="fas fa-book pr-2"></i>
+                                <i class="nav-icon fas fa-sticky-note"></i>
                                 <p> Add Order</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('/' . auth()->user()->role . '/order') }}" class="nav-link">
-                                <i class="fas fa-book pr-2"></i>
+                                <i class="nav-icon fas fa-handshake"></i>
                                 <p>Orderan Selesai</p>
                             </a>
                         </li>
@@ -114,7 +114,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-book-open pr-2"></i>
+                        <i class="nav-icon fas fa-tasks"style="color: #ffffff"></i>
                         <p>
                             Jenis Layanan
                             <i class="fas fa-angle-left right"></i>
@@ -123,7 +123,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ url('/' . auth()->user()->role . '/jenis_laundry') }}" class="nav-link">
-                                <i class="fas fa-book pr-2"></i>
+                                <i class="nav-icon fas fa-receipt"></i>
                                 <p>Data Jenis</p>
                             </a>
                         </li>
@@ -184,7 +184,7 @@
 
             <li class="nav-item">
                 <a href={{ url('/logout') }} class="nav-link">
-                    <i class="nav-icon fas fa-arrow-right" style="color: #ffffff"></i>
+                    <i class="nav-icon fas fa-power-off" style="color: #ffffff"></i>
                     <p>Logout</p>
                 </a>
             </li>

@@ -4,11 +4,27 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    
     <title>Dashboard</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    
     <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+  <style>
+    h1 {
+      font-family: 'Josefin Sans', sans-serif;
+    }
+  </style>
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
 </head>
 
@@ -16,12 +32,9 @@
     <div class="wrapper">
         @include('layouts.navbar')
 
-        <aside class="main-sidebar sidebar-primary elevation-4">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="{{ asset('assets/index3.html" class="brand-link') }}">
-                {{-- <img src="https://www.eatlogos.com/food_and_drinks/png/vector_ice_cream_food_logo.png"
-                    alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8" width="50"
-                    height="50"> --}}
                 <span class="brand-text font-weight-light">AYA LAUNDRY</span>
             </a>
 
@@ -32,7 +45,7 @@
         <div class="content-wrapper">
             <section class="content-header">
                 <div class="mb-3 d-flex justify-content-center align-items-center">
-                    <h1>AYA LAUNDRY</h1>
+                    <h1>Aya Laundry</h1>
                 </div>
 
                     @yield('content')
@@ -48,9 +61,29 @@
     <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="{{asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{asset('assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{asset('assets/plugins/jszip/jszip.min.js') }}"></script>
+    <script src="{{asset('assets/plugins/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{asset('assets/plugins/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{asset('assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{asset('assets/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('assets/dist/js/adminlte.min.js') }}"></script>
 
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': '{{csrf_token()}}'
+            }
+        });
+    </script>
     <script>
         function updateInputValue(select) {
           var biaya = select.options[select.selectedIndex].getAttribute("data-biaya");
@@ -72,19 +105,6 @@
       </script>
 
 <script>
-    // Fungsi untuk menampilkan popup
-    function showPopup(status) {
-        var popup = document.getElementById("popup");
-        popup.style.display = "block";
-        // Mengatur nilai input hidden sesuai dengan status yang dipilih
-        document.getElementById("statusInput").value = status;
-    }
-
-    // Fungsi untuk menyembunyikan popup
-    function hidePopup() {
-        var popup = document.getElementById("popup");
-        popup.style.display = "none";
-    }
 
     // Fungsi untuk memperbarui status laundry
     function updateStatus(status) {
@@ -108,6 +128,9 @@
         });
     }
     </script>
+
+    
+
     @stack('js')
 </body>
 </html>
