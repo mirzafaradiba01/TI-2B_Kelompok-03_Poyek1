@@ -133,4 +133,12 @@ class TransaksiController extends Controller
         $pdf = PDF::loadview('cetakLaporan.cetakLaporan', ['transaksi' => $transaksi, 'data' => $data, 'tanggal' => $tanggal])->setPaper('A4', 'landscape');
         return $pdf->stream();
     }
+
+    public function cetakNotaLaundry($id)
+    {
+        $notaLaundry = Order::find($id);
+        $transaksi =  Order::all();
+        $pdf = PDF::loadView('notaLaundry.cetak',['notaLaundry' => $notaLaundry ,'transaksi' => $transaksi])->setPaper('A4', 'landscape');
+        return $pdf->stream();
+    }
 }
