@@ -103,8 +103,7 @@ class PetugasController extends Controller {
      * @param  \App\Models\Petugas  $petugas
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         $petugas = Petugas::where('id', $id)->first();
 
         if ($petugas) {

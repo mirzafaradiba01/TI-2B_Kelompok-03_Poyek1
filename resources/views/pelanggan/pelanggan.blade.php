@@ -6,7 +6,7 @@
         <!--Default box-->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">DATA pelanggan</h3>
+                <h3 class="card-title">DATA PELANGGAN</h3>
             </div>
 
             <div class="card-body">
@@ -29,8 +29,8 @@
 
     </section>
     <div class="modal fade" id="modal_pelanggan" style="display: none;" aria-hidden="true">
-        <form method="post" action="{{ url(auth()->user()->role . '/pelanggan') }}" role="form"
-            class="form-horizontal" id="form_pelanggan">
+        <form method="post" action="{{ url(auth()->user()->role . '/pelanggan') }}" role="form" class="form-horizontal"
+            id="form_pelanggan">
             @csrf
             <div class="modal-dialog modal-">
                 <div class="modal-content">
@@ -90,6 +90,12 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label class="col-sm-2 control-label">Username</label>
+                        <div class="col-sm-10">
+                            <span id="show_username"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label class="col-sm-2 control-label">No. HP</label>
                         <div class="col-sm-10">
                             <span id="show_no_hp"></span>
@@ -125,119 +131,162 @@
 @endsection
 
 @push('js')
+    <script>
+        
+       function tambahData() {
+            $('#modal_pelanggan').modal('show');
+            $('#modal_pelanggan .modal-title').html('Tambah Data Pelanggan');
+            $('#modal_pelanggan #nama').val('');
+            $('#modal_pelanggan #username').val('');
+            $('#modal_pelanggan #no_hp').val('');
+        }
 
-<script>
+        function updateData(th) {
+            $('#modal_pelanggan').modal('show');
+            $('#modal_pelanggan .modal-title').html('Edit Data Pelanggan');
+            $('#modal_pelanggan #nama').val($(th).data('nama'));
+            $('#modal_pelanggan #username').val($(th).data('username'));
+            $('#modal_pelanggan #no_hp').val($(th).data('no_hp'));
+            $('#modal_pelanggan #form_pelanggan').attr('action', $(th).data('url'));
+            $('#modal_pelanggan #form_pelanggan').append('<input type="hidden" name="_method" value="PUT">');
+        }
 
-    function tambahData() {
-        $('#modal_pelanggan').modal('show');
-        $('#modal_pelanggan .modal-title').html('Tambah Data Pelanggan');
-        $('#modal_pelanggan #nama').val('');
-        $('#modal_pelanggan #no_hp').val('');
-    }
+        function showData(element) {
 
-    function updateData(th) {
-        $('#modal_pelanggan').modal('show');
-        $('#modal_pelanggan .modal-title').html('Edit Data Pelanggan');
-        $('#modal_pelanggan #nama').val($(th).data('nama'));
-        $('#modal_pelanggan #username').val($(th).data('username'));
-        $('#modal_pelanggan #no_hp').val($(th).data('no_hp'));
-        $('#modal_pelanggan #form_pelanggan').attr('action', $(th).data('url'));
-        $('#modal_pelanggan #form_pelanggan').append('<input type="hidden" name="_method" value="PUT">');
-    }
-
-    function showData(element) {
-        $.ajax({
-            url: '{{ url(auth()->user()->role . '/pelanggan') }}' + '/' + element,
-            method: 'GET',
-            dataType: 'json',
-            success: function(data) {
-                $('#modal_show_pelanggan').modal('show');
-                $('#show_nama').text(data.nama);
-                $('#show_username').text(data.username);
-                $('#show_no_hp').text(data.no_hp);
-            },
-            error: function() {
-                alert('Error occurred while retrieving data.');
-            }
-        });
-    }
-
-    function deleteData(element) {
-        $('#confirmModal').modal('show');
-
-        $('#confirmDelete').off().on('click', function() {
             $.ajax({
-                url: '{{ url(auth()->user()->role . '/pelanggan/delete') }}' + '/' + element,
-                method: 'POST',
+                url: '{{ url(auth()->user()->role . '/pelanggan') }}' + '/' + element,
+                method: 'GET',
                 dataType: 'json',
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                },
                 success: function(data) {
-                    alert(data.message);
-                    location.reload();
+                    console.log(data);
+                    $('#modal_show_pelanggan').modal('show');
+                    $('#show_nama').text(data.nama);
+                    $('#show_username').text(data.username);
+                    $('#show_no_hp').text(data.no_hp);
                 },
                 error: function() {
-                    alert('Error occurred while deleting data.');
+                    alert('Error occurred while retrieving data.');
                 }
             });
-        });
-    }
+        }
 
-    $(document).ready(function() {
-        var dataPelanggan = $('#data_pelanggan').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: {
-                'url': '{{ url(auth()->user()->role . '/pelanggan/data') }}',
-                'dataType': 'json',
-                'type': 'POST',
-            },
-            columns: [{
-                    data: 'nomor',
-                    searchable: false,
-                    sortable: false
-                },
-                {
-                    data: 'kode_pelanggan',
-                    name: 'kode_pelanggan',
-                    searchable: true,
-                    sortable: false
-                },
-                {
-                    data: 'nama',
-                    name: 'nama',
-                    searchable: true,
-                    sortable: false
-                },
-                {
-                    data: 'username',
-                    name: 'username',
-                    searchable: true,
-                    sortable: false
-                },
-                {
-                    data: 'no_hp',
-                    name: 'no_hp',
-                    searchable: true,
-                    sortable: false
-                },
-                {
-                    data: 'id',
-                    name: 'id',
-                    sortable: false,
-                    searchable: false,
-                    render: function(data, type, row) {
-                        var btn =
-                            `<button data-url="{{ url(auth()->user()->role . '/petugas') }}/` + data +
-                            `" class="btn btn-xs btn-warning mr-2 ml-2" onclick="updateData(this)" data-id="` +
-                            row.id + `" data-nama="` + row.nama + `"  data-username="` + row.username + `" data-no_hp="` + row.no_hp + `"><i class="fa fa-edit"></i>Edit</button>` + `<button href="{{ url(auth()->user()->role . '/petugas/') }}/` + data + ` " onclick="showData(` + data + `)" class="btn btn-xs btn-info mr-2 ml-2"><i class="fa fa-list"></i>Detail</button>` + `<button class="btn btn-xs btn-danger" onclick="deleteData(` + data + `)"><i class="fa fa-trash mr-2 ml-2"></i>Hapus</button>`;
-                        return btn;
+        function deleteData(element) {
+            $('#confirmModal').modal('show');
+
+            $('#confirmDelete').off().on('click', function() {
+                $.ajax({
+                    url: '{{ url(auth()->user()->role . '/pelanggan/delete') }}' + '/' + element,
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                    },
+                    success: function(data) {
+                        alert(data.message);
+                        location.reload();
+                    },
+                    error: function() {
+                        alert('Error occurred while deleting data.');
                     }
-                }
-            ]
-        });
-    });
+                });
+            });
+        }
 
-</script>
+        $(document).ready(function() {
+            var dataPelanggan = $('#data_pelanggan').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    'url': '{{ url(auth()->user()->role . '/pelanggan/data') }}',
+                    'dataType': 'json',
+                    'type': 'POST',
+                },
+                columns: [{
+                        data: 'nomor',
+                        searchable: false,
+                        sortable: false
+                    },
+                    {
+                        data: 'kode_pelanggan',
+                        name: 'kode_pelanggan',
+                        searchable: true,
+                        sortable: false
+                    },
+                    {
+                        data: 'nama',
+                        name: 'nama',
+                        searchable: true,
+                        sortable: false
+                    },
+                    {
+                        data: 'username',
+                        name: 'username',
+                        searchable: true,
+                        sortable: false
+                    },
+                    {
+                        data: 'no_hp',
+                        name: 'no_hp',
+                        searchable: true,
+                        sortable: false
+                    },
+                    {
+                        data: 'id',
+                        name: 'id',
+                        sortable: false,
+                        searchable: false,
+                        render: function(data, type, row) {
+                            var btn =
+                                `<button data-url="{{ url(auth()->user()->role . '/pelanggan') }}/` +
+                                data +
+                                `" class="btn btn-xs btn-warning mr-2 ml-2" onclick="updateData(this)" data-id="` +
+                                row.id + `" data-nama="` + row.nama + `"  data-username="` + row
+                                .username + `" data-no_hp="` + row.no_hp +
+                                `"><i class="fa fa-edit"></i>Edit</button>` +
+                                `<button href="{{ url(auth()->user()->role . '/pelanggan/') }}/` +
+                                data + ` " onclick="showData(` + data +
+                                `)" class="btn btn-xs btn-info mr-2 ml-2"><i class="fa fa-list"></i>Detail</button>` +
+                                `<button class="btn btn-xs btn-danger" onclick="deleteData(` +
+                                data + `)"><i class="fa fa-trash mr-2 ml-2"></i>Hapus</button>`;
+                            return btn;
+                        }
+                    }
+                ]
+            });
+
+            $('#form_pelanggan').submit(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url: $(this).attr('action'),
+                    method: "POST",
+                    data: $(this).serialize(),
+                    dataType: 'json',
+                    success: function(data) {
+                        $('.form-message').html('');
+                        if (data.status) {
+                            $('.form-message').html(
+                                '<span class="alert alert-success" style="width: 100%">' +
+                                data.message + '</span>');
+                            $('#form_pelanggan')[0].reset();
+                            dataPelanggan.draw(
+                                false
+                                ); // Reload tabel sesuai dengan halaman pagination yang sedang aktif
+                            $('#form_pelanggan').attr('action', '{{ url('pelanggan') }}');
+                            $('#form_pelanggan').find('input[name="_method"]').remove();
+                        } else {
+                            $('.form-message').html(
+                                '<span class="alert alert-danger" style="width: 100%">' +
+                                data.message + '</span>');
+                            alert('error');
+                        }
+
+                        if (data.modal_close) {
+                            $('.form-message').html('');
+                            $('#modal_pelanggan').modal('hide');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 @endpush

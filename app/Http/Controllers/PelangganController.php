@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pelanggan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\DataTables;
 
 class PelangganController extends Controller {
@@ -54,25 +55,48 @@ class PelangganController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
-
+    public function store(Request $request)
+    {
         $countPelanggan = Pelanggan::count();
         $kode = '11';
         $kode_pelanggan = $kode . ($countPelanggan + 1);
 
-        $request->validate([
-            'id_user' => 'required',
+        $rule = [
             'nama' => 'required|string|max:50',
+            'username' => 'string|max:50',
             'no_hp' => 'required|digits_between:6,15',
-        ]);
+        ];
 
-        Pelanggan::create([
-            'id_user' => $request->id_user ,
-            'kode_pelanggan' => $kode_pelanggan,
-            'nama' => $request->nama,
-            'no_hp'=> $request->no_hp,
-        ]);
-        return redirect( auth()->user()->role . '/pelanggan' )->with('success', 'Pelanggan Berhasil Ditambahkan');
+        $validator = Validator::make($request->all(), $rule);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'modal_close' => false,
+                'message' => 'Data gagal ditambahkan. ' . $validator->errors()->first(),
+                'data' => $validator->errors()
+            ]);
+        }
+
+        $data = $request->all();
+        $data['kode_pelanggan'] = $kode_pelanggan;
+
+        $petugas = Pelanggan::create($data);
+        if ($petugas) {
+            return response()->json([
+                'kode_pelanggan' => $kode_pelanggan,
+                'status' => true,
+                'modal_close' => false,
+                'message' => 'Data berhasil ditambahkan',
+                'data' => null
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'modal_close' => false,
+                'message' => 'Data gagal ditambahkan',
+                'data' => null
+            ]);
+        }
     }
 
     /**
@@ -82,8 +106,15 @@ class PelangganController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        $pelanggan = Pelanggan::where('id',$id)->get();
-        return view('pelanggan.detail_pelanggan', ['pelanggan' => $pelanggan[0]]);
+        $pelanggan = Pelanggan::where('id', $id)->first();
+
+        if ($pelanggan) {
+            $user = User::where('id', $pelanggan->id_user)->first();
+            $pelanggan->username = $user->username;
+            return response()->json($pelanggan);
+        } else {
+            return response()->json(['error' => 'Data not found'], 404);
+        }
     }
 
     /**
@@ -94,11 +125,9 @@ class PelangganController extends Controller {
      */
     public function edit($id) {
         $pelanggan = Pelanggan::find($id);
-        $users = User::all();
         return view('pelanggan.update_pelanggan')
-                    ->with('pelanggan', $pelanggan)
-                    ->with('users', $users)
-                    ->with('url_form', url( auth()->user()->role . '/pelanggan/'. $id));
+            ->with('pelanggan', $pelanggan)
+            ->with('url_form', url( auth()->user()->role . '/pelanggan/'. $id));
     }
 
     /**
@@ -109,16 +138,43 @@ class PelangganController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        $request ->validate([
-            'id_user' => '',
-            'kode_pelanggan' => 'required|string|max:10|unique:pelanggan,kode_pelanggan,'.$id,
+        $rule = [
             'nama' => 'required|string|max:50',
+            'username' => 'string|max:50',
             'no_hp' => 'required|digits_between:6,15',
-        ]);
+        ];
 
-        $data = Pelanggan::where('id',$id)->update($request->except(['_token','_method']));
-        return redirect( auth()->user()->role . '/pelanggan' )->with('success','Data Pelanggan Berhasil Dirubah!');
+        $validator = Validator::make($request->all(), $rule);
+        if($validator->fails()){
+            return response()->json([
+                'status' => false,
+                'modal_close' => false,
+                'message' => 'Data gagal diedit. ' .$validator->errors()->first(),
+                'data' => $validator->errors()
+            ]);
+        }
+
+        $pelanggan = Pelanggan::where('id', $id)->first();
+        if ($pelanggan) {
+            $pelanggan->update($request->except('_token', '_method'));
+
+            // Update username in User table
+            $user = $pelanggan->user;
+            if ($user) {
+                $user->update(['username' => $request->username]);
+            }
+
+            return response()->json([
+                'status' => true,
+                'modal_close' => true,
+                'message' => 'Data berhasil diedit',
+                'data' => null
+            ]);
+        } else {
+            return response()->json(['error' => 'Data not found'], 404);
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.

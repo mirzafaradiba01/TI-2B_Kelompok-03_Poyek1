@@ -145,7 +145,7 @@
 
         function updateData(th) {
             $('#modal_petugas').modal('show');
-            $('#modal_petugas .modal-title').html('Edit Data petugas');
+            $('#modal_petugas .modal-title').html('Edit Data Petugas');
             $('#modal_petugas #nama').val($(th).data('nama'));
             $('#modal_petugas #alamat').val($(th).data('alamat'));
             $('#modal_petugas #no_hp').val($(th).data('no_hp'));
