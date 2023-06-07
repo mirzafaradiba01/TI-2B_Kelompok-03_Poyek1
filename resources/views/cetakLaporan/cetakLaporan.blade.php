@@ -58,6 +58,7 @@
                 <td>{{ $l->status_bayar }}</td>
             </tr>
             @endforeach
+            
         </tbody>
     </table>
 </body>

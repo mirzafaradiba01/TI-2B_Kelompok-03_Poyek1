@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\JenisLaundryController;
 use App\Http\Controllers\KomplainController;
+use App\Http\Controllers\NotaLaundryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PetugasController;
@@ -46,6 +47,7 @@ Route::middleware(['auth', 'checkrole:admin'])->prefix('admin')->group(function 
 
     //admin mengakses cetak laporan transaksi
     Route::post('/transaksi/cetak_laporan', [TransaksiController::class, 'cetak_laporan']);
+    
 
     // ----- route di bawah masih dalam percobaan
     Route::get('/transaksi', [TransaksiController::class, 'index'])->name('admin.transaksi');
@@ -82,6 +84,7 @@ Route::middleware(['auth', 'checkrole:pelanggan'])->prefix('pelanggan')->group(f
     Route::resource('/komplain', KomplainController::class)->parameters(['komplain' => 'id'])->names(['pelanggan.komplain'])->except(['create']);
     Route::get('/komplain/create/{id}', [KomplainController::class, 'create']);
     Route::get('/status/{id}', [StatusController::class, 'status_pelanggan']);
+    Route::get('/transaksi/cetakNotaLaundry/{id}', [TransaksiController::class, 'cetakNotaLaundry'])->name('notaLaundry.cetak');
     // Route::get('/cekstatus', [StatusController::class, 'cekstatus'])->name('komplain.cekstatus');
 
 });

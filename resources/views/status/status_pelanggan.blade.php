@@ -43,6 +43,8 @@
                                 <a href="{{ url(auth()->user()->role . '/komplain/create/'.$si->id_pelanggan) }}" class="btn btn-sm btn-primary">
                                     Komplain
                                 </a>
+                                <a href="{{ url(auth()->user()->role . '/transaksi/cetakNotaLaundry/'.$si->id) }}" class="btn btn-sm btn-info">Cetak Nota</a>
+
                             </td>
                         </tr>
                         @endforeach                    
