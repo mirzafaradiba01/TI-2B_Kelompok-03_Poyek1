@@ -43,6 +43,6 @@ class User extends Authenticatable
     ];
 
     public function pelanggan() {
-        return $this->hasOne(Pelanggan::class, 'id');
+        return $this->hasOne(Pelanggan::class, 'id_user');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pelanggan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class PelangganController extends Controller {
     /**
@@ -25,6 +26,17 @@ class PelangganController extends Controller {
         }
         return view('pelanggan.pelanggan', ['pelanggan' => $pelanggan]);
     }
+
+    public function data() {
+        $mahasiswa = Pelanggan::with('users')->get();
+        return DataTables::of($mahasiswa)
+        ->addIndexColumn()
+        ->addColumn('username', function($row) {
+            return $row->users->username;
+        })
+        ->make(true);
+    }
+
 
     /**
      * Show the form for creating a new resource.

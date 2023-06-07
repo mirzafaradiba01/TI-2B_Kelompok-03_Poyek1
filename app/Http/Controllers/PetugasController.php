@@ -29,8 +29,7 @@ class PetugasController extends Controller {
         return view('petugas.petugas');
     }
 
-    public function data()
-    {
+    public function data() {
         $data = Petugas::selectRaw('id,kode_petugas,nama,alamat,no_hp');
 
         return DataTables::of($data)
@@ -59,13 +58,13 @@ class PetugasController extends Controller {
         $countPetugas = Petugas::count();
         $kode = '11';
         $kode_petugas = $kode . ($countPetugas + 1);
-    
+
         $rule = [
             'nama' => 'required|string|max:50',
             'alamat' => 'required|string|max:50',
             'no_hp' => 'required|digits_between:6,15',
         ];
-    
+
         $validator = Validator::make($request->all(), $rule);
         if ($validator->fails()) {
             return response()->json([
@@ -75,10 +74,10 @@ class PetugasController extends Controller {
                 'data' => $validator->errors()
             ]);
         }
-    
+
         $data = $request->all();
         $data['kode_petugas'] = $kode_petugas;
-    
+
         $petugas = Petugas::create($data);
         if ($petugas) {
             return response()->json([
@@ -96,7 +95,7 @@ class PetugasController extends Controller {
                 'data' => null
             ]);
         }
-    }    
+    }
 
     /**
      * Display the specified resource.
@@ -104,10 +103,10 @@ class PetugasController extends Controller {
      * @param  \App\Models\Petugas  $petugas
      * @return \Illuminate\Http\Response
      */
-    public function show($id) 
+    public function show($id)
     {
         $petugas = Petugas::where('id', $id)->first();
-    
+
         if ($petugas) {
             return response()->json($petugas);
         } else {
@@ -171,7 +170,7 @@ class PetugasController extends Controller {
     public function destroy($id)
     {
         $petugas = Petugas::where('id', $id)->first();
-        
+
         if (!$petugas) {
             return response()->json([
                 'status' => false,
@@ -179,9 +178,9 @@ class PetugasController extends Controller {
                 'data' => null
             ]);
         }
-        
+
         $deleted = $petugas->delete();
-        
+
         if ($deleted) {
             return response()->json([
                 'status' => true,

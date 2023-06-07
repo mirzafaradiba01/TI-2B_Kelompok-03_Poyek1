@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Komplain;
 use App\Models\Pelanggan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class KomplainController extends Controller {
@@ -14,17 +15,29 @@ class KomplainController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
-        if($request->get('query') !== null){
-            $query = $request->get('query');
-            $komplain = Komplain::where('kode_komplain', 'LIKE', '%'.$query.'%')
-                ->orWhere('id_pelanggan', 'LIKE', '%'.$query.'%')
-                ->with('pelanggan')
-                ->paginate(5);
+        $user = Auth::user();
+
+        if ($user->role === 'admin') {
+            if ($request->has('query')) {
+                $query = $request->get('query');
+                $komplain = Komplain::where('kode_komplain', 'LIKE', '%'.$query.'%')
+                    ->orWhere('id_pelanggan', 'LIKE', '%'.$query.'%')
+                    ->with('pelanggan')
+                    ->paginate(5);
+            } else {
+                $komplain = Komplain::with('pelanggan')->paginate(5);
+            }
+        } else if ($user->role === 'pelanggan') {
+            $komplain = Komplain::whereHas('pelanggan', function ($query) use ($user) {
+                $query->where('id_user', $user->id);
+            })->with('pelanggan')->paginate(5);
         } else {
-            $komplain = Komplain::with('pelanggan')->paginate(5);
+            $komplain = collect();
         }
+
         return view('komplain.komplain', ['komplain' => $komplain]);
     }
+
 
     /**
      * Show the form for creating a new resource.
