@@ -30,6 +30,8 @@ Route::middleware(['auth', 'checkrole:admin'])->prefix('admin')->group(function 
 
     // admin dapat mengakses data pelanggan
     Route::resource('/pelanggan', PelangganController::class)->parameter('pelanggan', 'id')->names('admin.pelanggan');
+    Route::post('/pelanggan/data', [PelangganController::class, 'data']);
+    Route::post('/pelanggan/delete/{id}', [PelangganController::class, 'destroy']);
 
     // admin dapat mengakses data petugas
     Route::resource('/petugas', PetugasController::class)->parameter('petugas', 'id')->names('admin.petugas');
@@ -70,7 +72,7 @@ Route::middleware(['auth', 'checkrole:admin'])->prefix('admin')->group(function 
     Route::middleware(['auth', 'checkrole:petugas'])->prefix('petugas')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'petugas'])->name('petugas.dashboard');
     Route::resource('/petugas', PetugasController::class)->parameter('petugas', 'id')->names('petugas.petugas');
-    
+
     Route::resource('/pelanggan', PelangganController::class)->parameter('pelanggan', 'id')->names('petugas.pelanggan');
 
     // Route untuk update status laundry petugas

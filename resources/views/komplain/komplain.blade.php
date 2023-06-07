@@ -28,7 +28,7 @@
                     @endif
                 </thead>
                 <body>
-                    @if ($komplain->count() > 0)
+                    @if ($komplain->count() > 0 )
                         @foreach($komplain as $st => $s)
                             <tr>
                                 <td> {{ $st + 1}}</td>
