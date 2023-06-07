@@ -44,6 +44,8 @@ Route::middleware(['auth', 'checkrole:admin'])->prefix('admin')->group(function 
     // admin dapat mengakses data jenis laundry dan komplain
     Route::resource('/komplain', KomplainController::class)->parameter('komplain', 'id')->names('admin.komplain');
     Route::resource('/jenis_laundry', JenisLaundryController::class)->parameter('jenis_laundry', 'id')->names('admin.jenis_laundry');
+    Route::post('/jenis_laundry/data', [JenisLaundryController::class, 'data']);
+    Route::post('/jenis_laundru/delete/{id}', [JenisLaundryController::class, 'destroy']);
 
     //admin mengakses cetak laporan transaksi
     Route::post('/transaksi/cetak_laporan', [TransaksiController::class, 'cetak_laporan']);
