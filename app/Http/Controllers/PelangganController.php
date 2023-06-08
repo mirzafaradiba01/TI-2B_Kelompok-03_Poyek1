@@ -15,6 +15,7 @@ class PelangganController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
+        $user = User::all();
         if($request->get('query') !== null){
             $query = $request->get('query');
             $pelanggan = Pelanggan::where('kode_pelanggan', 'LIKE', '%'.$query.'%')
@@ -25,7 +26,7 @@ class PelangganController extends Controller {
         } else {
             $pelanggan = Pelanggan::with('users')->paginate(5);
         }
-        return view('pelanggan.pelanggan', ['pelanggan' => $pelanggan]);
+        return view('pelanggan.pelanggan', ['pelanggan' => $pelanggan, 'user' => $user]);
     }
 
     public function data() {

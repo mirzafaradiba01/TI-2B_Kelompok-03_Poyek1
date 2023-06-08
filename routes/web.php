@@ -5,7 +5,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\JenisLaundryController;
 use App\Http\Controllers\KomplainController;
-use App\Http\Controllers\NotaLaundryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PetugasController;

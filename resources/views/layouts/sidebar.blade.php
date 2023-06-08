@@ -43,14 +43,6 @@
                                 <p>Data Pelanggan</p>
                             </a>
                         </li>
-                        @if (auth()->user()->role === 'admin')
-                            <li class="nav-item">
-                                <a href="{{ url('/' . auth()->user()->role . '/pelanggan/create') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-user-plus"></i>
-                                    <p>Tambah Pelanggan</p>
-                                </a>
-                            </li>
-                        @endif
                     </ul>
                 </li>
 

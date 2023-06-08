@@ -52,10 +52,15 @@
                         <div class="form-group required row mb-2">
                             <label class="col-sm-2 control-label col-form-label">Username</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control form-control-sm" id="username" name="username"
-                                    value="" />
+                                <select type="text" class="form-control form-control-sm" id="id_user" name="id_user">
+                                    @foreach($user as $akun_user)
+                                        <option value="{{ $akun_user->id }}">
+                                            {{ $akun_user->username }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
-                        </div>
+                        </div>                        
                         <div class="form-group required row mb-2">
                             <label class="col-sm-2 control-label col-form-label">No. HP</label>
                             <div class="col-sm-10">
@@ -145,7 +150,7 @@
             $('#modal_pelanggan').modal('show');
             $('#modal_pelanggan .modal-title').html('Edit Data Pelanggan');
             $('#modal_pelanggan #nama').val($(th).data('nama'));
-            $('#modal_pelanggan #username').val($(th).data('username'));
+            $('#modal_pelanggan #username').val($(th).data('id_user'));
             $('#modal_pelanggan #no_hp').val($(th).data('no_hp'));
             $('#modal_pelanggan #form_pelanggan').attr('action', $(th).data('url'));
             $('#modal_pelanggan #form_pelanggan').append('<input type="hidden" name="_method" value="PUT">');
@@ -161,7 +166,7 @@
                     console.log(data);
                     $('#modal_show_pelanggan').modal('show');
                     $('#show_nama').text(data.nama);
-                    $('#show_username').text(data.username);
+                    $('#show_username').text(data.id_user);
                     $('#show_no_hp').text(data.no_hp);
                 },
                 error: function() {

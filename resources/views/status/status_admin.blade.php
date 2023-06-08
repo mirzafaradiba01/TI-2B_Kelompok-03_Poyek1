@@ -40,9 +40,7 @@
                             </td>
                             <td>
                                 {{-- Bikin simbol edit dan delete --}}
-                                <a href="{{ url(auth()->user()->role . '/komplain/create/'.$si->id_pelanggan) }}" class="btn btn-sm btn-primary">
-                                    Komplain
-                                </a>
+                                
                             </td>
                         </tr>
                         @endforeach                    

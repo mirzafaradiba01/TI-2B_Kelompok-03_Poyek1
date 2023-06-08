@@ -13,6 +13,7 @@
 
     .header {
         text-align: center;
+        padding-top: 2px
     }
 
     .info {
@@ -21,6 +22,7 @@
 
     .footer {
         margin-top: 40px;
+        text-align: center;
     }
 
     .thank-you {
@@ -32,17 +34,23 @@
 </head>
 <div class="nota-container">
     <div class="header">
-        <h1>NOTA LAUNDRY</h1>
-        <h2>**** AYA LAUNDRY ****</h2>
+        <h3>NOTA LAUNDRY</h3>
+        <h4>**** AYA LAUNDRY ****</h4>
+        <p>Jl.Soekarno Hatta No.19 Malang</p>
+        <p>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - </p>
+        <p>{{$jam_sekarang}} {{ $tanggal_sekarang }}</p>
+        <p>- - - - - - - - - - - - - - - - - - - - - - - - - - - - -</p>
     </div>
 
     <div class="info">
+       
         @foreach($transaksi as $notaLaundry)
         <p>Tanggal : {{ $notaLaundry->tanggal_laundry }}</p>
         <p>Kode Order : {{ $notaLaundry->kode_order }}</p>
         <p>Nama Pelanggan : {{ $notaLaundry->pelanggan->nama }}</p>
         <p>Jenis Layanan : {{ $notaLaundry->jenis_laundry->nama}}</p>
         <p>Berat Cucian : {{ $notaLaundry->berat }} Kg</p>
+        <p>- - - - - - - - - - - - - - - - - - - - - - - - - - - - -</p>
         <p>Total Harga : Rp {{ number_format($notaLaundry->total, 0, ',', '.') }}</p>
         
         <p>{{ $notaLaundry->order }}</p>
