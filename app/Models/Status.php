@@ -28,6 +28,6 @@ class Status extends Model {
     }
 
     public function order() {
-        return $this->belongsTo(Order::class, 'kode_order', 'id');
+        return $this->belongsTo(Order::class, 'id_order', 'id');
     }
 }

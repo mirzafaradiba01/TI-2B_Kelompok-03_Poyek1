@@ -62,6 +62,8 @@ Route::middleware(['auth', 'checkrole:admin'])->prefix('admin')->group(function 
 
     // Rute untuk submit order dan mengarahkan ke halaman tampilan transaksi
     Route::post('/order/submit', [OrderController::class, 'submit'])->name('admin.order.submit');
+    Route::get('/order_selesai',[OrderController::class, 'order_selesai'])->name('admin.order_selesai');
+
     //admin mengakses cetak laporan transaksi
     Route::get('/form_cetak', [TransaksiController::class, 'show_form'])->name('admin.form_cetak');
     Route::post('/cetak_laporan', [TransaksiController::class, 'cetak_laporan'])->name('admin.cetak_laporan');

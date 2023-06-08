@@ -18,7 +18,7 @@
                             <th>Berat</th>
                             <th>Total Pembayaran</th>
                             <th>Status</th>
-                            <th>Action</th>
+                           
                         </tr>
                     </thead>
                     <body>
@@ -45,7 +45,7 @@
                         </tr>
                         @endforeach                    
                         @else
-                            <tr><td colspan="9" class="text-center">Data Tidak Ada</td></tr>
+                            <tr><td colspan="6" class="text-center">Data Tidak Ada</td></tr>
                         @endif
                     </body>
             </table>

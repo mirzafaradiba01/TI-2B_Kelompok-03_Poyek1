@@ -141,4 +141,10 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function order_selesai() {
+
+        $status = Status::with('order')->paginate(5);
+        return view('order.order_selesai', ['status' => $status]);
+    }
 }
