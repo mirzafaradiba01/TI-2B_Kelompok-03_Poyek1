@@ -39,11 +39,18 @@
                                 @endforeach
                             </td>
                             <td>
-                                {{-- Bikin simbol edit dan delete --}}
-                                <a href="{{ url(auth()->user()->role . '/komplain/create/'.$si->id_pelanggan) }}" class="btn btn-sm btn-primary">
-                                    Komplain
-                                </a>
-                                <a href="{{ url(auth()->user()->role . '/transaksi/cetakNotaLaundry/'.$si->id) }}" class="btn btn-sm btn-info">Cetak Nota</a>
+                                @foreach($status_pelanggan as $sp)
+                                @if ($sp->status === 'Selesai')
+                                    {{-- Bikin simbol edit dan delete --}}
+                                    <a href="{{ url(auth()->user()->role . '/komplain/create/'.$si->id_pelanggan) }}" class="btn btn-sm btn-primary">
+                                        Komplain
+                                    </a>
+                                    @break {{-- Menambahkan break untuk menghentikan perulangan setelah menemukan status "Selesai" --}}
+                                @endif
+                            @endforeach
+                            
+
+                                     <a href="{{ url(auth()->user()->role . '/transaksi/cetakNotaLaundry/'.$si->id) }}" class="btn btn-sm btn-info">Cetak Nota</a>
 
                             </td>
                         </tr>

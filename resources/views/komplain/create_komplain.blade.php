@@ -14,7 +14,7 @@
                     </button>
                 </div>
             </div>
-            <form action="{{ $url_form }}" method="POST" enctype="multipart/form-data">
+            <form class="p-5" action="{{ $url_form }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                   @foreach($pelanggan as $p)

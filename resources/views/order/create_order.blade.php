@@ -1,10 +1,10 @@
 @extends('layouts.template')
 
 @section('content')
-    <section class="container">
-        <div class="card">
+    <section class="container ">
+        <div class="card ">
             <div class="card-header">
-                <h3 class="card-title">DATA PELANGGAN</h3>
+                <h3 class="card-title ">DATA PELANGGAN</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widge="collapse" title="Collapse">
                         <i class="fas fa-minus"></i>
@@ -15,7 +15,7 @@
                 </div>
             </div>
             {{-- action="{{ url( auth()->user()->role . '/order') }}" --}}
-            <form action="{{ url(auth()->user()->role . '/order') }}" method="POST" enctype="multipart/form-data">
+            <form class="p-5" action="{{ url(auth()->user()->role . '/order') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 {{-- {!! (isset($pelanggan))? method_field('PUT') : '' !!} --}}
                 <div class="form-group">
