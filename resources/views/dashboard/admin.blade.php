@@ -128,7 +128,7 @@
                                 <div class="col mr-2">
                                     <p>Selesai, Belum Diambil</p>
                                     <div class="h5 mb-0 font-weight-bold">Laundry</div>
-                                    <a href="{{ url('admin/status_admin') }}" class="small-box-footer h5 mb-0 font-weight-bold">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                    <a href="{{ url('admin/order_selesai') }}" class="small-box-footer h5 mb-0 font-weight-bold">More info <i class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-arrow-down fa-2x"></i>
@@ -144,7 +144,7 @@
                                 <div class="col mr-2">
                                     <p>Selesai, Sudah Diambil</p>
                                     <div class="h5 mb-0 font-weight-bold">Laundry</div>
-                                    <a href="{{ url('admin/status_admin') }}" class="small-box-footer h5 mb-0 font-weight-bold">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                    <a href="{{ url('admin/order_selesai') }}" class="small-box-footer h5 mb-0 font-weight-bold">More info <i class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-arrow-up fa-2x"></i>

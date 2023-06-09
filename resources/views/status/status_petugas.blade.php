@@ -152,21 +152,8 @@
             </div>
         </div>
     </section>
-
-    <!-- Pop-up -->
-    {{-- <div id="popup" class="popup">
-        <h2>Update Status</h2>
-        <form>
-            <input type="hidden" id="statusInput" />
-            <input type="submit" value="Cuci ke Setrika" onclick="updateStatus('setrika')" />
-            <input type="submit" value="Setrika ke Packing" onclick="updateStatus('packing')" />
-            <input type="submit" value="Packing ke Selesai" onclick="updateStatus('selesai')" />
-            <input type="button" value="Cancel" onclick="hidePopup()" />
-        </form>
-    </div> --}}
 @endsection
 
-{{-- tombol pop up warning --}}
 
  
 

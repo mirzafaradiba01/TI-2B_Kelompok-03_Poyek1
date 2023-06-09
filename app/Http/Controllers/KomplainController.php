@@ -146,29 +146,6 @@ class KomplainController extends Controller {
     return redirect(auth()->user()->role.'/komplain')->with('success', 'Data Komplain Berhasil Dirubah!');
 }
 
-    // $request ->validate([
-        //     'id_pelanggan' => '',
-        //     'kode_komplain' => 'required|string|max:10|unique:komplain,kode_komplain,'.$id,
-        //     'pesan' => 'required|string|',
-        //     'gambar' => 'mimes:jpeg,png,jpg',
-        //     'balasan' => 'required|string|',
-        // ]);
-
-        // $komplain = Komplain::where('id',$id)->update($request->except(['_token','_method']));
-        // $gambar = $request->file('gambar')->store('bukti_komplain', 'public');
-
-        // Komplain::where('id', $id)->update([
-        //     'id_pelanggan' => $request->id_pelanggan,
-        //     'kode_komplain' =>$request->kode_komplain,
-        //     'pesan' => $request->pesan,
-        //     'gambar' => $gambar,
-        //     'balasan' => $request->balasan,
-
-        // ]);
-    //     return redirect( auth()->user()->role . '/komplain' )->with('success','Data Komplain Berhasil Dirubah!');
-
-
-
     /**
      * Remove the specified resource from storage.
      *

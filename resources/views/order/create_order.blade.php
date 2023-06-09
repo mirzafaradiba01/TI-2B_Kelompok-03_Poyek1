@@ -4,7 +4,7 @@
     <section class="container ">
         <div class="card ">
             <div class="card-header">
-                <h3 class="card-title ">DATA PELANGGAN</h3>
+                <h3 class="card-title ">FORM ORDER</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widge="collapse" title="Collapse">
                         <i class="fas fa-minus"></i>

@@ -93,8 +93,8 @@
                 <div class="right">
                     <p class="fs-3 mt-5 text-capitalize fw-bold text-center">tentang kami</p>
                     <p>
-                        laundry yang berdiri sejak tahun 2015. berlokasi di jalan soekarnohatta <br> no. 19 malang, yang
-                        mampu bersaing dengan daerah sekitarnya
+                        laundry yang berdiri sejak tahun 2015. Jl. Ikhwan Hadi No.55, <br> Ngaglik, Kec. Batu, Kota Batu, Jawa Timur 65311, <br>
+                        yang mampu bersaing dengan daerah sekitarnya
                     </p>
                     <p class="text-capitalize">jenis layanan laundry</p>
                     <ul class="list-group">
@@ -139,20 +139,47 @@
             </div>
         </div>
 
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+         <!-- Temukan Kami -->
+        <section id="temukan-kami">
+            <div class="temukan-kami-container text-center">
+                <h3>Temukan Kami</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.829889124381!2d112.5192799!3d-7.8747761!2m3!1f0!2f16.44!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78873247d424a7%3A0x6b8077acc42d478a!2sAya%20Laundry%20super%20expres!5e0!3m2!1sen!2sid!4v1623217235220!5m2!1sen!2sid"
+                    width="1465" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="clearfix"></div>
+        </section>
 
+        <footer class="footer mt-5 bg-info py-4">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h5 class="text-uppercase mb-4">Tentang Kami</h5>
+                        <p>Laundry Aya adalah layanan laundry profesional yang menyediakan berbagai jenis layanan laundry dengan kualitas terbaik dan harga terjangkau.</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <h5 class="text-uppercase mb-4">Layanan Kami</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#" >Laundry Reguler</a></li>
+                            <li><a href="#">Laundry Express</a></li>
+                            <li><a href="#">Laundry Kilat</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4">
+                        <h5 class="text-uppercase mb-4">Kontak Kami</h5>
+                        <p>
+                            Jalan Soekarnohatta No. 19, Malang<br>
+                            +62 8953 8804 1354<br>
+                            info@ayalaundry.com
+                        </p>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-lg-12 bg-light" >
+                            <p class="text-center">&copy; 2023 Aya Laundry. All Rights Reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 </html>

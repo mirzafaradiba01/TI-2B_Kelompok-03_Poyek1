@@ -30,8 +30,8 @@ class PelangganController extends Controller {
     }
 
     public function data() {
-        $mahasiswa = Pelanggan::with('users')->get();
-        return DataTables::of($mahasiswa)
+        $pelanggan = Pelanggan::with('users')->get();
+        return DataTables::of($pelanggan)
         ->addIndexColumn()
         ->addColumn('username', function($row) {
             return $row->users->username;

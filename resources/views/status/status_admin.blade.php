@@ -38,10 +38,6 @@
                                     @endif
                                 @endforeach
                             </td>
-                            <td>
-                                {{-- Bikin simbol edit dan delete --}}
-                                
-                            </td>
                         </tr>
                         @endforeach                    
                         @else

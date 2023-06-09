@@ -104,19 +104,6 @@ class TransaksiController extends Controller
         //
     }
 
-    // public function cetak_laporan(Request $request)
-    // {
-    //     $tanggal = $request->input('tanggal');
-    //     $order = Order::whereDate('created_at', $tanggal)->get();
-
-    //     $pdf = PDF::loadview('cetakLaporan.cetakLaporan', ['order' =>$order]);
-
-    //     // Set nama file PDF
-    //     $filename = 'laporan_transaksi' . $tanggal . '.pdf';
-
-    //     // Download atau tampilkan PDF dalam browser
-    //     return $pdf->download($filename);
-    // }
     public function show_form()
     {
         return view('cetakLaporan.form_cetak');

@@ -24,6 +24,7 @@
                     <th>Catatan</th>
                     <th>No Hp</th>
                     <th>Status Bayar</th>
+                    <th>Action</th>
                 </thead>
                 <body>
                     @if(isset($order) && $order->count() > 0)
@@ -40,12 +41,13 @@
                                 <td>{{$o->catatan}}</td>
                                 <td>{{$o->pelanggan->no_hp}}</td>
                                 <td>{{$o->status_bayar}}</td>
+                                <td></td>
                                 </tr>
                             </td>
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="11" class="text-center">Data tidak ada</td>
+                            <td colspan="12" class="text-center">Data tidak ada</td>
                         </tr>
                     @endif
                 </body>

@@ -54,7 +54,12 @@ Route::middleware(['auth', 'checkrole:admin'])->prefix('admin')->group(function 
 
     // ----- route di bawah masih dalam percobaan
     Route::get('/transaksi', [TransaksiController::class, 'index'])->name('admin.transaksi');
-    Route::resource('/status_admin', StatusController::class)->parameter('status', 'id')->names('admin.status_admin');
+    Route::resource('/status_admin', StatusController::class)->parameters([
+        'status_admin' => 'id'
+    ])->names('admin.status_admin');
+
+    // Route::post('/status/data', [StatusController::class, 'data']);
+    
     Route::resource('/create_pelanggan', PelangganController::class)->parameter('pelanggan', 'id')->names('admin.create_pelanggan');
 
     // Route untuk update status laundry petugas
@@ -75,6 +80,7 @@ Route::middleware(['auth', 'checkrole:admin'])->prefix('admin')->group(function 
     Route::resource('/petugas', PetugasController::class)->parameter('petugas', 'id')->names('petugas.petugas');
 
     Route::resource('/pelanggan', PelangganController::class)->parameter('pelanggan', 'id')->names('petugas.pelanggan');
+    Route::post('/pelanggan/data', [PelangganController::class, 'data']);
 
     // Route untuk update status laundry petugas
     Route::resource('/status_petugas', StatusPetugasController::class)->parameter('status', 'id')->names('petugas.status_petugas');
