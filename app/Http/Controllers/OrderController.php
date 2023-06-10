@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Pelanggan;
 use App\Models\Status;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 use function Ramsey\Uuid\v1;
 
@@ -83,10 +84,5 @@ class OrderController extends Controller {
     public function statuslaudry() {
         $statusAdmin = Order::all();
         return view('status.status_admin', ['statusAdmin' => $statusAdmin]);
-    }
-
-    public function order_selesai() {
-        $status = Status::with('order')->paginate(5);
-        return view('order.order_selesai', ['status' => $status]);
     }
 }

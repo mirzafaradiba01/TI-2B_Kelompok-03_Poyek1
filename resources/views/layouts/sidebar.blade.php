@@ -91,7 +91,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/' . auth()->user()->role . '/order_selesai') }}" class="nav-link">
+                            <a href="{{ url('/' . auth()->user()->role . '/status/order_selesai') }}" class="nav-link">
                                 <i class="nav-icon fas fa-handshake"></i>
                                 <p>Orderan Selesai</p>
                             </a>
