@@ -143,40 +143,49 @@
         <section id="temukan-kami">
             <div class="temukan-kami-container text-center">
                 <h3>Temukan Kami</h3>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.829889124381!2d112.5192799!3d-7.8747761!2m3!1f0!2f16.44!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78873247d424a7%3A0x6b8077acc42d478a!2sAya%20Laundry%20super%20expres!5e0!3m2!1sen!2sid!4v1623217235220!5m2!1sen!2sid"
-                    width="1465" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.829889124381!2d112.5192799!3d-7.8747761!2m3!1f0!2f16.44!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78873247d424a7%3A0x6b8077acc42d478a!2sAya%20Laundry%20super%20expres!5e0!3m2!1sen!2sid!4v1623217235220!5m2!1sen!2sid" width="100%" height="600px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
             <div class="clearfix"></div>
         </section>
 
-        <footer class="footer mt-5 bg-info py-4">
-            <div class="container text-center">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <h5 class="text-uppercase mb-4">Tentang Kami</h5>
-                        <p>Laundry Aya adalah layanan laundry profesional yang menyediakan berbagai jenis layanan laundry dengan kualitas terbaik dan harga terjangkau.</p>
-                    </div>
-                    <div class="col-lg-4">
-                        <h5 class="text-uppercase mb-4">Layanan Kami</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="#" >Laundry Reguler</a></li>
-                            <li><a href="#">Laundry Express</a></li>
-                            <li><a href="#">Laundry Kilat</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-4">
-                        <h5 class="text-uppercase mb-4">Kontak Kami</h5>
-                        <p>
-                            Jalan Soekarnohatta No. 19, Malang<br>
-                            +62 8953 8804 1354<br>
-                            info@ayalaundry.com
-                        </p>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-lg-12 bg-light" >
-                            <p class="text-center">&copy; 2023 Aya Laundry. All Rights Reserved.</p>
-                        </div>
-                    </div>
+        <footer class="footer mt-5 bg-info">
+           <div class="d-flex justify-content-evenly align-items-center flex-row pt-2"> 
+                <div>
+                    <h5 class="text-uppercase mb-4">Tentang Kami</h5>
+                    <p>
+                        Laundry Aya adalah layanan laundry profesional yang <br> 
+                        menyediakan berbagai jenis layanan laundry dengan <br>
+                        kualitas terbaik dan harga terjangkau.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="text-uppercase mb-4">Layanan Kami</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" >Laundry Reguler</a></li>
+                        <li><a href="#">Laundry Express</a></li>
+                        <li><a href="#">Laundry Kilat</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-uppercase mb-4">Kontak Kami</h5>
+                    <p>
+                        Jalan Ikhwan Hadi No.55, Kota. Batu <br>
+                        +62 8953 8804 1354<br>
+                        info@ayalaundry.com
+                    </p>
+                </div>
+                <div>
+                    <h5 class="text-uppercase mb-4">Jam Operasioanal</h5>
+                    <p>
+                       Hari Senin - Kamis, Jam 09.00 - 21.00 <br>
+                       Hari Sabtu - Minggu, Jam 09.00 - 18.00 <br>
+                       Hari Jum'at Libur
+                    </p>
+                </div>
+           </div>
+           <div class="row mt-4">
+                <div class="col-lg-12 bg-light" >
+                    <p class="text-center">&copy; 2023 Aya Laundry. All Rights Reserved.</p>
                 </div>
             </div>
         </footer>
