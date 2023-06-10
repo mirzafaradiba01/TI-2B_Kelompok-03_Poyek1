@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pelanggan;
+use App\Models\Status;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller {
@@ -29,6 +31,12 @@ class DashboardController extends Controller {
     }
 
     public function pelanggan() {
-        return view('dashboard.pelanggan');
+        $status = Pelanggan::all();
+        return view('dashboard.pelanggan', ['status'=>$status]);
+    }
+
+    public function status_pelanggan($id) {
+        $status = Pelanggan::find ($id);
+        return view('dashboard.pelanggan', ['status'=>$status]);
     }
 }

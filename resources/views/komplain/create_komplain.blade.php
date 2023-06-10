@@ -19,9 +19,9 @@
                 <div class="form-group">
                     @foreach ($pelanggan as $p)
                         <label>Nama Pelanggan</label>
-                        <input class="form-control @error('id') is-invalid @enderror" value="{{ $p->id }}"
-                            name="id" type="text" hidden />
-                        @error('id')
+                        <input class="form-control @error('id_pelanggan') is-invalid @enderror" value="{{ $p->id }}"
+                            name="id_pelanggan" type="text" hidden />
+                        @error('id_pelanggan')
                             <span class="error invalid-feedback">{{ $message }}</span>
                         @enderror
                         <input class="form-control @error('nama') is-invalid @enderror" value="{{ $p->nama }}"
