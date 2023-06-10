@@ -8,7 +8,6 @@
             <div class="card-header">
                 <h3 class="card-title">DATA PELANGGAN</h3>
             </div>
-
             <div class="card-body">
                 <button class="btn btn-sm btn-success my-2" data-toggle="modal" data-target="#modal_pelanggan">Tambah
                     Data</button>
@@ -19,12 +18,13 @@
                         <th>Nama Pelanggan</th>
                         <th>Username</th>
                         <th>No Telepon</th>
-                        <th>Action</th>
-                </thead>
+                        @if (auth()->user()->role === 'admin')
+                            <th>Action</th>
+                        @endif
+                    </thead>
                 </table>
             </div>
         </div>
-
     </section>
     <div class="modal fade" id="modal_pelanggan" style="display: none;" aria-hidden="true">
         <form method="post" action="{{ url(auth()->user()->role . '/pelanggan') }}" role="form" class="form-horizontal"
@@ -58,7 +58,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>                        
+                        </div>
                         <div class="form-group required row mb-2">
                             <label class="col-sm-2 control-label col-form-label">No. HP</label>
                             <div class="col-sm-10">
@@ -135,7 +135,7 @@
 
 @push('js')
     <script>
-        
+
        function tambahData() {
             $('#modal_pelanggan').modal('show');
             $('#modal_pelanggan .modal-title').html('Tambah Data Pelanggan');
@@ -196,6 +196,63 @@
         }
 
         $(document).ready(function() {
+            var isAdmin = "{{ auth()->user()->role }}" === "admin";
+
+            var columns = [{
+                    data: 'nomor',
+                    searchable: false,
+                    sortable: false
+                },
+                {
+                    data: 'kode_pelanggan',
+                    name: 'kode_pelanggan',
+                    searchable: true,
+                    sortable: false
+                },
+                {
+                    data: 'nama',
+                    name: 'nama',
+                    searchable: true,
+                    sortable: false
+                },
+                {
+                    data: 'username',
+                    name: 'username',
+                    searchable: true,
+                    sortable: false
+                },
+                {
+                    data: 'no_hp',
+                    name: 'no_hp',
+                    searchable: true,
+                    sortable: false
+                }
+            ];
+
+            if (isAdmin) {
+                columns.push({
+                    data: 'id',
+                    name: 'id',
+                    sortable: false,
+                    searchable: false,
+                    render: function(data, type, row) {
+                        var btn = "";
+                        btn += `<button data-url="{{ url(auth()->user()->role . '/pelanggan') }}/` +
+                            data +
+                            `" class="btn btn-xs btn-warning mr-2 ml-2" onclick="updateData(this)" data-id="` +
+                            row.id + `" data-nama="` + row.nama + `"  data-username="` + row
+                            .username + `" data-no_hp="` + row.no_hp +
+                            `"><i class="fa fa-edit"></i>Edit</button>`;
+                        btn += `<button href="{{ url(auth()->user()->role . '/pelanggan/') }}/` +
+                            data + ` " onclick="showData(` + data +
+                            `)" class="btn btn-xs btn-info mr-2 ml-2"><i class="fa fa-list"></i>Detail</button>`;
+                        btn += `<button class="btn btn-xs btn-danger" onclick="deleteData(` +
+                            data + `)"><i class="fa fa-trash mr-2 ml-2"></i>Hapus</button>`;
+                        return btn;
+                    }
+                });
+            }
+
             var dataPelanggan = $('#data-pelanggan').DataTable({
                 processing: true,
                 serverSide: true,
@@ -204,57 +261,7 @@
                     'dataType': 'json',
                     'type': 'POST',
                 },
-                columns: [{
-                        data: 'nomor',
-                        searchable: false,
-                        sortable: false
-                    },
-                    {
-                        data: 'kode_pelanggan',
-                        name: 'kode_pelanggan',
-                        searchable: true,
-                        sortable: false
-                    },
-                    {
-                        data: 'nama',
-                        name: 'nama',
-                        searchable: true,
-                        sortable: false
-                    },
-                    {
-                        data: 'username',
-                        name: 'username',
-                        searchable: true,
-                        sortable: false
-                    },
-                    {
-                        data: 'no_hp',
-                        name: 'no_hp',
-                        searchable: true,
-                        sortable: false
-                    },
-                    {
-                        data: 'id',
-                        name: 'id',
-                        sortable: false,
-                        searchable: false,
-                        render: function(data, type, row) {
-                            var btn =
-                                `<button data-url="{{ url(auth()->user()->role . '/pelanggan') }}/` +
-                                data +
-                                `" class="btn btn-xs btn-warning mr-2 ml-2" onclick="updateData(this)" data-id="` +
-                                row.id + `" data-nama="` + row.nama + `"  data-username="` + row
-                                .username + `" data-no_hp="` + row.no_hp +
-                                `"><i class="fa fa-edit"></i>Edit</button>` +
-                                `<button href="{{ url(auth()->user()->role . '/pelanggan/') }}/` +
-                                data + ` " onclick="showData(` + data +
-                                `)" class="btn btn-xs btn-info mr-2 ml-2"><i class="fa fa-list"></i>Detail</button>` +
-                                `<button class="btn btn-xs btn-danger" onclick="deleteData(` +
-                                data + `)"><i class="fa fa-trash mr-2 ml-2"></i>Hapus</button>`;
-                            return btn;
-                        }
-                    }
-                ]
+                columns: columns
             });
 
             $('#form_pelanggan').submit(function(e) {
