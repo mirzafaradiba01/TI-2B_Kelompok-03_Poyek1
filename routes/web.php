@@ -94,7 +94,4 @@ Route::middleware(['auth', 'checkrole:pelanggan'])->prefix('pelanggan')->group(f
     Route::get('/status/{id}', [StatusController::class, 'status_pelanggan']);
     Route::get('/transaksi/cetakNotaLaundry/{id}', [TransaksiController::class, 'cetakNotaLaundry'])->name('notaLaundry.cetak');
     // Route::get('/cekstatus', [StatusController::class, 'cekstatus'])->name('komplain.cekstatus');
-
 });
-
-
