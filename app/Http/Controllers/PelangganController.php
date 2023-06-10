@@ -30,8 +30,8 @@ class PelangganController extends Controller {
         return view('pelanggan.create_pelanggan', ['url_form' => url( auth()->user()->role . '/pelanggan' ), 'users' => $users]);
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
+
         $countPelanggan = Pelanggan::count();
         $kode = '11';
         $kode_pelanggan = $kode . ($countPelanggan + 1);
@@ -55,12 +55,12 @@ class PelangganController extends Controller {
         $data = $request->all();
         $data['kode_pelanggan'] = $kode_pelanggan;
 
-        $petugas = Pelanggan::create($data);
-        if ($petugas) {
+        $pelanggan = Pelanggan::create($data);
+        if ($pelanggan) {
             return response()->json([
                 'kode_pelanggan' => $kode_pelanggan,
                 'status' => true,
-                'modal_close' => false,
+                'modal_close' => true,
                 'message' => 'Data berhasil ditambahkan',
                 'data' => null
             ]);
@@ -132,8 +132,32 @@ class PelangganController extends Controller {
     }
 
     public function destroy($id) {
-        Pelanggan::where('id', '=', $id)->delete();
-        return redirect( auth()->user()->role . '/pelanggan' )->with ('success', 'Pelanggan Berhasil Dihapus');
+
+        $pelanggan = Pelanggan::where('id', $id)->first();
+
+        if (!$pelanggan) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data not found',
+                'data' => null
+            ]);
+        }
+
+        $deleted = $pelanggan->delete();
+
+        if ($deleted) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Data berhasil dihapus',
+                'data' => null
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data gagal dihapus',
+                'data' => null
+            ]);
+        }
     }
 
     public function data() {

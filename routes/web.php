@@ -92,7 +92,6 @@ Route::middleware(['auth', 'checkrole:pelanggan'])->prefix('pelanggan')->group(f
     Route::get('/dashboard', [DashboardController::class, 'pelanggan'])->name('pelanggan.dashboard');
     Route::get('/komplain/create/{id}', [KomplainController::class, 'create']);
     Route::get('/status/{id}', [StatusController::class, 'status_pelanggan']);
-    
 
     Route::get('/transaksi/cetakNotaLaundry/{id}', [TransaksiController::class, 'cetakNotaLaundry'])->name('notaLaundry.cetak');
     // Route::get('/cekstatus', [StatusController::class, 'cekstatus'])->name('komplain.cekstatus');

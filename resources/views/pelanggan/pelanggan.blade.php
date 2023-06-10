@@ -7,7 +7,7 @@
                 <h3 class="card-title">DATA PELANGGAN</h3>
             </div>
             <div class="card-body">
-                <button class="btn btn-sm btn-success my-2" data-toggle="modal" data-target="#modal_pelanggan">Tambah
+                <button class="btn btn-sm btn-success my-2" data-toggle="modal" data-target="#modal-pelanggan">Tambah
                     Data</button>
                 <table class="table table-bordered table-striped" id="data-pelanggan">
                     <thead>
@@ -24,9 +24,9 @@
             </div>
         </div>
     </section>
-    <div class="modal fade" id="modal_pelanggan" style="display: none;" aria-hidden="true">
+    <div class="modal fade" id="modal-pelanggan" style="display: none;" aria-hidden="true">
         <form method="post" action="{{ url(auth()->user()->role . '/pelanggan') }}" role="form" class="form-horizontal"
-            id="form_pelanggan">
+            id="form-pelanggan">
             @csrf
             <div class="modal-dialog modal-">
                 <div class="modal-content">
@@ -135,21 +135,21 @@
     <script>
 
        function tambahData() {
-            $('#modal_pelanggan').modal('show');
-            $('#modal_pelanggan .modal-title').html('Tambah Data Pelanggan');
-            $('#modal_pelanggan #nama').val('');
-            $('#modal_pelanggan #username').val('');
-            $('#modal_pelanggan #no_hp').val('');
+            $('#modal-pelanggan').modal('show');
+            $('#modal-pelanggan .modal-title').html('Tambah Data Pelanggan');
+            $('#modal-pelanggan #nama').val('');
+            $('#modal-pelanggan #username').val('');
+            $('#modal-pelanggan #no_hp').val('');
         }
 
         function updateData(th) {
-            $('#modal_pelanggan').modal('show');
-            $('#modal_pelanggan .modal-title').html('Edit Data Pelanggan');
-            $('#modal_pelanggan #nama').val($(th).data('nama'));
-            $('#modal_pelanggan #username').val($(th).data('id_user'));
-            $('#modal_pelanggan #no_hp').val($(th).data('no_hp'));
-            $('#modal_pelanggan #form_pelanggan').attr('action', $(th).data('url'));
-            $('#modal_pelanggan #form_pelanggan').append('<input type="hidden" name="_method" value="PUT">');
+            $('#modal-pelanggan').modal('show');
+            $('#modal-pelanggan .modal-title').html('Edit Data Pelanggan');
+            $('#modal-pelanggan #nama').val($(th).data('nama'));
+            $('#modal-pelanggan #username').val($(th).data('id_user'));
+            $('#modal-pelanggan #no_hp').val($(th).data('no_hp'));
+            $('#modal-pelanggan #form-pelanggan').attr('action', $(th).data('url'));
+            $('#modal-pelanggan #form-pelanggan').append('<input type="hidden" name="_method" value="PUT">');
         }
 
         function showData(element) {
@@ -194,7 +194,7 @@
         }
 
         $(document).ready(function() {
-            var isAdmin = "{{ auth()->user()->role }}" === "admin";
+            var admin = "{{ auth()->user()->role }}" === "admin";
 
             var columns = [{
                     data: 'nomor',
@@ -227,7 +227,7 @@
                 }
             ];
 
-            if (isAdmin) {
+            if (admin) {
                 columns.push({
                     data: 'id',
                     name: 'id',
@@ -235,17 +235,12 @@
                     searchable: false,
                     render: function(data, type, row) {
                         var btn = "";
-                        btn += `<button data-url="{{ url(auth()->user()->role . '/pelanggan') }}/` +
-                            data +
-                            `" class="btn btn-xs btn-warning mr-2 ml-2" onclick="updateData(this)" data-id="` +
-                            row.id + `" data-nama="` + row.nama + `"  data-username="` + row
-                            .username + `" data-no_hp="` + row.no_hp +
-                            `"><i class="fa fa-edit"></i>Edit</button>`;
-                        btn += `<button href="{{ url(auth()->user()->role . '/pelanggan/') }}/` +
-                            data + ` " onclick="showData(` + data +
-                            `)" class="btn btn-xs btn-info mr-2 ml-2"><i class="fa fa-list"></i>Detail</button>`;
-                        btn += `<button class="btn btn-xs btn-danger" onclick="deleteData(` +
-                            data + `)"><i class="fa fa-trash mr-2 ml-2"></i>Hapus</button>`;
+
+                        btn += `<button data-url="{{ url(auth()->user()->role . '/pelanggan') }}/` + data + `" class="btn btn-xs btn-warning mr-2 ml-2" onclick="updateData(this)" data-id="` + row.id + `" data-nama="` + row.nama + `"  data-username="` + row.username + `" data-no_hp="` + row.no_hp +
+                        `"><i class="fa fa-edit"></i>Edit</button>`;
+                        btn += `<button href="{{ url(auth()->user()->role . '/pelanggan/') }}/` + data + ` " onclick="showData(` + data + `)" class="btn btn-xs btn-info mr-2 ml-2"><i class="fa fa-list"></i>Detail</button>`;
+                        btn += `<button class="btn btn-xs btn-danger" onclick="deleteData(` +  data + `)"><i class="fa fa-trash mr-2 ml-2"></i>Hapus</button>`;
+
                         return btn;
                     }
                 });
@@ -262,7 +257,7 @@
                 columns: columns
             });
 
-            $('#form_pelanggan').submit(function(e) {
+            $('#form-pelanggan').submit(function(e) {
                 e.preventDefault();
                 $.ajax({
                     url: $(this).attr('action'),
@@ -275,12 +270,12 @@
                             $('.form-message').html(
                                 '<span class="alert alert-success" style="width: 100%">' +
                                 data.message + '</span>');
-                            $('#form_pelanggan')[0].reset();
+                            $('#form-pelanggan')[0].reset();
                             dataPelanggan.draw(
                                 false
                                 ); // Reload tabel sesuai dengan halaman pagination yang sedang aktif
-                            $('#form_pelanggan').attr('action', '{{ url('pelanggan') }}');
-                            $('#form_pelanggan').find('input[name="_method"]').remove();
+                            $('#form-pelanggan').attr('action', '{{ url('pelanggan') }}');
+                            $('#form-pelanggan').find('input[name="_method"]').remove();
                         } else {
                             $('.form-message').html(
                                 '<span class="alert alert-danger" style="width: 100%">' +
@@ -290,7 +285,7 @@
 
                         if (data.modal_close) {
                             $('.form-message').html('');
-                            $('#modal_pelanggan').modal('hide');
+                            $('#modal-pelanggan').modal('hide');
                         }
                     }
                 });
