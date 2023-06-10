@@ -16,7 +16,7 @@
             </div>
         </div>
     </section>
-
+@foreach($status as $s)
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -27,6 +27,7 @@
                                 <div class="col mr-2">
                                     <p>Dalam Proses Cuci</p>
                                     <div class="h5 mb-0 font-weight-bold">Laundry</div>
+                                    <a href="{{ url(auth()->user()->role.'/status/'.$s->id) }}" class="small-box-footer h5 mb-0 font-weight-bold">More info <i class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-bars fa-2x"></i>
@@ -42,6 +43,8 @@
                                 <div class="col mr-2">
                                     <p>Dalam Proses Setrika</p>
                                     <div class="h5 mb-0 font-weight-bold">Laundry</div>
+                                    <a href="{{ url(auth()->user()->role.'/status/'.$s->id) }}" class="small-box-footer h5 mb-0 font-weight-bold">More info <i class="fas fa-arrow-circle-right"></i></a>
+
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-copy fa-2x"></i>
@@ -57,6 +60,7 @@
                                 <div class="col mr-2">
                                     <p>Dalam Proses Packing</p>
                                     <div class="h5 mb-0 font-weight-bold">Laundry</div>
+                                    <a href="{{ url(auth()->user()->role.'/status/'.$s->id) }}" class="small-box-footer h5 mb-0 font-weight-bold">More info <i class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-ellipsis-h fa-2x"></i>
@@ -68,4 +72,6 @@
             </div>
         </div>
     </section>
+    @break
+    @endforeach
 @endsection
