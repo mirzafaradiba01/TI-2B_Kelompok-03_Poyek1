@@ -2,51 +2,88 @@
 
 @section('content')
 <section class="content">
-
-    <!--Default box-->
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">STATUS LAUNDRY</h3>
         </div>
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered table-striped" id="data-status-admin">
                 <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Kode Order </th>
-                            <th>Nama Pelanggan </th>
-                            <th>Jenis Laundry</th>
-                            <th>Berat</th>
-                            <th>Total Pembayaran</th>
-                            <th>Status</th>
-                           
-                        </tr>
-                    </thead>
-                    <body>
-                        @if($status_admin->count() > 0)
-                        @foreach($status_admin as $s => $si)
-                        <tr>
-                            <td>{{++$s}}</td>
-                            <td>{{$si->kode_order}}</td>
-                            <td>{{$si->pelanggan->nama}}</td>
-                            <td>{{$si->jenis_laundry->nama}}</td>
-                            <td>{{$si->berat}}</td>
-                            <td>{{$si->total}}</td>
-                            <td>
-                                @foreach($status as $sa)
-                                    @if($sa->kode_order == $si->kode_order)
-                                        {{$sa->status}}
-                                    @endif
-                                @endforeach
-                            </td>
-                        </tr>
-                        @endforeach                    
-                        @else
-                            <tr><td colspan="6" class="text-center">Data Tidak Ada</td></tr>
-                        @endif
-                    </body>
+                    <th>No</th>
+                    <th>Kode Status</th>
+                    <th>Nama Pelanggan </th>
+                    <th>Jenis Laundry</th>
+                    <th>Berat</th>
+                    <th>Total Pembayaran</th>
+                    <th>Status</th>
+                </thead>
             </table>
-            <div class="pagination justify-content-end mt-2">  {{ $status_admin->withQueryString()->links() }}</div>
         </div>
     </div>
     </section>
 @endsection
+
+@push('js')
+
+    <script>
+        
+        $(document).ready(function() {
+            var dataPelanggan = $('#data-status-admin').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    'url': '{{ url(auth()->user()->role . '/status/data') }}',
+                    'dataType': 'json',
+                    'type': 'POST',
+                    'data': {
+                        '_token': '{{ csrf_token() }}',
+                        'id_user': '{{ auth()->user()->id }}'
+                    }
+                },
+                columns: [
+                    {
+                        data: 'nomor',
+                        searchable: false,
+                        sortable: false
+                    },
+                    {
+                        data: 'kode_status',
+                        name: 'kode_status',
+                        searchable: true,
+                        sortable: false
+                    },
+                    {
+                        data: 'nama',
+                        name: 'nama',
+                        searchable: true,
+                        sortable: false
+                    },
+                    {
+                        data: 'jenis_laundry',
+                        name: 'jenis_laundry',
+                        searchable: true,
+                        sortable: false
+                    },
+                    {
+                        data: 'berat',
+                        name: 'berat',
+                        searchable: true,
+                        sortable: false
+                    },
+                    {
+                        data: 'total',
+                        name: 'total',
+                        searchable: true,
+                        sortable: false
+                    },
+                    {
+                        data: 'status',
+                        name: 'status',
+                        searchable: true,
+                        sortable: false
+                    },
+                ]
+            });
+        }); 
+    </script>
+
+@endpush

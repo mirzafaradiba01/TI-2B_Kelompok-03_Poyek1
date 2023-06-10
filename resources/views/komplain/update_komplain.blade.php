@@ -15,7 +15,7 @@
                 </div>
             </div>
 
-            <form action="{{ $url_form }}" method="POST" enctype="multipart/form-data">
+            <form class="p-3" action="{{ $url_form }}" method="POST" enctype="multipart/form-data">
                 @csrf
                {!!(isset($komplain))?method_field('PUT'):'' !!}
 

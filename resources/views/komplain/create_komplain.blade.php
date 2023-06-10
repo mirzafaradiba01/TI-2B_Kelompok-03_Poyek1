@@ -14,35 +14,38 @@
                     </button>
                 </div>
             </div>
-            <form class="p-5" action="{{ $url_form }}" method="POST" enctype="multipart/form-data">
+            <form class="p-3" action="{{ $url_form }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                  @foreach($pelanggan as $p)
-                  <label>Nama Pelanggan</label>
-                  <input class="form-control @error('id_pelanggan') is-invalid @enderror" value="{{$p->id}}" name="id_pelanggan" type="text" hidden/>                  
-                    @error('id_pelanggan')
-                        <span class="error invalid-feedback">{{ $message }} </span>
-                    @enderror
-                    <input class="form-control @error('nama') is-invalid @enderror" value="{{$p->nama}}" name="nama" type="text" disabled/>
-                    @error('nama')
-                        <span class="error invalid-feedback">{{ $message }} </span>
-                    @enderror
-                  @endforeach
-              </div>
+                    @foreach ($pelanggan as $p)
+                        <label>Nama Pelanggan</label>
+                        <input class="form-control @error('id') is-invalid @enderror" value="{{ $p->id }}"
+                            name="id" type="text" hidden />
+                        @error('id')
+                            <span class="error invalid-feedback">{{ $message }}</span>
+                        @enderror
+                        <input class="form-control @error('nama') is-invalid @enderror" value="{{ $p->nama }}"
+                        name="nama" type="text" readonly />
+                        @error('nama')
+                            <span class="error invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    @endforeach
+                </div>
                 <div class="form-group">
-                  <label for="pesan">Komplain: </label>
-                  <textarea type="text" class="form-control @error('pesan') is-invalid @enderror" required="required" name="pesan"></textarea></br>
-                  @error('pesan')
-                      <span class="error invalid-feedback">{{ $message }}</span>
-                  @enderror
-              </div>
-              <div class="form-group">
-                <label for="gambar">Image</label>
-                <input type="file" id="gambar" class="form-control" name="gambar" value="" required="required">
-                @error('gambar')
-                  <small class="text-danger">{{ $message }}</small>
-                @enderror
-            </div>
+                    <label for="pesan">Komplain</label>
+                    <textarea type="text" class="form-control @error('pesan') is-invalid @enderror" required="required" name="pesan"></textarea></br>
+                    @error('pesan')
+                        <span class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="gambar">Image</label>
+                    <input type="file" id="gambar" class="form-control" name="gambar" value=""
+                        required="required">
+                    @error('gambar')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
                 <div class="form-group">
                     <button type="submit" name="submit" class="btn btn-primary float-right">Submit</button>
                 </div>

@@ -7,15 +7,16 @@ use App\Models\Order;
 use App\Models\Pelanggan;
 use App\Models\Status;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class StatusController extends Controller {
-    
+
     public function index(Request $request) {
 
         if($request->get('query') !== null){
             $query = $request->get('query');
             $status_admin = Order::where('kode_status', 'LIKE', '%'.$query.'%')
-                ->orWhere('nama_pelanggan', 'LIKE', '%'.$query.'%')
+                ->orWhere('nama', 'LIKE', '%'.$query.'%')
                 ->orWhere('no_hp', 'LIKE', '%'.$query.'%')
                 ->paginate(5);
             $status = Status::all();
@@ -50,8 +51,66 @@ class StatusController extends Controller {
 
     public function destroy(Status $status) {}
 
+    public function data_status_admin() {
+
+        $order = Status::with('pelanggan')->get();
+        return DataTables::of($order)
+        ->addColumn('nama', function($row) {
+            return $row->pelanggan->nama;
+        })
+        ->addColumn('jenis_laundry', function ($row) {
+            return $row->jenis_laundry->nama;
+        })
+        ->addColumn('berat', function ($row) {
+            return $row->order->berat;
+        })
+        ->addColumn('total', function ($row) {
+            return $row->order->total;
+        })
+        ->addColumn('status', function ($row) {
+            return $row->status;
+        })
+        ->addIndexColumn()
+        ->make(true);
+    }
+
+    public function data_status_pelanggan() {
+
+        $id_user = auth()->user()->id;
+        $order = Status::with(['pelanggan', 'jenis_laundry'])
+            ->whereHas('pelanggan', function ($query) use ($id_user) {
+                $query->where('id_user', $id_user);
+            })
+
+            ->get();
+
+        return DataTables::of($order)
+            ->addColumn('kode_status', function ($row) {
+                return $row->kode_status;
+            })
+            ->addColumn('nama', function ($row) {
+                return $row->pelanggan->nama;
+            })
+            ->addColumn('jenis_laundry', function ($row) {
+                return $row->jenis_laundry->nama;
+            })
+            ->addColumn('berat', function ($row) {
+                return $row->order->berat;
+            })
+            ->addColumn('total', function ($row) {
+                return $row->order->total;
+            })
+            ->addColumn('status', function ($row) {
+                return $row->status;
+            })
+            ->addIndexColumn()
+            ->make(true);
+    }
+
+
+
     public function status_pelanggan($id) {
-        
+
         $order_pelanggan = Order::where('id_pelanggan', $id)->get();
         $status_pelanggan = Status::where('id_pelanggan', $id)->get();
         return view('status.status_pelanggan', ['order_pelanggan' => $order_pelanggan, 'status_pelanggan' => $status_pelanggan]);

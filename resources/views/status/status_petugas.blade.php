@@ -34,11 +34,11 @@
                                             <div class="card-body">
                                                 <div class="row no-gutters align-items-center">
                                                     <div class="col mr-2">
-                                                        <div class="h5 mb-5 font-weight-bold">Nota Order
+                                                        <div class="h5 font-weight-bold">Nota Order
                                                             <span class="float-right">{{$sc->kode_order}}</span> <br>
                                                         </div>
                                                         <div class="h5 mb-4 font-weight-bold">Nama
-                                                            <span class="float-right">{{$sp->pelanggan->nama}}</span>
+                                                            <span class="float-right">{{$sc->pelanggan->nama}}</span>
                                                         </div>
                                                         <div class="div d-flex justify-content-center">
                                                             <a href="#" class="btn btn-light btn-block" data-toggle="modal" data-target="#statusModal{{ $sc->id }}">{{ $sc->status }}
@@ -78,11 +78,11 @@
                                             <div class="card-body">
                                                 <div class="row no-gutters align-items-center">
                                                     <div class="col mr-2">
-                                                        <div class="h5 mb-5 font-weight-bold">Nota Order
+                                                        <div class="h5 font-weight-bold">Nota Order
                                                             <span class="float-right">{{$ss->kode_order}}</span>
                                                         </div>
                                                         <div class="h5 mb-4 font-weight-bold">Nama
-                                                            <span class="float-right">{{$sp->pelanggan->nama}}</span>
+                                                            <span class="float-right">{{$ss->pelanggan->nama}}</span>
                                                         </div>
                                                         <div class="div d-flex justify-content-center">
                                                             <a href="#" class="btn btn-light btn-block" data-toggle="modal" data-target="#statusModal{{ $ss->id }}">{{ $ss->status }}</a>

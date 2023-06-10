@@ -7,6 +7,7 @@ use App\Models\Pelanggan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\DataTables;
 
 class KomplainController extends Controller {
 
@@ -112,6 +113,17 @@ class KomplainController extends Controller {
 
         Komplain::where('id', '=', $id)->delete();
         return redirect( auth()->user()->role . '/komplain' )->with ('success', 'Pelanggan Berhasil Dihapus');
+    }
+
+    public function data() {
+
+        $komplain = Komplain::with('pelanggan')->get();
+        return DataTables::of($komplain)
+        ->addColumn('nama', function($row) {
+            return $row->pelanggan->nama;
+        })
+        ->addIndexColumn()
+        ->make(true);
     }
 
     public function komplainpelanggan(Request $request) {
