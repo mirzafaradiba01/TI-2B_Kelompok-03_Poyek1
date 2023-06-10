@@ -9,11 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class KomplainController extends Controller {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Request $request) {
         $user = Auth::user();
 
@@ -38,23 +34,11 @@ class KomplainController extends Controller {
         return view('komplain.komplain', ['komplain' => $komplain]);
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create($id) {
         $pelanggan = Pelanggan::where('id', $id)->get();
         return view('komplain.create_komplain', ['url_form' => url(auth()->user()->role . '/komplain'), 'pelanggan' => $pelanggan]);
     }
 
-    /**
-     * Store a newly created resource in storage.;
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request) {
         $countkomplain = Komplain::count();
         $kode = '1100';
@@ -78,13 +62,6 @@ class KomplainController extends Controller {
 
     }
 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Komplain  $komplain
-     * @return \Illuminate\Http\Response
-     */
     public function show($id) {
         $komplain = Komplain::find($id);
         // $pelanggan = Pelanggan::find($id);
@@ -94,12 +71,6 @@ class KomplainController extends Controller {
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Komplain  $komplain
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $komplain = Komplain::find($id);
@@ -110,55 +81,40 @@ class KomplainController extends Controller {
                     ->with('url_form', url( auth()->user()->role . '/komplain/'. $id));
     }
 
+    public function update(Request $request, $id) {
+        $komplain = Komplain::find($id);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Komplain  $komplain
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-{
-    $komplain = Komplain::find($id);
-
-    if (!$komplain) {
-        return redirect()->back()->with('error', 'Komplain tidak ditemukan.');
-    }
-
-    $komplain->id_pelanggan  = $request->id_pelanggan;
-    $komplain->kode_komplain = $request->kode_komplain;
-    $komplain->pesan = $request->pesan;
-    $komplain->balasan = $request->balasan;
-
-    if ($request->hasFile('gambar')) {
-        // Menghapus gambar sebelumnya jika ada
-        if ($komplain->gambar && Storage::exists('public/' . $komplain->gambar)) {
-            Storage::delete('public/' . $komplain->gambar);
+        if (!$komplain) {
+            return redirect()->back()->with('error', 'Komplain tidak ditemukan.');
         }
 
-        $gambar = $request->file('gambar')->store('bukti_komplain', 'public');
-        $komplain->gambar = $gambar;
+        $komplain->id_pelanggan  = $request->id_pelanggan;
+        $komplain->kode_komplain = $request->kode_komplain;
+        $komplain->pesan = $request->pesan;
+        $komplain->balasan = $request->balasan;
+
+        if ($request->hasFile('gambar')) {
+            // Menghapus gambar sebelumnya jika ada
+            if ($komplain->gambar && Storage::exists('public/' . $komplain->gambar)) {
+                Storage::delete('public/' . $komplain->gambar);
+            }
+
+            $gambar = $request->file('gambar')->store('bukti_komplain', 'public');
+            $komplain->gambar = $gambar;
+        }
+
+        $komplain->save();
+
+        return redirect(auth()->user()->role.'/komplain')->with('success', 'Data Komplain Berhasil Dirubah!');
     }
 
-    $komplain->save();
-
-    return redirect(auth()->user()->role.'/komplain')->with('success', 'Data Komplain Berhasil Dirubah!');
-}
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Komplain  $komplain
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id) {
+
         Komplain::where('id', '=', $id)->delete();
         return redirect( auth()->user()->role . '/komplain' )->with ('success', 'Pelanggan Berhasil Dihapus');
     }
 
-    public function komplainpelanggan(Request $request)
-    {
+    public function komplainpelanggan(Request $request) {
         $image_name = null;
         if ($request->hasFile('image')){
             $image_name = $request->file('image')->store('images', 'public');

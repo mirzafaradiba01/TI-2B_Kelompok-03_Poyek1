@@ -10,43 +10,14 @@ use Illuminate\Http\Request;
 
 use function Ramsey\Uuid\v1;
 
-class OrderController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+class OrderController extends Controller {
+
     public function index(Request $request) {
         $jenis = JenisLaundry::all();
         $pelanggan = Pelanggan::all();
         return view('order.create_order', ['jenis' => $jenis], ['pelanggan' => $pelanggan]);
     }
 
-    // cek status
-    public function searching(Request $request){
-        if($request->get('query') !== null){
-            $query = $request->get('query');
-            $order = Order ::where('kode_order', 'LIKE', '%'.$query.'%')
-                ->with('order')
-                ->paginate(5);
-        } else {
-            $order = Order ::with('order')->paginate(5);
-        }
-        return view('searching.searching', ['order' => $order]);
-    }
-
-    // statuslaundry
-    public function statuslaudry() {
-        $statusAdmin = Order::all();
-        return view('status.status_admin', ['statusAdmin' => $statusAdmin]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create() {
 
         $jenis = JenisLaundry::all();
@@ -59,20 +30,11 @@ class OrderController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request) {
 
         $countOrder = Order::count();
-
         $kode_order = '100' . ($countOrder + 1);
-
         $countStatus = Status::count();
-
         $kode_status = 'S-00' . ($countStatus + 1);
 
         $order = Order::create([
@@ -85,7 +47,7 @@ class OrderController extends Controller
             'catatan' => $request->catatan,
             'status_bayar' => $request->status_bayar,
         ]);
-        
+
         Status::create([
             'id_pelanggan' => $request->id_pelanggan,
             'id_jenis_laundry' => $request->id_jenis_laundry,
@@ -93,57 +55,37 @@ class OrderController extends Controller
             'id_order' => $order->id, // Menggunakan ID dari order yang baru ditambahkan
             'kode_status' => $kode_status,
             'status' => 'Cuci',
-        ]);        
+        ]);
 
         return redirect( auth()->user()->role . '/transaksi')->with('success', 'Order Berhasil Ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id) {
+    public function show($id) {}
 
+    public function edit(Order $order) {}
+
+    public function update(Request $request, Order $order) {}
+
+    public function destroy(Order $order) { }
+
+    public function searching(Request $request){
+        if($request->get('query') !== null){
+            $query = $request->get('query');
+            $order = Order ::where('kode_order', 'LIKE', '%'.$query.'%')
+                ->with('order')
+                ->paginate(5);
+        } else {
+            $order = Order ::with('order')->paginate(5);
+        }
+        return view('searching.searching', ['order' => $order]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Order $order)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Order $order)
-    {
-        //
+    public function statuslaudry() {
+        $statusAdmin = Order::all();
+        return view('status.status_admin', ['statusAdmin' => $statusAdmin]);
     }
 
     public function order_selesai() {
-
         $status = Status::with('order')->paginate(5);
         return view('order.order_selesai', ['status' => $status]);
     }

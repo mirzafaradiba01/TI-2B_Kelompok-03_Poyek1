@@ -6,16 +6,12 @@ use App\Models\Order;
 use App\Models\Status;
 use Illuminate\Http\Request;
 
-class StatusPetugasController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+class StatusPetugasController extends Controller {
+
     public function index(Request $request) {
-        
+
         if ($request->get('query') !== null) {
+            
             $query = $request->get('query');
             $status_petugas = Status::where('kode_status', 'LIKE', '%' . $query . '%')
                 ->orWhere('nama_pelanggan', 'LIKE', '%' . $query . '%')
@@ -38,35 +34,12 @@ class StatusPetugasController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    public function create() {}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function store(Request $request) {}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
+    public function show($id) {
+
         $status = Status::find($id);
         $order = Order::find($id);
         return view('status.status_petugas', [
@@ -75,26 +48,10 @@ class StatusPetugasController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+    public function edit($id) {}
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
+
         $status = Status::find($id);
         $status->status = $request->status;
         $status->save();
@@ -102,19 +59,10 @@ class StatusPetugasController extends Controller
         return redirect()->back()->with('success', 'Status updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    public function destroy($id) {}
 
-    public function update_status($id)
-    {
+    public function update_status($id) {
+
         $status = Status::find($id);
         if ($status->status == 'Cuci') {
             $status->status = 'Setrika';
@@ -123,7 +71,7 @@ class StatusPetugasController extends Controller
         } elseif ($status->status == 'Packing'){
             $status->status = 'Selesai';
         }
-        
+
         $status->save();
 
         return redirect()->back()->with('Success', 'Status diperbarui.');

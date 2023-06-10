@@ -12,17 +12,15 @@
             <div class="card-body">
                 <button class="btn btn-sm btn-success my-2" data-toggle="modal" data-target="#modal_pelanggan">Tambah
                     Data</button>
-                <table class="table table-bordered table-striped" id="data_pelanggan">
+                <table class="table table-bordered table-striped" id="data-pelanggan">
                     <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Kode</th>
-                            <th>Nama Pelanggan</th>
-                            <th>Username</th>
-                            <th>No Telepon</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
+                        <th>No</th>
+                        <th>Kode</th>
+                        <th>Nama Pelanggan</th>
+                        <th>Username</th>
+                        <th>No Telepon</th>
+                        <th>Action</th>
+                </thead>
                 </table>
             </div>
         </div>
@@ -198,7 +196,7 @@
         }
 
         $(document).ready(function() {
-            var dataPelanggan = $('#data_pelanggan').DataTable({
+            var dataPelanggan = $('#data-pelanggan').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: {

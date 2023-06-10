@@ -8,18 +8,12 @@
                 <b>Status Laundry</b>
             </h1>
         </div>
-
     </section>
     <br> <br>
 
-    <!-- Main content -->
     <section class="content">
-
-        <!-- Default box -->
         <div class="container-fluid">
-            <!-- Small boxes (Stat box) -->
             <div class="">
-
                 <section>
                     <div class="container-fluid">
                         <div class="row">
@@ -40,10 +34,16 @@
                                             <div class="card-body">
                                                 <div class="row no-gutters align-items-center">
                                                     <div class="col mr-2">
-                                                        <div class="h5 mb-5 font-weight-bold">Nota Order<span class="float-right">{{$sc->kode_order}}</span></div>
+                                                        <div class="h5 mb-5 font-weight-bold">Nota Order
+                                                            <span class="float-right">{{$sc->kode_order}}</span> <br>
+                                                        </div>
+                                                        <div class="h5 mb-4 font-weight-bold">Nama
+                                                            <span class="float-right">{{$sp->pelanggan->nama}}</span>
+                                                        </div>
                                                         <div class="div d-flex justify-content-center">
-                                                            <a href="#" class="btn btn-light btn-block" data-toggle="modal" data-target="#statusModal{{ $sc->id }}">{{ $sc->status }}</a>
-                                                        </div>                                                                                                               
+                                                            <a href="#" class="btn btn-light btn-block" data-toggle="modal" data-target="#statusModal{{ $sc->id }}">{{ $sc->status }}
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -68,8 +68,8 @@
                                         </div>
                                     </form>
                                 @endforeach
-                            </div>                            
-                            
+                            </div>
+
                             <div class="col-4">
                                 @foreach($statusSetrika as $ss)
                                     <form method="POST" action="{{ url('/petugas/update_status/'.$ss->id) }}">
@@ -78,10 +78,15 @@
                                             <div class="card-body">
                                                 <div class="row no-gutters align-items-center">
                                                     <div class="col mr-2">
-                                                        <div class="h5 mb-5 font-weight-bold">Nota Order<span class="float-right">{{$ss->kode_order}}</span></div>
+                                                        <div class="h5 mb-5 font-weight-bold">Nota Order
+                                                            <span class="float-right">{{$ss->kode_order}}</span>
+                                                        </div>
+                                                        <div class="h5 mb-4 font-weight-bold">Nama
+                                                            <span class="float-right">{{$sp->pelanggan->nama}}</span>
+                                                        </div>
                                                         <div class="div d-flex justify-content-center">
                                                             <a href="#" class="btn btn-light btn-block" data-toggle="modal" data-target="#statusModal{{ $ss->id }}">{{ $ss->status }}</a>
-                                                        </div>                                                                                                               
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -107,7 +112,7 @@
                                     </form>
                                 @endforeach
                             </div>
-                            
+
                             <div class="col-4">
                                 @foreach($statusPacking as $sp)
                                     <form method="POST" action="{{ url('/petugas/update_status/'.$sp->id) }}">
@@ -116,10 +121,16 @@
                                             <div class="card-body">
                                                 <div class="row no-gutters align-items-center">
                                                     <div class="col mr-2">
-                                                        <div class="h5 mb-5 font-weight-bold">Nota Order<span class="float-right">{{$sp->kode_order}}</span></div>
+                                                        <div class="h5 font-weight-bold">Nota Order
+                                                            <span class="float-right">{{$sp->kode_order}}</span>
+                                                        </div>
+                                                        <div class="h5 mb-4 font-weight-bold">Nama
+                                                            <span class="float-right">{{$sp->pelanggan->nama}}</span>
+                                                        </div>
                                                         <div class="div d-flex justify-content-center">
-                                                            <a href="#" class="btn btn-light btn-block" data-toggle="modal" data-target="#statusModal{{ $sp->id }}">{{ $sp->status }}</a>
-                                                        </div>                                                                                                               
+                                                            <a href="#" class="btn btn-light btn-block" data-toggle="modal" data-target="#statusModal{{ $sp->id }}">{{ $sp->status }}
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -146,7 +157,7 @@
                                 @endforeach
                             </div>
                         </div>
-                        
+
                     </div>
                 </section>
             </div>
@@ -155,7 +166,7 @@
 @endsection
 
 
- 
+
 
 
 

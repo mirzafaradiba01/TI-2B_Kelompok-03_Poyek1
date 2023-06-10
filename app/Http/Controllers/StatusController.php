@@ -8,14 +8,10 @@ use App\Models\Pelanggan;
 use App\Models\Status;
 use Illuminate\Http\Request;
 
-class StatusController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+class StatusController extends Controller {
+    
     public function index(Request $request) {
+
         if($request->get('query') !== null){
             $query = $request->get('query');
             $status_admin = Order::where('kode_status', 'LIKE', '%'.$query.'%')
@@ -30,35 +26,12 @@ class StatusController extends Controller
         return view('status.status_admin', ['status_admin' => $status_admin, 'status' => $status]);
     }
 
+    public function create() {}
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    public function store(Request $request) {}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Status  $status
-     * @return \Illuminate\Http\Response
-     */
     public function show() {
+
         $status = Status::all();
         $order = Order::all();
         $pelanggan = Pelanggan::all();
@@ -71,44 +44,14 @@ class StatusController extends Controller
         ]);
     }
 
+    public function edit(Status $status) {}
 
+    public function update(Request $request, Status $status) {}
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Status  $status
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Status $status)
-    {
-        //
-    }
+    public function destroy(Status $status) {}
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Status  $status
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Status $status)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Status  $status
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Status $status)
-    {
-        //
-    }
-
-    public function status_pelanggan($id)
-    {
+    public function status_pelanggan($id) {
+        
         $order_pelanggan = Order::where('id_pelanggan', $id)->get();
         $status_pelanggan = Status::where('id_pelanggan', $id)->get();
         return view('status.status_pelanggan', ['order_pelanggan' => $order_pelanggan, 'status_pelanggan' => $status_pelanggan]);

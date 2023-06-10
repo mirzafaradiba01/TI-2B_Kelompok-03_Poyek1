@@ -10,51 +10,37 @@ use Yajra\DataTables\DataTables;
 
 class PetugasController extends Controller {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request) {
-        // $query = $request->get('query');
-        // $petugas = Petugas::query();
-        // if ($query) {
-        //     $petugas = $petugas->where('kode_petugas', 'LIKE', '%' . $query . '%')
-        //         ->orWhere('nama', 'LIKE', '%' . $query . '%')
-        //         ->orWhere('no_hp', 'LIKE', '%' . $query . '%');
-        // }
 
-        // $petugas = $petugas->paginate(5);
-        // $petugas->appends(['query' => $query]);
+        $query = $request->get('query');
+        $petugas = Petugas::query();
+        if ($query) {
+            $petugas = $petugas->where('kode_petugas', 'LIKE', '%' . $query . '%')
+                ->orWhere('nama', 'LIKE', '%' . $query . '%')
+                ->orWhere('no_hp', 'LIKE', '%' . $query . '%');
+        }
+
+        $petugas = $petugas->paginate(5);
+        $petugas->appends(['query' => $query]);
         return view('petugas.petugas');
     }
 
     public function data() {
-        $data = Petugas::selectRaw('id,kode_petugas,nama,alamat,no_hp');
 
+        $data = Petugas::selectRaw('id,kode_petugas,nama,alamat,no_hp');
         return DataTables::of($data)
                 ->addIndexColumn()
                 ->make(true);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create() {
+
         $order = Order::all();
         return view('petugas.create_petugas', ['url_form' => url( auth()->user()->role . '/petugas' ), 'order' => $order]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
+
         $countPetugas = Petugas::count();
         $kode = '11';
         $kode_petugas = $kode . ($countPetugas + 1);
@@ -97,13 +83,8 @@ class PetugasController extends Controller {
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Petugas  $petugas
-     * @return \Illuminate\Http\Response
-     */
     public function show($id) {
+
         $petugas = Petugas::where('id', $id)->first();
 
         if ($petugas) {
@@ -113,27 +94,16 @@ class PetugasController extends Controller {
         };
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Petugas  $petugas
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id) {
+        
         $petugas = Petugas::find($id);
         return view('petugas.update_petugas')
             ->with('petugas', $petugas)
             ->with('url_form', url( auth()->user()->role . '/petugas/'. $id));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Petugas  $petugas
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id) {
+
         $rule = [
             'nama' => 'required|string|max:50',
             'alamat' => 'required|string|max:50',
@@ -160,14 +130,8 @@ class PetugasController extends Controller {
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Petugas  $petugas
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
+    public function destroy($id) {
+
         $petugas = Petugas::where('id', $id)->first();
 
         if (!$petugas) {
@@ -194,6 +158,4 @@ class PetugasController extends Controller {
             ]);
         }
     }
-
-
 }

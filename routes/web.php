@@ -39,6 +39,8 @@ Route::middleware(['auth', 'checkrole:admin'])->prefix('admin')->group(function 
 
     // admin dapat mengakses transaksi dan order
     Route::resource('/transaksi', TransaksiController::class)->parameter('transaksi', 'id')->names('admin.transaksi');
+    Route::post('/transaksi/data', [TransaksiController::class, 'data']);
+    
     Route::resource('/order', OrderController::class)->parameter('order', 'id')->names('admin.order');
     Route::resource('/status', StatusController::class)->parameter('status', 'id')->names('admin.status');
 

@@ -9,11 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\DataTables;
 
 class PelangganController extends Controller {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Request $request) {
         $user = User::all();
         if($request->get('query') !== null){
@@ -29,33 +25,11 @@ class PelangganController extends Controller {
         return view('pelanggan.pelanggan', ['pelanggan' => $pelanggan, 'user' => $user]);
     }
 
-    public function data() {
-        $pelanggan = Pelanggan::with('users')->get();
-        return DataTables::of($pelanggan)
-        ->addIndexColumn()
-        ->addColumn('username', function($row) {
-            return $row->users->username;
-        })
-        ->make(true);
-    }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create() {
         $users = User::all();
         return view('pelanggan.create_pelanggan', ['url_form' => url( auth()->user()->role . '/pelanggan' ), 'users' => $users]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $countPelanggan = Pelanggan::count();
@@ -100,12 +74,6 @@ class PelangganController extends Controller {
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Pelanggan  $pelanggan
-     * @return \Illuminate\Http\Response
-     */
     public function show($id) {
         $pelanggan = Pelanggan::where('id', $id)->first();
 
@@ -118,12 +86,6 @@ class PelangganController extends Controller {
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Pelanggan  $pelanggan
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id) {
         $pelanggan = Pelanggan::find($id);
         return view('pelanggan.update_pelanggan')
@@ -131,13 +93,6 @@ class PelangganController extends Controller {
             ->with('url_form', url( auth()->user()->role . '/pelanggan/'. $id));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pelanggan  $pelanggan
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id) {
         $rule = [
             'nama' => 'required|string|max:50',
@@ -176,15 +131,18 @@ class PelangganController extends Controller {
         }
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Pelanggan  $pelanggan
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id) {
         Pelanggan::where('id', '=', $id)->delete();
         return redirect( auth()->user()->role . '/pelanggan' )->with ('success', 'Pelanggan Berhasil Dihapus');
+    }
+
+    public function data() {
+        $pelanggan = Pelanggan::with('users')->get();
+        return DataTables::of($pelanggan)
+        ->addIndexColumn()
+        ->addColumn('username', function($row) {
+            return $row->users->username;
+        })
+        ->make(true);
     }
 }
