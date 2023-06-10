@@ -43,7 +43,7 @@ class JenisLaundryController extends Controller {
         $rule = [
             'nama' => 'required|string|max:50',
             'biaya' => 'required|string|max:50',
-            
+
         ];
 
         $validator = Validator::make($request->all(), $rule);
@@ -65,21 +65,21 @@ class JenisLaundryController extends Controller {
             'data' => null
         ]);
     }
-   
+
     public function destroy($id) {
 
-        $jenisLaundry = JenisLaundry::where('id', $id)->first();
+        $jenis_laundry = JenisLaundry::where('id', $id)->first();
 
-        if (!$jenisLaundry) {
+        if (!$jenis_laundry) {
             return response()->json([
                 'status' => false,
                 'message' => 'Data not found',
                 'data' => null
             ]);
         }
-        
-        $deleted = $jenisLaundry->delete();
-        
+
+        $deleted = $jenis_laundry->delete();
+
         if ($deleted) {
             return response()->json([
                 'status' => true,

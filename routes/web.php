@@ -52,7 +52,7 @@ Route::middleware(['auth', 'checkrole:admin'])->prefix('admin')->group(function 
 
     Route::resource('/jenis_laundry', JenisLaundryController::class)->parameter('jenis_laundry', 'id')->names('admin.jenis_laundry');
     Route::post('/jenis_laundry/data', [JenisLaundryController::class, 'data']);
-    Route::post('/jenis_laundru/delete/{id}', [JenisLaundryController::class, 'destroy']);
+    Route::post('/jenis_laundry/delete/{id}', [JenisLaundryController::class, 'destroy']);
 
     Route::get('/transaksi', [TransaksiController::class, 'index'])->name('admin.transaksi');
     Route::resource('/status_admin', StatusController::class)->parameters(['status_admin' => 'id'])->names('admin.status_admin');

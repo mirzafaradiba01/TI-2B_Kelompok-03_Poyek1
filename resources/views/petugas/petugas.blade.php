@@ -23,14 +23,11 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php ?>
-                    </tbody>
                 </table>
             </div>
         </div>
-
     </section>
+
     <div class="modal fade" id="modal_petugas" style="display: none;" aria-hidden="true">
         <form method="post" action="{{ url(auth()->user()->role . '/petugas') }}" role="form" class="form-horizontal"
             id="form_petugas">
