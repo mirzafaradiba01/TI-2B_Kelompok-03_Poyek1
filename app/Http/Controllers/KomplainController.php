@@ -36,8 +36,7 @@ class KomplainController extends Controller {
 
         return view('komplain.komplain', ['komplain' => $komplain]);
     }
-
-    public function create($id) {
+     function create($id) {
         $pelanggan = Pelanggan::where('id', $id)->get();
         return view('komplain.create_komplain', ['url_form' => url(auth()->user()->role . '/komplain'), 'pelanggan' => $pelanggan]);
     }
