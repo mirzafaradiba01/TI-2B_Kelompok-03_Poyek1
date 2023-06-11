@@ -3,16 +3,14 @@
 @section('content')
     <section class="content">
 
-        <!--Default box-->
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">DATA PETUGAS</h3>
             </div>
-
             <div class="card-body">
-                <button class="btn btn-sm btn-success my-2" data-toggle="modal" data-target="#modal_petugas">Tambah
+                <button class="btn btn-sm btn-success my-2" data-toggle="modal" data-target="#modal-petugas">Tambah
                     Data</button>
-                <table class="table table-bordered table-striped" id="data_petugas">
+                <table class="table table-bordered table-striped" id="data-petugas">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -28,9 +26,9 @@
         </div>
     </section>
 
-    <div class="modal fade" id="modal_petugas" style="display: none;" aria-hidden="true">
+    <div class="modal fade" id="modal-petugas" style="display: none;" aria-hidden="true">
         <form method="post" action="{{ url(auth()->user()->role . '/petugas') }}" role="form" class="form-horizontal"
-            id="form_petugas">
+            id="form-petugas">
             @csrf
             <div class="modal-dialog modal-">
                 <div class="modal-content">
@@ -133,21 +131,21 @@
 @push('js')
     <script>
         function tambahData() {
-            $('#modal_petugas').modal('show');
-            $('#modal_petugas .modal-title').html('Tambah Data Petugas');
-            $('#modal_petugas #nama').val('');
-            $('#modal_petugas #alamat').val('');
-            $('#modal_petugas #no_hp').val('');
+            $('#modal-petugas').modal('show');
+            $('#modal-petugas .modal-title').html('Tambah Data Petugas');
+            $('#modal-petugas #nama').val('');
+            $('#modal-petugas #alamat').val('');
+            $('#modal-petugas #no_hp').val('');
         }
 
         function updateData(th) {
-            $('#modal_petugas').modal('show');
-            $('#modal_petugas .modal-title').html('Edit Data Petugas');
-            $('#modal_petugas #nama').val($(th).data('nama'));
-            $('#modal_petugas #alamat').val($(th).data('alamat'));
-            $('#modal_petugas #no_hp').val($(th).data('no_hp'));
-            $('#modal_petugas #form_petugas').attr('action', $(th).data('url'));
-            $('#modal_petugas #form_petugas').append('<input type="hidden" name="_method" value="PUT">');
+            $('#modal-petugas').modal('show');
+            $('#modal-petugas .modal-title').html('Edit Data Petugas');
+            $('#modal-petugas #nama').val($(th).data('nama'));
+            $('#modal-petugas #alamat').val($(th).data('alamat'));
+            $('#modal-petugas #no_hp').val($(th).data('no_hp'));
+            $('#modal-petugas #form-petugas').attr('action', $(th).data('url'));
+            $('#modal-petugas #form-petugas').append('<input type="hidden" name="_method" value="PUT">');
         }
 
         function showData(element) {
@@ -190,7 +188,7 @@
         }
 
         $(document).ready(function() {
-            var dataPetugas = $('#data_petugas').DataTable({
+            var dataPetugas = $('#data-petugas').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: {
@@ -251,7 +249,7 @@
                 ]
             });
 
-            $('#form_petugas').submit(function(e) {
+            $('#form-petugas').submit(function(e) {
                 e.preventDefault();
                 $.ajax({
                     url: $(this).attr('action'),
@@ -264,11 +262,10 @@
                             $('.form-message').html(
                                 '<span class="alert alert-success" style="width: 100%">' +
                                 data.message + '</span>');
-                            $('#form_petugas')[0].reset();
-                            dataPetugas.draw(
-                            false); // Reload tabel sesuai dengan halaman pagination yang sedang aktif
-                            $('#form_petugas').attr('action', '{{ url('petugas') }}');
-                            $('#form_petugas').find('input[name="_method"]').remove();
+                            $('#form-petugas')[0].reset();
+                            dataPetugas.draw( false); // Reload tabel sesuai dengan halaman pagination yang sedang aktif
+                            $('#form-petugas').attr('action', '{{ url('petugas') }}');
+                            $('#form-petugas').find('input[name="_method"]').remove();
                         } else {
                             $('.form-message').html(
                                 '<span class="alert alert-danger" style="width: 100%">' +
@@ -278,7 +275,7 @@
 
                         if (data.modal_close) {
                             $('.form-message').html('');
-                            $('#modal_petugas').modal('hide');
+                            $('#modal-petugas').modal('hide');
                         }
                     }
                 });

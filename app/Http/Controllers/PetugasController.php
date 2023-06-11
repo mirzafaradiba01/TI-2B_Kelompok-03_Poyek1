@@ -34,8 +34,7 @@ class PetugasController extends Controller {
     }
 
     public function create() {
-
-        $order = Order::all();
+        $order = Petugas::all();
         return view('petugas.create_petugas', ['url_form' => url( auth()->user()->role . '/petugas' ), 'order' => $order]);
     }
 
@@ -47,7 +46,7 @@ class PetugasController extends Controller {
 
         $rule = [
             'nama' => 'required|string|max:50',
-            'alamat' => 'required|string|max:50',
+            'alamat' => 'string|max:255',
             'no_hp' => 'required|digits_between:6,15',
         ];
 
@@ -55,7 +54,7 @@ class PetugasController extends Controller {
         if ($validator->fails()) {
             return response()->json([
                 'status' => false,
-                'modal_close' => false,
+                'modal_close' => true,
                 'message' => 'Data gagal ditambahkan. ' . $validator->errors()->first(),
                 'data' => $validator->errors()
             ]);
@@ -63,20 +62,20 @@ class PetugasController extends Controller {
 
         $data = $request->all();
         $data['kode_petugas'] = $kode_petugas;
-
         $petugas = Petugas::create($data);
+        
         if ($petugas) {
             return response()->json([
                 'kode_petugas' => $kode_petugas,
                 'status' => true,
-                'modal_close' => false,
+                'modal_close' => true,
                 'message' => 'Data berhasil ditambahkan',
                 'data' => null
             ]);
         } else {
             return response()->json([
                 'status' => false,
-                'modal_close' => false,
+                'modal_close' => true,
                 'message' => 'Data gagal ditambahkan',
                 'data' => null
             ]);
@@ -95,7 +94,7 @@ class PetugasController extends Controller {
     }
 
     public function edit($id) {
-        
+
         $petugas = Petugas::find($id);
         return view('petugas.update_petugas')
             ->with('petugas', $petugas)
@@ -125,7 +124,7 @@ class PetugasController extends Controller {
         return response()->json([
             'status' => ($petugas),
             'modal_close' => $petugas,
-            'message' => ($petugas)? 'Data berhasil diedit' : 'Data gagal diedit',
+            'message' => ($petugas) ? 'Data berhasil diedit' : 'Data gagal diedit',
             'data' => null
         ]);
     }

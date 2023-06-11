@@ -46,7 +46,7 @@ class PelangganController extends Controller {
         if ($validator->fails()) {
             return response()->json([
                 'status' => false,
-                'modal_close' => false,
+                'modal_close' => true,
                 'message' => 'Data gagal ditambahkan. ' . $validator->errors()->first(),
                 'data' => $validator->errors()
             ]);
@@ -54,8 +54,8 @@ class PelangganController extends Controller {
 
         $data = $request->all();
         $data['kode_pelanggan'] = $kode_pelanggan;
-
         $pelanggan = Pelanggan::create($data);
+        
         if ($pelanggan) {
             return response()->json([
                 'kode_pelanggan' => $kode_pelanggan,
@@ -67,7 +67,7 @@ class PelangganController extends Controller {
         } else {
             return response()->json([
                 'status' => false,
-                'modal_close' => false,
+                'modal_close' => true,
                 'message' => 'Data gagal ditambahkan',
                 'data' => null
             ]);
