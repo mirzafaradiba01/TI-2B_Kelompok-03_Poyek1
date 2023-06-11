@@ -25,9 +25,11 @@ class KomplainController extends Controller {
                 $komplain = Komplain::with('pelanggan')->paginate(5);
             }
         } else if ($user->role === 'pelanggan') {
-            $komplain = Komplain::whereHas('pelanggan', function ($query) use ($user) {
-                $query->where('id_user', $user->id);
-            })->with('pelanggan')->paginate(5);
+            $query = $request->get('query');
+                $komplain = Komplain::where('kode_komplain', 'LIKE', '%'.$query.'%')
+                    ->orWhere('id_pelanggan', 'LIKE', '%'.$query.'%')
+                    ->with('pelanggan')
+                    ->paginate(5);
         } else {
             $komplain = collect();
         }
