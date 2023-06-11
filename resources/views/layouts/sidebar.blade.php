@@ -142,9 +142,9 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('/' . auth()->user()->role . '/pelanggan') }}" class="nav-link">
+                            <a href="{{ url('/' . auth()->user()->role . '/profile') }}" class="nav-link">
                                 <i class="fas fa-book pr-2"></i>
-                                <p>Perbarui Data</p>
+                                <p>Profile</p>
                             </a>
                         </li>
                         <li class="nav-item">

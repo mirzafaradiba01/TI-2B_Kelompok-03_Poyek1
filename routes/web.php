@@ -11,6 +11,7 @@ use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\StatusPetugasController;
 use App\Http\Controllers\TransaksiController;
+use App\Models\Pelanggan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -93,6 +94,9 @@ Route::middleware(['auth', 'checkrole:pelanggan'])->prefix('pelanggan')->group(f
     Route::get('/komplain/create/{id}', [KomplainController::class, 'create']);
     Route::get('/status/{id}', [StatusController::class, 'status_pelanggan']);
 
+    Route::get('/profile', [PelangganController::class, 'profile']);
+    Route::get('/edit_data', [PelangganController::class, 'edit_data']);
+    Route::post('/update_data/{id}', [PelangganController::class, 'update_data']);
+
     Route::get('/transaksi/cetakNotaLaundry/{id}', [TransaksiController::class, 'cetakNotaLaundry'])->name('notaLaundry.cetak');
-    // Route::get('/cekstatus', [StatusController::class, 'cekstatus'])->name('komplain.cekstatus');
 });

@@ -55,7 +55,7 @@ class PelangganController extends Controller {
         $data = $request->all();
         $data['kode_pelanggan'] = $kode_pelanggan;
         $pelanggan = Pelanggan::create($data);
-        
+
         if ($pelanggan) {
             return response()->json([
                 'kode_pelanggan' => $kode_pelanggan,
@@ -168,5 +168,35 @@ class PelangganController extends Controller {
             return $row->users->username;
         })
         ->make(true);
+    }
+
+    public function edit_data() {
+        $id_user = auth()->user()->id;
+        $pelanggan = Pelanggan::where('id_user', $id_user)->first();
+        return view('pelanggan.update_pelanggan',
+        [
+            'pelanggan' => $pelanggan,
+            'url_form' => url( auth()->user()->role . '/update_data' )
+        ]);
+    }
+
+    public function update_data(Request $request, $id) {
+        $pelanggan = Pelanggan::find($id);
+        if ($pelanggan) {
+            $pelanggan->update($request->only('nama', 'no_hp'));
+
+            $user = $pelanggan->users;
+            if ($user) {
+                $user->update(['username' => $request->username]);
+            }
+        }
+        return redirect(auth()->user()->role . '/profile');
+    }
+
+
+    public function profile() {
+        $id_user = auth()->user()->id;
+        $pelanggan = Pelanggan::where('id_user', $id_user)->first();
+        return view('pelanggan.profile', [ 'pelanggan' => $pelanggan,]);
     }
 }
