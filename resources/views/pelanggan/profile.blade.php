@@ -3,20 +3,19 @@
 @section('content')
     <section class="content">
 
-        <form method="POST" class="p-3 d-flex flex-column align-items-center justify-content-center" action="{{ $url_form . '/' . $pelanggan->id }}">
+        <form method="GET" class="p-3 d-flex flex-column align-items-center justify-content-center" action="{{ url( auth()->user()->role . '/edit_data') }}">
             @csrf
-            {{-- {!! isset($pelanggan) ? method_field('PUT') : '' !!} --}}
             <div class="form-group w-50">
-                <label for="username">Username</label>
-                <input id="username" name="username" class="form-control @error('username') is-invalid @enderror" value="{{ $pelanggan->users->username ? auth()->user()->username : '' }}">
-                @error('username')
+                <label for="id_user">Username</label>
+                <input id="id_user" name="id_user" class="form-control @error('id_user') is-invalid @enderror" value="{{ $pelanggan->id_user ? auth()->user()->username : '' }}" readonly>
+                @error('id_user')
                     <span class="error invalid-feedback">{{ $message }} </span>
                 @enderror
             </div>
             <div class="form-group w-50">
                 <label>Nama</label>
                 <input class="form-control @error('nama') is-invalid @enderror"
-                    value="{{ isset($pelanggan) ? $pelanggan->nama : old('nama') }}" name="nama" type="text" />
+                    value="{{ isset($pelanggan) ? $pelanggan->nama : old('nama') }}" name="nama" type="text" readonly/>
                 @error('nama')
                     <span class="error invalid-feedback">{{ $message }} </span>
                 @enderror
@@ -24,7 +23,7 @@
             <div class="form-group w-50">
                 <label>No Telepon</label>
                 <input class="form-control @error('no_hp') is-invalid @enderror"
-                    value="{{ isset($pelanggan) ? $pelanggan->no_hp : old('no_hp') }}" name="no_hp" type="text" />
+                    value="{{ isset($pelanggan) ? $pelanggan->no_hp : old('no_hp') }}" name="no_hp" type="text" readonly/>
                 @error('no_hp')
                     <span class="error invalid-feedback">{{ $message }} </span>
                 @enderror
@@ -32,13 +31,13 @@
             <div class="form-group w-50">
                 <label>Email</label>
                 <input class="form-control @error('email') is-invalid @enderror"
-                    value="{{ isset($pelanggan) ? auth()->user()->email : old('email') }}" name="email" type="text" />
+                    value="{{ isset($pelanggan) ? auth()->user()->email : old('email') }}" name="email" type="text" readonly/>
                 @error('email')
                     <span class="error invalid-feedback">{{ $message }} </span>
                 @enderror
             </div>
             <div class="form-group">
-                <button class="btn btn-sm btn-primary mt-5">Simpan</button>
+                <button class="btn btn-sm btn-primary mt-5">Perbarui Profile</button>
             </div>
             <div class="form-group w-50">
                 <input class="form-control @error('kode_pelanggan') is-invalid @enderror"
