@@ -13,10 +13,31 @@ use function Ramsey\Uuid\v1;
 
 class OrderController extends Controller {
 
-    public function index(Request $request) {
-        $jenis = JenisLaundry::all();
-        $pelanggan = Pelanggan::all();
-        return view('order.create_order', ['jenis' => $jenis], ['pelanggan' => $pelanggan]);
+public function index(Request $request) {
+
+    $query = $request->get('query');
+    $order_selesai = Status::with('order')->get();
+
+    $order = Order::whereHas('status', function ($queryBuilder) use ($query) {
+            $queryBuilder->where('kode_status', 'LIKE', '%'.$query.'%');
+        })
+        ->orWhereHas('pelanggan', function ($queryBuilder) use ($query) {
+            $queryBuilder->where('nama', 'LIKE', '%'.$query.'%')
+                ->orWhere('no_hp', 'LIKE', '%'.$query.'%');
+        })
+        ->orWhereHas('jenis_laundry', function ($queryBuilder) use ($query) {
+            $queryBuilder->where('nama', 'LIKE', '%'.$query.'%');
+        })
+        ->orWhere('kode_order', 'LIKE', '%'.$query.'%')
+        ->paginate(5);
+
+        $status = Status::paginate(5);
+
+        return view('order.order_selesai', [
+            'order' => $order,
+            'status' => $status,
+            'order_selesai' => $order_selesai
+        ]);
     }
 
     public function create() {
@@ -85,4 +106,10 @@ class OrderController extends Controller {
         $statusAdmin = Order::all();
         return view('status.status_admin', ['statusAdmin' => $statusAdmin]);
     }
+
+    public function order_selesai() {
+       $order_selesai = Status::with('order')->get();
+       return view('order.order_selesai', ['order_selesai' => $order_selesai]);
+    }
+
 }

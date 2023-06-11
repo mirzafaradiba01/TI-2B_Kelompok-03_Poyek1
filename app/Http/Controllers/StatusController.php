@@ -114,19 +114,4 @@ class StatusController extends Controller {
         return view('status.status_pelanggan', ['order_pelanggan' => $order_pelanggan, 'status_pelanggan' => $status_pelanggan]);
     }
 
-    public function order_selesai() {
-        $order_selesai = Status::with('order')->get();
-        return DataTables::of($order_selesai)
-        ->addColumn('nama', function($row) {
-            return $row->pelanggan->nama;
-        })
-        ->addColumn('no_hp', function($row) {
-            return $row->pelanggan->no_hp;
-        })
-        ->addColumn('jenis_laundry', function ($row) {
-            return $row->jenis_laundry->nama;
-        })
-        ->addIndexColumn()
-        ->make(true);
-    }
 }
