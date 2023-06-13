@@ -57,6 +57,9 @@
         @endforeach
         
     </div>
+    <div class="div-note">
+        <p> <i>Note:Silahkan tunjukkan nota pada saat pengambilan laundry</i></p>
+    </div>
 
     <div class="footer">
         <p>Terima kasih atas kunjungan Anda!</p>

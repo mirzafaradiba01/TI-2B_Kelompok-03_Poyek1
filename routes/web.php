@@ -73,6 +73,8 @@ Route::middleware(['auth', 'checkrole:admin'])->prefix('admin')->group(function 
 Route::middleware(['auth', 'checkrole:petugas'])->prefix('petugas')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'petugas'])->name('petugas.dashboard');
     Route::resource('/petugas', PetugasController::class)->parameter('petugas', 'id')->names('petugas.petugas');
+    Route::post('/status/data', [StatusController::class, 'data_status_admin']);
+    Route::post('/transaksi/data', [TransaksiController::class, 'data']);
 
     Route::resource('/pelanggan', PelangganController::class)->parameter('pelanggan', 'id')->names('petugas.pelanggan');
     Route::post('/pelanggan/data', [PelangganController::class, 'data']);

@@ -132,14 +132,6 @@
 
             {{-- jika yang login pelanggan, maka menu di bawah akan muncul, kalau petugas, pelanggan tidak akan muncul --}}
             @if (auth()->user()->role === 'pelanggan')
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-book-open pr-2"></i>
-                        <p>
-                            Pengaturan
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ url('/' . auth()->user()->role . '/profile') }}" class="nav-link">

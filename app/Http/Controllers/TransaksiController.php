@@ -134,7 +134,7 @@ class TransaksiController extends Controller {
         $transaksi =  Order::where('id', $id)->get();
         $tanggal_sekarang = Carbon::now()->format('d F Y');
         $jam_sekarang = Carbon::now()->format('H:i:s');
-        $pdf = PDF::loadView('notaLaundry.cetak', ['notaLaundry' => $notaLaundry, 'transaksi' => $transaksi, 'tanggal_sekarang' => $tanggal_sekarang, 'jam_sekarang' => $jam_sekarang])->setPaper('A4', 'landscape');
+        $pdf = PDF::loadView('notaLaundry.cetak', ['notaLaundry' => $notaLaundry, 'transaksi' => $transaksi, 'tanggal_sekarang' => $tanggal_sekarang, 'jam_sekarang' => $jam_sekarang])->setPaper('A3', 'landscape');
         return $pdf->stream();
     }
 }
