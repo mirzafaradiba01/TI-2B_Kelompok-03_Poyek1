@@ -76,7 +76,7 @@ public function index(Request $request) {
             'kode_order' => $order->kode_order,
             'id_order' => $order->id, // Menggunakan ID dari order yang baru ditambahkan
             'kode_status' => $kode_status,
-            'status' => 'Cuci',
+            'status' => 'Antri',
         ]);
 
         return redirect( auth()->user()->role . '/transaksi')->with('success', 'Order Berhasil Ditambahkan');

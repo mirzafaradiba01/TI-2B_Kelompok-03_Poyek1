@@ -17,17 +17,20 @@ class StatusPetugasController extends Controller {
                 ->orWhere('nama_pelanggan', 'LIKE', '%' . $query . '%')
                 ->orWhere('no_hp', 'LIKE', '%' . $query . '%')
                 ->paginate(5);
+            $statusAntri = Status::where('status', 'Antri')->get();
             $statusCuci = Status::where('status', 'cuci')->get();
             $statusSetrika = Status::where('status', 'setrika')->get();
             $statusPacking = Status::where('status', 'packing')->get();
         } else {
             $status_petugas = Status::paginate(5);
+            $statusAntri = Status::where('status', 'Antri')->get();
             $statusCuci = Status::where('status', 'cuci')->get();
             $statusSetrika = Status::where('status', 'setrika')->get();
             $statusPacking = Status::where('status', 'packing')->get();
         }
         return view('status.status_petugas', [
             'status_petugas' => $status_petugas,
+            'statusAntri' => $statusAntri,
             'statusCuci' => $statusCuci,
             'statusSetrika' => $statusSetrika,
             'statusPacking' => $statusPacking
@@ -64,11 +67,13 @@ class StatusPetugasController extends Controller {
     public function update_status($id) {
 
         $status = Status::find($id);
-        if ($status->status == 'Cuci') {
+        if ($status->status == 'Antri') {
+            $status->status = 'Cuci';
+        } elseif ($status->status == 'Cuci') {
             $status->status = 'Setrika';
         } elseif ($status->status == 'Setrika') {
             $status->status = 'Packing';
-        } elseif ($status->status == 'Packing'){
+        }elseif ($status->status == 'Packing'){
             $status->status = 'Selesai';
         }
 

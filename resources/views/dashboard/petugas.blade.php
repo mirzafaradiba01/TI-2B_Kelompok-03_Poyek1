@@ -50,7 +50,7 @@
                                     <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                         Order </div>
                                     <div class="h5 mb-0 font-weight-bold">{{ $hitungOrder }} Order</div>
-                                    <a href="{{ url( 'admin/transaksi') }}" class="small-box-footer h5 mb-0 font-weight-bold">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                    <a href="{{ url( 'admin/status_admin') }}" class="small-box-footer h5 mb-0 font-weight-bold">More info <i class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-scroll fa-2x"></i>
@@ -107,7 +107,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-md-6 mb-4">
+                {{-- <div class="col-xl-4 col-md-6 mb-4">
                     <div class="card border-left-info shadow h-100 py-2 bg-warning">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
@@ -138,7 +138,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
