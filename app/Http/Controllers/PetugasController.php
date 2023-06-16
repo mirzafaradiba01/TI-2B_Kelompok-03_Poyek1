@@ -41,7 +41,7 @@ class PetugasController extends Controller {
     public function store(Request $request) {
 
         $countPetugas = Petugas::count();
-        $kode = '11';
+        $kode = '10';
         $kode_petugas = $kode . ($countPetugas + 1);
 
         $rule = [

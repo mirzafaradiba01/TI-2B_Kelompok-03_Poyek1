@@ -6,6 +6,7 @@
         <div class="card-header">
             <h3 class="card-title">STATUS LAUNDRY</h3>
         </div>
+        <div class="card-body">
             <table class="table table-bordered table-striped" id="data-status-admin">
                 <thead>
                     <th>No</th>

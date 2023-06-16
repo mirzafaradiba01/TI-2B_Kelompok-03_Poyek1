@@ -4,13 +4,11 @@
 
 <section class="content">
     <div class="card">
-        <div class="card-header"></div>
+        <div class="card-header">
+            <h4>DATA ORDERAN SELESAI</h4>
+        </div>
         <div class="card-body">
-            {{-- <form action="" method="get" class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2 mb-2"  type="search" name="query" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-info my-2 my-sm-0 mb-3" type="submit">Search Order</button>
-            </form> --}}
-            <table class="table table-bordered table-striped"">
+            <table class="table table-bordered table-striped">
                 <thead>
                     <th>No</th>
                     <th>Kode Order</th>
@@ -47,7 +45,6 @@
                 </tbody>
             </table>
         </div>
-        {{-- <div class="pagination justify-content-end mt-2"> {{ $status->withQueryString()->links() }}</div> --}}
     </div>
 </section>
 @endsection

@@ -94,6 +94,7 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
+                                    <p>Dalam Proses Setrika</p>
                                     <div class="h5 mb-0 font-w`eight-bold">Laundry</div>
                                     <a href="{{ url('admin/status_admin') }}" class="small-box-footer h5 mb-0 font-weight-bold">More info <i class="fas fa-arrow-circle-right"></i></a>
                                 </div>

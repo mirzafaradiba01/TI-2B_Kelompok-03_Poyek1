@@ -83,7 +83,6 @@
                     <label for="status_bayar">Metode Pembayaran:</label>
                     <select id="status_bayar" name="status_bayar"
                         class="form-control @error('status_bayar') is-invalid @enderror">
-                        <option value="DP">DP</option>
                         <option value="Lunas">Lunas</option>
                         <option value="Bayar di Akhir">Bayar di Akhir</option>
                     </select></br>
