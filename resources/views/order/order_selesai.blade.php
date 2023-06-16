@@ -10,7 +10,7 @@
                 <input class="form-control mr-sm-2 mb-2"  type="search" name="query" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-info my-2 my-sm-0 mb-3" type="submit">Search Order</button>
             </form> --}}
-            <table class="table table-bordered table-striped" id="data-order-selesai">
+            <table class="table table-bordered table-striped"">
                 <thead>
                     <th>No</th>
                     <th>Kode Order</th>
@@ -28,7 +28,7 @@
                     @if ($order_selesai->count() > 0)
                         @foreach ($order_selesai as $os => $so)
                            @if ($so->status === 'Selesai')
-                            <tr>
+                                <tr>
                                     <td>{{ ++$os }}</td>
                                     <td>{{ $so->kode_order }}</td>
                                     <td>{{ $so->pelanggan->nama }}</td>

@@ -57,7 +57,6 @@
                                 </ul>
                             </div>
                         @endguest
-
                     </ul>
                 </div>
             </div>
@@ -149,11 +148,11 @@
         </section>
 
         <footer class="footer mt-5 bg-info">
-           <div class="d-flex justify-content-evenly align-items-center flex-row pt-2"> 
+           <div class="d-flex justify-content-evenly align-items-center flex-row pt-2">
                 <div>
                     <h5 class="text-uppercase mb-4">Tentang Kami</h5>
                     <p>
-                        Laundry Aya adalah layanan laundry profesional yang <br> 
+                        Laundry Aya adalah layanan laundry profesional yang <br>
                         menyediakan berbagai jenis layanan laundry dengan <br>
                         kualitas terbaik dan harga terjangkau.
                     </p>
