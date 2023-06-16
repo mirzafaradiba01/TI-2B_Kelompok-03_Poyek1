@@ -67,6 +67,9 @@ Route::middleware(['auth', 'checkrole:admin'])->prefix('admin')->group(function 
     Route::get('/form_cetak', [TransaksiController::class, 'show_form'])->name('admin.form_cetak');
     Route::post('/cetak_laporan', [TransaksiController::class, 'cetak_laporan'])->name('admin.cetak_laporan');
     Route::post('/transaksi/cetak_laporan', [TransaksiController::class, 'cetak_laporan']);
+    
+    Route::get('/formLaporan', [TransaksiController::class, 'show_keuangan'])->name('admin.formLaporan');
+    Route::post('/cetak_keuangan', [TransaksiController::class, 'cetak_keuangan'])->name('admin.cetak_keuangan');
 });
 
 // --- middleware untuk petugas
