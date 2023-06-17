@@ -32,9 +32,9 @@ class PelangganController extends Controller {
 
     public function store(Request $request) {
 
-        $countPelanggan = Pelanggan::count();
-        $kode = '11';
-        $kode_pelanggan = $kode . ($countPelanggan + 1);
+        // $countPelanggan = Pelanggan::count();
+        // $kode = '11';
+        // $kode_pelanggan = $kode . ($countPelanggan + 1);
 
         $rule = [
             'nama' => 'required|string|max:50',
@@ -53,12 +53,12 @@ class PelangganController extends Controller {
         }
 
         $data = $request->all();
-        $data['kode_pelanggan'] = $kode_pelanggan;
+        // $data['kode_pelanggan'] = $kode_pelanggan;
         $pelanggan = Pelanggan::create($data);
 
         if ($pelanggan) {
             return response()->json([
-                'kode_pelanggan' => $kode_pelanggan,
+                // 'kode_pelanggan' => $kode_pelanggan,
                 'status' => true,
                 'modal_close' => true,
                 'message' => 'Data berhasil ditambahkan',
@@ -192,7 +192,6 @@ class PelangganController extends Controller {
         }
         return redirect(auth()->user()->role . '/profile');
     }
-
 
     public function profile() {
         $id_user = auth()->user()->id;

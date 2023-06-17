@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Pelanggan;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -72,5 +74,25 @@ class RegisterController extends Controller
 
     public function showRegistrationForm() {
         return view('layouts.register');
+    }
+
+    public function register(Request $request) {
+        $user = User::create([
+            'name' => $request->input('name'),
+            'username' => $request->input('username'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+        ]);
+
+        $id_user = $user->id;
+
+        $pelanggan = new Pelanggan();
+        $pelanggan->id_user = $id_user;
+        $pelanggan->kode_pelanggan = '11' . $id_user;
+        $pelanggan->nama = $request->input('nama');
+        $pelanggan->no_hp = $request->input('no_hp');
+        $pelanggan->save();
+
+        return redirect('/');
     }
 }

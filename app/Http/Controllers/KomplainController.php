@@ -15,6 +15,7 @@ class KomplainController extends Controller {
         $user = Auth::user();
 
         if ($user->role === 'admin') {
+            // Jika user adalah admin, tampilkan semua komplain
             if ($request->has('query')) {
                 $query = $request->get('query');
                 $komplain = Komplain::where('kode_komplain', 'LIKE', '%'.$query.'%')
@@ -25,17 +26,32 @@ class KomplainController extends Controller {
                 $komplain = Komplain::with('pelanggan')->paginate(5);
             }
         } else if ($user->role === 'pelanggan') {
-            $query = $request->get('query');
+            // Jika user adalah pelanggan, tampilkan komplain yang terkait dengan username yang login
+            if ($request->has('query')) {
+                $query = $request->get('query');
                 $komplain = Komplain::where('kode_komplain', 'LIKE', '%'.$query.'%')
                     ->orWhere('id_pelanggan', 'LIKE', '%'.$query.'%')
+                    ->whereHas('pelanggan', function ($query) use ($user) {
+                        $query->where('nama', $user->username);
+                    })
                     ->with('pelanggan')
                     ->paginate(5);
+            } else {
+                $komplain = Komplain::whereHas('pelanggan', function ($query) use ($user) {
+                    $query->whereHas('users', function ($query) use ($user) {
+                        $query->where('email', $user->email);
+                    });
+                })
+                ->with('pelanggan')
+                ->paginate(5);
+            }
         } else {
             $komplain = collect();
         }
 
         return view('komplain.komplain', ['komplain' => $komplain]);
     }
+
 
     public function create($id) {
         $pelanggan = Pelanggan::where('id', $id)->get();

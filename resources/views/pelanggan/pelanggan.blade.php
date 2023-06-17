@@ -27,51 +27,49 @@
     <div class="modal fade" id="modal-pelanggan" style="display: none;" aria-hidden="true">
         <form method="post" action="{{ url(auth()->user()->role . '/pelanggan') }}" role="form" class="form-horizontal"
             id="form-pelanggan">
-            @csrf
-            <div class="modal-dialog modal-">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Tambah Data Pelanggan</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row form-message"></div>
-                        <div class="form-group required row mb-2">
-                            <label class="col-sm-2 control-label col-form-label">Nama</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control form-control-sm" id="nama" name="nama"
-                                    value="" />
-                            </div>
-                        </div>
-                        <div class="form-group required row mb-2">
-                            <label class="col-sm-2 control-label col-form-label">Username</label>
-                            <div class="col-sm-10">
-                                <select type="text" class="form-control form-control-sm" id="id_user" name="id_user">
-                                    @foreach($user as $akun_user)
-                                        <option value="{{ $akun_user->id }}">
-                                            {{ $akun_user->username }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group required row mb-2">
-                            <label class="col-sm-2 control-label col-form-label">No. HP</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control form-control-sm" id="no_hp" name="no_hp"
-                                    value="" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </form>
+          @csrf
+          <div class="modal-dialog modal-">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h4 class="modal-title">Tambah Data Pelanggan</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <div class="row form-message"></div>
+                      <div class="form-group required row mb-2">
+                          <label class="col-sm-2 control-label col-form-label">Username</label>
+                          <div class="col-sm-10">
+                              <select type="text" class="form-control form-control-sm" id="id_user" name="id_user">
+                                  @foreach($user as $akun_user)
+                                      <option value="{{ $akun_user->id}}">
+                                          {{ $akun_user->username }}
+                                      </option>
+                                  @endforeach
+                              </select>
+                          </div>
+                      </div>
+                      <div class="form-group required row mb-2">
+                          <label class="col-sm-2 control-label col-form-label">Nama</label>
+                          <div class="col-sm-10">
+                              <input type="text" class="form-control form-control-sm" id="nama" name="nama" value="" />
+                          </div>
+                      </div>
+                      <div class="form-group required row mb-2">
+                          <label class="col-sm-2 control-label col-form-label">No. HP</label>
+                          <div class="col-sm-10">
+                              <input type="text" class="form-control form-control-sm" id="no_hp" name="no_hp" value="" />
+                          </div>
+                      </div>
+                  </div>
+                  <div class="modal-footer justify-content-between">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Save changes</button>
+                  </div>
+              </div>
+          </div>
+      </form>
     </div>
 
     <div class="modal fade" id="modal_show_pelanggan" style="display: none;" aria-hidden="true">
