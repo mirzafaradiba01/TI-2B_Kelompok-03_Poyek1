@@ -7,8 +7,8 @@
                 <h3 class="card-title">DATA PELANGGAN</h3>
             </div>
             <div class="card-body">
-                {{-- <button class="btn btn-sm btn-success my-2" data-toggle="modal" data-target="#modal-pelanggan">Tambah
-                    Data</button> --}}
+                <button class="btn btn-sm btn-success my-2" data-toggle="modal" data-target="#modal-pelanggan">Tambah
+                    Data</button>
                 <table class="table table-bordered table-striped" id="data-pelanggan">
                     <thead>
                         <th>No</th>
