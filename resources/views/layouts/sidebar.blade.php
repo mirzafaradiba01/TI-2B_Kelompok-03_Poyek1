@@ -122,10 +122,30 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url( auth()->user()->role . '/form_cetak') }}" class="nav-link">
-                        <i class="nav-icon fas fa-print" style="color: #ffffff;"></i>
-                        <p>Cetak Laporan</p>
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-print " style="color: #ffffff"></i>
+                        <p>
+                            Cetak Laporan
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
                     </a>
+                    <ul class="nav nav-treeview"">
+                        <li class="nav-item">
+                            <a href="{{ url( auth()->user()->role . '/form_cetak') }}" class="nav-link">
+                                <i class="nav-icon fas fa-print" style="color: #ffffff;"></i>
+                                <p>Cetak Transaksi</p>
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ url('/' . auth()->user()->role . '/formLaporan') }}" class="nav-link">
+                                <i class="nav-icon fas fa-receipt"></i>
+                                <p> Cetak Keuangan</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
             @endif

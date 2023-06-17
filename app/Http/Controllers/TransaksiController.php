@@ -8,8 +8,10 @@ use App\Models\Pelanggan;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\PDF;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\DataTables;
+
 
 class TransaksiController extends Controller {
 
@@ -119,7 +121,7 @@ class TransaksiController extends Controller {
     public function cetak_laporan(Request $request) {
 
         $tanggal = $request->tanggal;
-        $transaksi = Order::whereDate('created_at', Carbon ::parse($tanggal)->format('Y-m-d'))->get();
+        $transaksi = Order::whereDate('tanggal_laundry', Carbon ::parse($tanggal)->format('Y-m-d'))->get();
         $data = [
             'transaksi' => $transaksi,
             'tanggal_laundry' => $tanggal,
@@ -137,4 +139,69 @@ class TransaksiController extends Controller {
         $pdf = PDF::loadView('notaLaundry.cetak', ['notaLaundry' => $notaLaundry, 'transaksi' => $transaksi, 'tanggal_sekarang' => $tanggal_sekarang, 'jam_sekarang' => $jam_sekarang])->setPaper('A3', 'landscape');
         return $pdf->stream();
     }
+
+
+
+    public function show_keuangan()
+    {
+        return view('cetakLaporan.formLaporan');
+    }
+
+    public function cetak_keuangan(Request $request)
+    {
+        // Validasi input tanggal
+        $request->validate([
+            'tanggal_awal' => 'required|date',
+            'tanggal_akhir' => 'required|date|after_or_equal:tanggal_awal',
+        ]);
+        
+
+        $tanggalAwal = $request->tanggal_awal;
+        $tanggalAkhir = $request->tanggal_akhir;
+
+        // Mengambil transaksi berdasarkan rentang tanggal
+        $transaksi = DB::table('order')
+        ->select('kode_order','tanggal_laundry','berat','total')
+        ->whereBetween('tanggal_laundry', [$tanggalAwal, $tanggalAkhir])
+        ->get();
+    
+
+        // Menghitung pendapatan per bulan
+        $pendapatanPerBulan = [];
+        foreach ($transaksi as $notaLaundry) {
+            $tanggalLaundry = $notaLaundry->tanggal_laundry;
+            $totalHarga = $notaLaundry->total;
+
+            // Mendapatkan bulan dari tanggal laundry
+            $bulan = date('F', strtotime($tanggalLaundry));
+
+            // Menjumlahkan total pendapatan per bulan
+            if (isset($pendapatanPerBulan[$bulan])) {
+                $pendapatanPerBulan[$bulan] += $totalHarga;
+            } else {
+                $pendapatanPerBulan[$bulan] = $totalHarga;
+            }
+        }
+
+        // Menghitung laporan semua keuangan bulanan
+        $laporanKeuanganBulanan = DB::table('order')
+            ->select(DB::raw('DATE(tanggal_laundry) AS tanggal'), DB::raw('COUNT(*) AS jumlah'), DB::raw('SUM(total) AS total'))
+            ->whereBetween('tanggal_laundry', [$tanggalAwal, $tanggalAkhir])
+            ->groupBy('tanggal')
+            ->get();
+
+        // Membuat laporan dalam bentuk PDF
+        $pdf = PDF::loadView('cetakLaporan.laporanKeuangan', [
+            'pendapatanPerBulan' => $pendapatanPerBulan,
+            'tanggalAwal' => $tanggalAwal,
+            'tanggalAkhir' => $tanggalAkhir,
+            'transaksi' => $transaksi,
+            'laporanKeuanganBulanan' => $laporanKeuanganBulanan,
+            ]);
+
+        // Mengirim file PDF untuk diunduh
+        return $pdf->stream();
+    }
+
+
 }
