@@ -87,9 +87,9 @@
                                 if (data === 'Selesai') {
                                     statusClass = 'bg-success p-2' ;
                                 } else if (data === 'Proses') {
-                                    statusClass = 'bg-warning';
+                                    statusClass = 'bg-warning p-2';
                                 } else if (data === 'Belum Diproses') {
-                                    statusClass = 'bg-info';
+                                    statusClass = 'bg-info p-2';
                                 } else {
                                     statusClass = 'bg-warning'; // Ubah menjadi 'bg-warning' untuk status 'Proses'
                                 }

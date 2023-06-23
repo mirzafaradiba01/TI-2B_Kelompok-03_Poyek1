@@ -72,7 +72,7 @@
                 <li class="nav-item">
                     <a href={{ url('/' . auth()->user()->role . '/transaksi') }} class="nav-link">
                         <i class="nav-icon fas fa-wallet" style="color: #fff;"></i>
-                        <p>Transaksi</p>
+                        <p>Status Pembayaran</p>
                     </a>
                 </li>
                 <li class="nav-item">

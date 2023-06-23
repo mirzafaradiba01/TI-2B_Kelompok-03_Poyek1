@@ -15,7 +15,16 @@
                 <input type="date" id="tanggal_awal" name="tanggal_awal" required>
                 <label for="tanggal_akhir">Tanggal Akhir:</label>
                 <input type="date" id="tanggal_akhir" name="tanggal_akhir" required>
+               
                 <button class="btn btn-primary" type="submit">Cetak Laporan Keuangan</button>
+                <div>
+                    @error('tanggal_awal')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                    @error('tanggal_akhir')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
             </form>
         </div>
     </div>

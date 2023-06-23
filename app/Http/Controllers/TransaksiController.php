@@ -147,12 +147,13 @@ class TransaksiController extends Controller {
         return view('cetakLaporan.formLaporan');
     }
 
-    public function cetak_keuangan(Request $request)
-    {
+    public function cetak_keuangan(Request $request) {
         // Validasi input tanggal
         $request->validate([
             'tanggal_awal' => 'required|date',
             'tanggal_akhir' => 'required|date|after_or_equal:tanggal_awal',
+        ],  [
+            'tanggal_akhir.after_or_equal' => 'Tanggal awal harus lebih kecil atau sama dengan tanggal akhir.',
         ]);
         
 
