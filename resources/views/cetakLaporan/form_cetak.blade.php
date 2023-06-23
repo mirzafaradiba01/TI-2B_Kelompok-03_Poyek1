@@ -13,7 +13,7 @@
                 @csrf
                 <label for="tanggal">Tanggal:</label>
                 <input type="date" id="tanggal" name="tanggal" required>
-                <button type="submit">Cetak Laporan Transaksi</button>
+                <button class="btn btn-primary" type="submit">Cetak Laporan Transaksi</button>
             </form>
         </div>
     </div>

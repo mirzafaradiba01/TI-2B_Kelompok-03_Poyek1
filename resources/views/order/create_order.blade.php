@@ -92,7 +92,12 @@
                 </div>
                 <div class="form-group">
                     <button type="submit" name="submit" class="btn btn-primary float-right">Submit</button>
+                    
                 </div>
+                <div class="form-group mt-3">
+                    <a href="{{url (auth()->user()->role . '/dashboard')}} " class="btn btn-secondary float-left btn-md">Back</a>
+                </div>
+                
             </form>
         </div>
     </section>

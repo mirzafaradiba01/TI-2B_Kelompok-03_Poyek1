@@ -15,7 +15,7 @@
                 <input type="date" id="tanggal_awal" name="tanggal_awal" required>
                 <label for="tanggal_akhir">Tanggal Akhir:</label>
                 <input type="date" id="tanggal_akhir" name="tanggal_akhir" required>
-                <button type="submit">Cetak Laporan Keuangan</button>
+                <button class="btn btn-primary" type="submit">Cetak Laporan Keuangan</button>
             </form>
         </div>
     </div>

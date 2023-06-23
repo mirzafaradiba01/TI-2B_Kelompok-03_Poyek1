@@ -8,8 +8,8 @@
                 <h3 class="card-title">DATA PETUGAS</h3>
             </div>
             <div class="card-body">
-                {{-- <button class="btn btn-sm btn-success my-2" data-toggle="modal" data-target="#modal-petugas">Tambah
-                    Data</button> --}}
+                <button class="btn btn-sm btn-success my-2" data-toggle="modal" data-target="#modal-petugas">Tambah
+                    Data</button>
                 <table class="table table-bordered table-striped" id="data-petugas">
                     <thead>
                         <tr>
