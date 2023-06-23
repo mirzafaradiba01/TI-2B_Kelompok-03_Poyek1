@@ -81,7 +81,21 @@
                         data: 'status',
                         name: 'status',
                         searchable: true,
-                        sortable: false
+                        sortable: false,
+                        render: function(data, type, row) {
+                                var statusClass = '';
+                                if (data === 'Selesai') {
+                                    statusClass = 'bg-success p-2' ;
+                                } else if (data === 'Proses') {
+                                    statusClass = 'bg-warning';
+                                } else if (data === 'Belum Diproses') {
+                                    statusClass = 'bg-info';
+                                } else {
+                                    statusClass = 'bg-warning'; // Ubah menjadi 'bg-warning' untuk status 'Proses'
+                                }
+                                return '<span class="badge ' + statusClass + '">' + data + '</span>';
+                            }
+
                     },
                     {
                         data: 'id',
